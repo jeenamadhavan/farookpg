@@ -1112,7 +1112,7 @@ $randnum=rand ( 1 ,5 );
                                             <td><?php echo $marks['Mark']['comp1_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['comp1_cgpa']; ?></td>
                                         </tr>
-                                        <?php if($marks['Mark']['degree_id']!=2 && $marks['Mark']['degree_id']!=4) { ?>
+                                        <?php if($marks['Mark']['degree_id']!=2 && $marks['Mark']['degree_id']!=4 && $marks['Mark']['degree_id']!=5) { ?>
                                         <tr>
                                             <td><?php echo $marks['Mark']['comp2_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['comp2_credit']; ?></td>
@@ -1232,7 +1232,7 @@ $randnum=rand ( 1 ,5 );
                                             <td><?php echo $marks['Mark']['comp1_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['comp1_max']; ?></td>
                                         </tr>
-                                        <?php if($marks['Mark']['degree_id']!=2 && $marks['Mark']['degree_id']!=4) { ?>
+                                        <?php if($marks['Mark']['degree_id']!=2 && $marks['Mark']['degree_id']!=4 && $marks['Mark']['degree_id']!=5) { ?>
                                         <tr>
                                             <td><?php echo $marks['Mark']['comp2_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['comp2_mark']; ?></td>
@@ -1423,7 +1423,8 @@ $randnum=rand ( 1 ,5 );
                                                                 'Urudu'=>'Urudu',
                                                                 'Sanskrit'=>'Sanskrit',
                                                                 'Kannada'=>'Kannada',
-                                                                'Tamil'=>'Tamil'
+                                                                'Tamil'=>'Tamil',
+                                                                'Other_than_lang'=>'Common course other than language'
                                                                 ),
                                                             'class'=>'form-control',
                                                             //'placeholder'=>'Enter Common Course (Other the English)',
@@ -2021,7 +2022,7 @@ $(document).ready(function () {
 <script type="text/javascript">
     $(document).ready(function(){
     
-    $(".select1,.select2,.select3").change(function() {
+    /*$(".select1,.select2,.select3").change(function() {
         var arr=[];
         if($('#single_main').is(':checked')) {
             jQuery('.select1').each(function() {
@@ -2054,8 +2055,7 @@ $(document).ready(function () {
                 }
             }
         }
-        //arr.length=0;
-    });
+    });*/
         
 });
 </script>
@@ -2063,7 +2063,7 @@ $(document).ready(function () {
 <script type="text/javascript">
     $('#single_main').on('click',function(){
         if ($(this).is(':checked')) {
-            if($('#degree').val()!=2) {
+            if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5) {
                 $("#double_main_form").hide();
                 $("#triple_main_form").hide();
                 $("#single_main_form").show();
@@ -2072,7 +2072,7 @@ $(document).ready(function () {
     });
     $('#double_main').on('click',function(){
         if ($(this).is(':checked')) {
-            if($('#degree').val()!=2) {
+            if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5) {
                 $("#single_main_form").hide();
                 $("#triple_main_form").hide();
                 $("#double_main_form").show();
@@ -2081,7 +2081,7 @@ $(document).ready(function () {
     });
     $('#triple_main').on('click',function(){
         if ($(this).is(':checked')) {
-            if($('#degree').val()!=2) {
+            if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5) {
                 $("#single_main_form").hide();
                 $("#double_main_form").hide();
                 $("#triple_main_form").show();
@@ -2133,7 +2133,7 @@ $(document).ready(function(){
             return;
         }
         else {
-        if($('#degree').val()!=2 && $('#degree').val()!=4){ // if not bcom and others
+        if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5){ // if not bcom, bba and bmmc
         if($('.markTable').length>0){ $('.markTable').hide(); }
         if($('#single_main').is(':checked')) {
             if($('.singleMainSubject1').val()==0 || $('.singleCompSubject1').val()==0 || $('.singleCompSubject2').val()==0) {
@@ -2281,8 +2281,8 @@ $(document).ready(function(){
                 limit_marks();
             }
         }
-    }// degree not bcom and others
-    else if($('#degree').val()==2 || $('#degree').val()==4) { // if bcom or others
+    }// degree not bcom,bba and bmmc
+    else if($('#degree').val()==2 || $('#degree').val()==4 || $('#degree').val()==5) { // if bcom or bba or bmmc
         if($('.markTable').length>0){ $('.markTable').hide(); }
         if($('#single_main').is(':checked')) {
             
@@ -2322,7 +2322,7 @@ $(document).ready(function(){
             alert('You can only click single main');
             return;
         }
-    }// degree bcome and others
+    }// degree bcome or bba or bmmc
     }//else
     });
 });
@@ -2331,7 +2331,7 @@ $(document).ready(function(){
     $('#degree').change(function(){
         var degree_id=$(this).val();
         var base_url='<?php echo Router::url('/', true); ?>';
-        if(degree_id!=2 && degree_id!=4) {
+        if(degree_id!=2 && degree_id!=4 && degree_id!=5) {
             $.ajax({
                 type:'post',
                 data:'degree_id='+degree_id,
@@ -2350,7 +2350,7 @@ $(document).ready(function(){
                     $('.tripleMainSubject3').html(data);
                 }
             })
-        }else if(degree_id==2) {
+        }else if(degree_id==2 || degree_id==4 || degree_id==5) {
             $('#single_main_form').hide();
             $('#double_main_form').hide();
             $('#triple_main_form').hide();
