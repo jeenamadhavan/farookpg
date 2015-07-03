@@ -1424,6 +1424,7 @@ $randnum=rand ( 1 ,5 );
                                                                 'Sanskrit'=>'Sanskrit',
                                                                 'Kannada'=>'Kannada',
                                                                 'Tamil'=>'Tamil',
+                                                                'French'=>'French',
                                                                 'Other_than_lang'=>'Common course other than language'
                                                                 ),
                                                             'class'=>'form-control',
