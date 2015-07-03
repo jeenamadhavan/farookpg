@@ -1103,34 +1103,39 @@ $randnum=rand ( 1 ,5 );
                                             <th>CGPA</th>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['main1_sub']; ?></td>
+                                            <td>Core: <?php echo $marks['Mark']['main1_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['main1_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['main1_cgpa']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['comp1_sub']; ?></td>
+                                            <td>Complementary-1: <?php echo $marks['Mark']['comp1_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['comp1_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['comp1_cgpa']; ?></td>
                                         </tr>
                                         <?php if($marks['Mark']['degree_id']!=2 && $marks['Mark']['degree_id']!=4 && $marks['Mark']['degree_id']!=5) { ?>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['comp2_sub']; ?></td>
+                                            <td>Complementary-2: <?php echo $marks['Mark']['comp2_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['comp2_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['comp2_cgpa']; ?></td>
                                         </tr>
                                         <?php } ?>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['common_sub']; ?></td>
+                                            <td>Common course: <?php echo $marks['Mark']['common_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['common_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['common_cgpa']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['com_other_sub']; ?></td>
+                                            <td>Common course (other than english): <?php echo $marks['Mark']['com_other_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['com_other_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['com_other_cgpa']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['open_sub']; ?></td>
+                                            <td>Additional common course: <?php echo $marks['Mark']['add_common_course_sub']; ?></td>
+                                            <td><?php echo $marks['Mark']['add_common_course_credit']; ?></td>
+                                            <td><?php echo $marks['Mark']['add_common_course_cgpa']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Open course: <?php echo $marks['Mark']['open_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['open_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['open_cgpa']; ?></td>
                                         </tr>
@@ -1141,32 +1146,37 @@ $randnum=rand ( 1 ,5 );
                                             <th>CGPA</th>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['main1_sub']; ?></td>
+                                            <td>Core-1: <?php echo $marks['Mark']['main1_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['main1_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['main1_cgpa']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['main2_sub']; ?></td>
+                                            <td>Core-2: <?php echo $marks['Mark']['main2_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['main2_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['main2_cgpa']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['comp1_sub']; ?></td>
+                                            <td>Complementary-1: <?php echo $marks['Mark']['comp1_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['comp1_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['comp1_cgpa']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['common_sub']; ?></td>
+                                            <td>Common course: <?php echo $marks['Mark']['common_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['common_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['common_cgpa']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['com_other_sub']; ?></td>
+                                            <td>Common course (other than english): <?php echo $marks['Mark']['com_other_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['com_other_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['com_other_cgpa']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['open_sub']; ?></td>
+                                            <td>Additional common course: <?php echo $marks['Mark']['add_common_course_sub']; ?></td>
+                                            <td><?php echo $marks['Mark']['add_common_course_credit']; ?></td>
+                                            <td><?php echo $marks['Mark']['add_common_course_cgpa']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Open course: <?php echo $marks['Mark']['open_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['open_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['open_cgpa']; ?></td>
                                         </tr>
@@ -1177,32 +1187,37 @@ $randnum=rand ( 1 ,5 );
                                             <th>CGPA</th>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['main1_sub']; ?></td>
+                                            <td>Core-1: <?php echo $marks['Mark']['main1_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['main1_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['main1_cgpa']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['main2_sub']; ?></td>
+                                            <td>Core-2: <?php echo $marks['Mark']['main2_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['main2_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['main2_cgpa']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['main3_sub']; ?></td>
+                                            <td>Core-3: <?php echo $marks['Mark']['main3_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['main3_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['main3_cgpa']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['common_sub']; ?></td>
+                                            <td>Common course: <?php echo $marks['Mark']['common_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['common_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['common_cgpa']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['com_other_sub']; ?></td>
+                                            <td>Common course (other than english): <?php echo $marks['Mark']['com_other_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['com_other_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['com_other_cgpa']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['open_sub']; ?></td>
+                                            <td>Additional common course: <?php echo $marks['Mark']['add_common_course_sub']; ?></td>
+                                            <td><?php echo $marks['Mark']['add_common_course_credit']; ?></td>
+                                            <td><?php echo $marks['Mark']['add_common_course_cgpa']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Open course: <?php echo $marks['Mark']['open_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['open_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['open_cgpa']; ?></td>
                                         </tr>
@@ -1223,29 +1238,29 @@ $randnum=rand ( 1 ,5 );
                                             <th>Max. Marks</th>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['main1_sub']; ?></td>
+                                            <td>Core: <?php echo $marks['Mark']['main1_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['main1_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['main1_max']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['comp1_sub']; ?></td>
+                                            <td>Complementary-1: <?php echo $marks['Mark']['comp1_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['comp1_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['comp1_max']; ?></td>
                                         </tr>
                                         <?php if($marks['Mark']['degree_id']!=2 && $marks['Mark']['degree_id']!=4 && $marks['Mark']['degree_id']!=5) { ?>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['comp2_sub']; ?></td>
+                                            <td>Complementary-2: <?php echo $marks['Mark']['comp2_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['comp2_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['comp2_max']; ?></td>
                                         </tr>
                                         <?php } ?>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['part1_sub']; ?></td>
+                                            <td>Part-1: <?php echo $marks['Mark']['part1_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['part1_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['part1_max']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['part2_sub']; ?></td>
+                                            <td>Part-2: <?php echo $marks['Mark']['part2_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['part2_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['part2_max']; ?></td>
                                         </tr>
@@ -1256,27 +1271,28 @@ $randnum=rand ( 1 ,5 );
                                             <th>Max. Marks</th>
                                         </tr>
                                         <tr>
+                                            <td>Core-1: <?php echo $marks['Mark']['main1_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['main1_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['main1_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['main1_max']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['main2_sub']; ?></td>
+                                            <td>Core-2: <?php echo $marks['Mark']['main2_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['main2_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['main2_max']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['comp1_sub']; ?></td>
+                                            <td>Complementary-1: <?php echo $marks['Mark']['comp1_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['comp1_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['comp1_max']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['part1_sub']; ?></td>
+                                            <td>Part-1: <?php echo $marks['Mark']['part1_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['part1_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['part1_max']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['part2_sub']; ?></td>
+                                            <td>Part-2: <?php echo $marks['Mark']['part2_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['part2_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['part2_max']; ?></td>
                                         </tr>
@@ -1287,27 +1303,27 @@ $randnum=rand ( 1 ,5 );
                                             <th>Max. Marks</th>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['main1_sub']; ?></td>
+                                            <td>Core-1: <?php echo $marks['Mark']['main1_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['main1_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['main1_max']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['main2_sub']; ?></td>
+                                            <td>Core-2: <?php echo $marks['Mark']['main2_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['main2_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['main2_max']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['main3_sub']; ?></td>
+                                            <td>Core-3: <?php echo $marks['Mark']['main3_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['main3_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['main3_max']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['part1_sub']; ?></td>
+                                            <td>Part-1: <?php echo $marks['Mark']['part1_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['part1_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['part1_max']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo $marks['Mark']['part2_sub']; ?></td>
+                                            <td>Part-2: <?php echo $marks['Mark']['part2_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['part2_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['part2_max']; ?></td>
                                         </tr>
@@ -1398,6 +1414,7 @@ $randnum=rand ( 1 ,5 );
                                             <tr>
                                                 <th>Common Course (English)<sup class="madadatory">*</sup></th>
                                                 <th>Common Course (Other than English)<sup class="madadatory">*</sup></th>
+                                                <th>Additional Common Course<sup class="madadatory">*</sup></th>
                                                 <th>Open Course<sup class="madadatory">*</sup></th>
                                             </tr>
                                             <tr>
@@ -1425,11 +1442,27 @@ $randnum=rand ( 1 ,5 );
                                                                 'Kannada'=>'Kannada',
                                                                 'Tamil'=>'Tamil',
                                                                 'French'=>'French',
-                                                                'Other_than_lang'=>'Common course other than language'
+                                                                'German'=>'German',
+                                                                'Nil'=>'Nil'
                                                                 ),
                                                             'class'=>'form-control',
                                                             //'placeholder'=>'Enter Common Course (Other the English)',
                                                             'id'=>'common_course_other',
+                                                            'empty'=>'-- select one --',
+                                                            //'required'=>'required'
+                                                            )); ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $this->Form->input('PrimaryRegister.additional_common_course',
+                                                        array(
+                                                            'label'=>false,
+                                                            'options'=>array(
+                                                                'Common course other than languages'=>'Common course other than languages',
+                                                                'Nil'=>'Nil',
+                                                                ),
+                                                            'class'=>'form-control',
+                                                            //'placeholder'=>'Enter Common Course (Other the English)',
+                                                            'id'=>'additional_common_course',
                                                             'empty'=>'-- select one --',
                                                             //'required'=>'required'
                                                             )); ?>
@@ -2150,26 +2183,17 @@ $(document).ready(function(){
             var comp1=$('.singleCompSubject1 option:selected').text();
             var comp2=$('.singleCompSubject2 option:selected').text();
             if($('#grade').is(':checked')) {
-                if($('#common_course').val().length==0 || $('#common_course_other').val().length==0 || $('#open_course').val().length==0) {
-                    alert('You should enter all your open course, open course (other than english) and open course names');
+                if($('#common_course').val().length==0 || $('#common_course_other').val().length==0 || $('#additional_common_course').val().length==0 || $('#open_course').val().length==0) {
+                    alert('You should enter/select all your common course, common course (other than english), additional common course and open course names');
                     return;
                 }
                 var common_course=$('#common_course').val();
                 var common_course_other=$('#common_course_other').val();
+                var add_common_course=$('#additional_common_course').val();
                  var overall_credit=$('#overall_credit').val();
                  var overall_cgpa=$('#overall_cgpa').val();
-                 
                 var open_course=$('#open_course').val();
-                if(comp1=='Nil' && comp2=='Nil') {
-                    $("#mark_table").append("<table class='table table-bordered markTable'><tr><th>Course</th><th>Credit</th><th>CGPA</th></tr><tr><td>1. Core: "+core+"</td><td><input type='number' name='core_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core_cgpa' class='form-control' required></td></tr><tr><td>2. Complementary-1: "+comp1+"</td><td><input type='number' name='comp1_credit' class='form-control' readonly></td><td><input type='number' name='comp1_cgpa' class='form-control' readonly></td></tr><tr><td>3. Complementary-2: "+comp2+"</td><td><input type='number' name='comp2_credit' class='form-control' readonly></td><td><input type='number' name='comp2_cgpa' class='form-control' readonly></td></tr><tr><td>4. Common Course: "+common_course+"</td><td><input type='number' name='common_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_cgpa' class='form-control' required></td></tr><tr><td>5. Common Course (Other than English): "+common_course_other+"</td><td><input type='number' name='common_course_other_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_other_cgpa' class='form-control' required></td></tr><tr><td>6. Open Course: "+open_course+"</td><td><input type='number' name='open_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='open_course_cgpa' class='form-control' required></td></tr><tr><td> Overall Credit and CGPA of the programme: </td><td><input type='number' name='overall_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='overall_cgpa' class='form-control' required></td></tr></table>");
-                } else if(comp1=='Nil') {
-                    $("#mark_table").append("<table class='table table-bordered markTable'><tr><th>Course</th><th>Credit</th><th>CGPA</th></tr><tr><td>1. Core: "+core+"</td><td><input type='number' name='core_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core_cgpa' class='form-control' required></td></tr><tr><td>2. Complementary-1: "+comp1+"</td><td><input type='number' name='comp1_credit' class='form-control' readonly></td><td><input type='number' name='comp1_cgpa' class='form-control' readonly></td></tr><tr><td>3. Complementary-2: "+comp2+"</td><td><input type='number' name='comp2_credit' class='form-control' required></td><td><input type='number' name='comp2_cgpa' step='0.01' min='0' max='4' class='form-control' required></td></tr><tr><td>4. Common Course: "+common_course+"</td><td><input type='number' name='common_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_cgpa' class='form-control' required></td></tr><tr><td>5. Common Course (Other than English): "+common_course_other+"</td><td><input type='number' name='common_course_other_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_other_cgpa' class='form-control' required></td></tr><tr><td>6. Open Course: "+open_course+"</td><td><input type='number' name='open_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='open_course_cgpa' class='form-control' required></td></tr><tr><td> Overall Credit and CGPA of the programme: </td><td><input type='number' name='overall_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='overall_cgpa' class='form-control' required></td></tr></table>");
-                }
-                if(comp2=='Nil') {
-                    $("#mark_table").append("<table class='table table-bordered markTable'><tr><th>Course</th><th>Credit</th><th>CGPA</th></tr><tr><td>1. Core: "+core+"</td><td><input type='number' name='core_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core_cgpa' class='form-control' required></td></tr><tr><td>2. Complementary-1: "+comp1+"</td><td><input type='number' name='comp1_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='comp1_cgpa' class='form-control' required></td></tr><tr><td>3. Complementary-2: "+comp2+"</td><td><input type='number' name='comp2_credit' class='form-control' readonly></td><td><input type='number' name='comp2_cgpa' class='form-control' readonly></td></tr><tr><td>4. Common Course: "+common_course+"</td><td><input type='number' name='common_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_cgpa' class='form-control' required></td></tr><tr><td>5. Common Course (Other than English): "+common_course_other+"</td><td><input type='number' name='common_course_other_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_other_cgpa' class='form-control' required></td></tr><tr><td>6. Open Course: "+open_course+"</td><td><input type='number' name='open_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='open_course_cgpa' class='form-control' required></td></tr><tr><td> Overall Credit and CGPA of the programme: </td><td><input type='number' name='overall_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='overall_cgpa' class='form-control' required></td></tr></table>");
-                } else {
-                $("#mark_table").append("<table class='table table-bordered markTable'><tr><th>Course</th><th>Credit</th><th>CGPA</th></tr><tr><td>1. Core: "+core+"</td><td><input type='number' name='core_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core_cgpa' class='form-control' required></td></tr><tr><td>2. Complementary-1: "+comp1+"</td><td><input type='number' name='comp1_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='comp1_cgpa' class='form-control' required></td></tr><tr><td>3. Complementary-2: "+comp2+"</td><td><input type='number' name='comp2_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='comp2_cgpa' class='form-control' required></td></tr><tr><td>4. Common Course: "+common_course+"</td><td><input type='number' name='common_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_cgpa' class='form-control' required></td></tr><tr><td>5. Common Course (Other than English): "+common_course_other+"</td><td><input type='number' name='common_course_other_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_other_cgpa' class='form-control' required></td></tr><tr><td>6. Open Course: "+open_course+"</td><td><input type='number' name='open_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='open_course_cgpa' class='form-control' required></td></tr><tr><td> Overall Credit and CGPA of the programme: </td><td><input type='number' name='overall_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='overall_cgpa' class='form-control' required></td></tr></table>");
-            }
+                    $("#mark_table").append("<table class='table table-bordered markTable'><tr><th>Course</th><th>Credit</th><th>CGPA</th></tr><tr><td>1. Core: "+core+"</td><td><input type='number' name='core_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core_cgpa' class='form-control' required></td></tr><tr><td>2. Complementary-1: "+comp1+"</td><td><input type='number' name='comp1_credit' class='form-control' "+(comp1=='Nil' ? 'readonly' : '')+"></td><td><input type='number' name='comp1_cgpa'  step='0.01' min='0' max='4' class='form-control' "+(comp1=='Nil' ? 'readonly' : '')+"></td></tr><tr><td>3. Complementary-2: "+comp2+"</td><td><input type='number' name='comp2_credit' class='form-control' "+(comp2=='Nil' ? 'readonly' : '')+"></td><td><input type='number' name='comp2_cgpa' step='0.01' min='0' max='4' class='form-control' "+(comp2=='Nil' ? 'readonly' : '')+"></td></tr><tr><td>4. Common Course: "+common_course+"</td><td><input type='number' name='common_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_cgpa' class='form-control' required></td></tr><tr><td>5. Common Course (Other than English): "+common_course_other+"</td><td><input type='number' name='common_course_other_credit' class='form-control' required "+(common_course_other=='Nil' ? 'readonly' : '')+"></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_other_cgpa' class='form-control' required "+(common_course_other=='Nil' ? 'readonly' : '')+"></td></tr><tr><td>6. Additional common course: "+add_common_course+"</td><td><input type='number' name='add_common_course_credit' class='form-control' required "+(add_common_course=='Nil' ? 'readonly' : '')+"></td><td><input type='number' step='0.01' min='0' max='4' name='add_common_course_cgpa' class='form-control' required "+(add_common_course=='Nil' ? 'readonly' : '')+"></td></tr><tr><td>7. Open Course: "+open_course+"</td><td><input type='number' name='open_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='open_course_cgpa' class='form-control' required></td></tr><tr><td> Overall Credit and CGPA of the programme: </td><td><input type='number' name='overall_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='overall_cgpa' class='form-control' required></td></tr></table>");
                 $('#mark_table').show();
             } else if($('#mark').is(':checked')) {
                 if($('#part_one_subject').val()=='' || $('#part_two_subject').val()=='') {
@@ -2211,18 +2235,17 @@ $(document).ready(function(){
             var core2=$('.doubleMainSubject2 option:selected').text();
             var comp1=$('.doubleCompSubject1 option:selected').text();
             if($('#grade').is(':checked')) {
-                if($('#common_course').val()==0 || $('#common_course_other').val()==0 || $('#open_course').val()==0) {
-                    alert('You should enter all your open course, open course (other than english) and open course names');
+                if($('#common_course').val()==0 || $('#common_course_other').val()==0 || $('#additional_common_course').val().length==0 || $('#open_course').val()==0) {
+                    alert('You should enter/select all your common course, common course (other than english), additional common course and open course names');
                     return;
                 }
+                var add_common_course=$('#additional_common_course').val();
                 var common_course=$('#common_course').val();
                 var common_course_other=$('#common_course_other').val();
                 var open_course=$('#open_course').val();
-                if(comp1=='Nil') {
-                    $("#mark_table").append("<table class='table table-bordered markTable'><tr><th>Course</th><th>Credit</th><th>CGPA</th></tr><tr><td>1. Core-1: "+core1+"</td><td><input type='number' name='core1_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core1_cgpa' class='form-control' required></td></tr><tr><td>2. Core-2: "+core2+"</td><td><input type='number' name='core2_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core2_cgpa' class='form-control' required></td></tr><tr><td>3. Complementary-1: "+comp1+"</td><td><input type='number' name='comp1_credit' class='form-control' readonly></td><td><input type='number' name='comp1_cgpa' class='form-control' readonly></td></tr><tr><td>4. Common Course: "+common_course+"</td><td><input type='number' name='common_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_cgpa' class='form-control' required></td></tr><tr><td>5. Common Course (Other than English): "+common_course_other+"</td><td><input type='number' name='common_course_other_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_other_cgpa' class='form-control' required></td></tr><tr><td>6. Open Course: "+open_course+"</td><td><input type='number' name='open_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='open_course_cgpa' class='form-control' required></td></tr><tr><td> Overall Credit and CGPA of the programme: </td><td><input type='number' name='overall_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='overall_cgpa' class='form-control' required></td></tr></table>");
-                } else {
-                $("#mark_table").append("<table class='table table-bordered markTable'><tr><th>Course</th><th>Credit</th><th>CGPA</th></tr><tr><td>1. Core-1: "+core1+"</td><td><input type='number' name='core1_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core1_cgpa' class='form-control' required></td></tr><tr><td>2. Core-2: "+core2+"</td><td><input type='number' name='core2_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core2_cgpa' class='form-control' required></td></tr><tr><td>3. Complementary-1: "+comp1+"</td><td><input type='number' name='comp1_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='comp1_cgpa' class='form-control' required></td></tr><tr><td>4. Common Course: "+common_course+"</td><td><input type='number' name='common_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_cgpa' class='form-control' required></td></tr><tr><td>5. Common Course (Other than English): "+common_course_other+"</td><td><input type='number' name='common_course_other_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_other_cgpa' class='form-control' required></td></tr><tr><td>6. Open Course: "+open_course+"</td><td><input type='number' name='open_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='open_course_cgpa' class='form-control' required></td></tr><tr><td> Overall Credit and CGPA of the programme: </td><td><input type='number' name='overall_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='overall_cgpa' class='form-control' required></td></tr></table>");
-            }
+                
+                    $("#mark_table").append("<table class='table table-bordered markTable'><tr><th>Course</th><th>Credit</th><th>CGPA</th></tr><tr><td>1. Core-1: "+core1+"</td><td><input type='number' name='core1_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core1_cgpa' class='form-control' required></td></tr><tr><td>2. Core-2: "+core2+"</td><td><input type='number' name='core2_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core2_cgpa' class='form-control' required></td></tr><tr><td>3. Complementary-1: "+comp1+"</td><td><input type='number' name='comp1_credit' class='form-control' "+(comp1=='Nil' ? 'readonly' : '')+"></td><td><input type='number' name='comp1_cgpa' step='0.01' min='0' max='4' class='form-control' "+(comp1=='Nil' ? 'readonly' : '')+"></td></tr><tr><td>4. Common Course: "+common_course+"</td><td><input type='number' name='common_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_cgpa' class='form-control' required></td></tr><tr><td>5. Common Course (Other than English): "+common_course_other+"</td><td><input type='number' name='common_course_other_credit' class='form-control' required "+(common_course_other=='Nil' ? 'readonly' : '')+"></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_other_cgpa' class='form-control' required "+(common_course_other=='Nil' ? 'readonly' : '')+"></td></tr><tr><td>6.Additional Common Course: "+add_common_course+"</td><td><input type='number' name='add_common_course_credit' class='form-control' required "+(add_common_course=='Nil' ? 'readonly' : '')+"></td><td><input type='number' step='0.01' min='0' max='4' name='add_common_course_cgpa' class='form-control' required "+(add_common_course=='Nil' ? 'readonly' : '')+"></td></tr><tr><td>7. Open Course: "+open_course+"</td><td><input type='number' name='open_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='open_course_cgpa' class='form-control' required></td></tr><tr><td> Overall Credit and CGPA of the programme: </td><td><input type='number' name='overall_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='overall_cgpa' class='form-control' required></td></tr></table>");
+               
                 $('#mark_table').show();
             } else if($('#mark').is(':checked')) {
                 if($('#part_one_subject').val()=='' || $('#part_two_subject').val()=='') {
@@ -2261,14 +2284,15 @@ $(document).ready(function(){
             var core2=$('.tripleMainSubject2 option:selected').text();
             var core3=$('.tripleMainSubject3 option:selected').text();
             if($('#grade').is(':checked')) {
-                if($('#common_course').val()==0 || $('#common_course_other').val()==0 || $('#open_course').val()==0) {
-                    alert('You should enter all your open course, open course (other than english) and open course names');
+                if($('#common_course').val()==0 || $('#common_course_other').val()==0 || $('#additional_common_course').val().length==0 || $('#open_course').val()==0) {
+                    alert('You should enter/select all your common course, common course (other than english), additional common course and open course names');
                     return;
                 }
+                var add_common_course=$('#additional_common_course').val();
                 var common_course=$('#common_course').val();
                 var common_course_other=$('#common_course_other').val();
                 var open_course=$('#open_course').val();
-                $("#mark_table").append("<table class='table table-bordered markTable'><tr><th>Course</th><th>Credit</th><th>CGPA</th></tr><tr><td>1. Core-1: "+core1+"</td><td><input type='number' name='core1_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core1_cgpa' class='form-control' required></td></tr><tr><td>2. Core-2: "+core2+"</td><td><input type='number' name='core2_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core2_cgpa' class='form-control' required></td></tr><tr><td>3. Core-3: "+core3+"</td><td><input type='number' name='core3_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core3_cgpa' class='form-control' required></td></tr><tr><td>4. Common Course: "+common_course+"</td><td><input type='number' name='common_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_cgpa' class='form-control' required></td></tr><tr><td>5. Common Course (Other than English): "+common_course_other+"</td><td><input type='number' name='common_course_other_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_other_cgpa' class='form-control' required></td></tr><tr><td>6. Open Course: "+open_course+"</td><td><input type='number' name='open_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='open_course_cgpa' class='form-control' required></td></tr><tr><td> Overall Credit and CGPA of the programme: </td><td><input type='number' name='overall_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='overall_cgpa' class='form-control' required></td></tr></table>");
+                $("#mark_table").append("<table class='table table-bordered markTable'><tr><th>Course</th><th>Credit</th><th>CGPA</th></tr><tr><td>1. Core-1: "+core1+"</td><td><input type='number' name='core1_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core1_cgpa' class='form-control' required></td></tr><tr><td>2. Core-2: "+core2+"</td><td><input type='number' name='core2_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core2_cgpa' class='form-control' required></td></tr><tr><td>3. Core-3: "+core3+"</td><td><input type='number' name='core3_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core3_cgpa' class='form-control' required></td></tr><tr><td>4. Common Course: "+common_course+"</td><td><input type='number' name='common_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_cgpa' class='form-control' required></td></tr><tr><td>5. Common Course (Other than English): "+common_course_other+"</td><td><input type='number' name='common_course_other_credit' class='form-control' required "+(common_course_other=='Nil' ? 'readonly' : '')+"></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_other_cgpa' class='form-control' required "+(common_course_other=='Nil' ? 'readonly' : '')+"></td></tr><tr><td>6. Additional Common Course: "+add_common_course+"</td><td><input type='number' name='add_common_course_credit' class='form-control' required "+(add_common_course=='Nil' ? 'readonly' : '')+"></td><td><input type='number' step='0.01' min='0' max='4' name='add_common_course_cgpa' class='form-control' required "+(add_common_course=='Nil' ? 'readonly' : '')+"></td></tr><tr><td>7. Open Course: "+open_course+"</td><td><input type='number' name='open_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='open_course_cgpa' class='form-control' required></td></tr><tr><td> Overall Credit and CGPA of the programme: </td><td><input type='number' name='overall_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='overall_cgpa' class='form-control' required></td></tr></table>");
                 $('#mark_table').show();
             } else if($('#mark').is(':checked')) {
                 if($('#part_one_subject').val()=='' || $('#part_two_subject').val()=='') {
@@ -2288,17 +2312,18 @@ $(document).ready(function(){
         if($('#single_main').is(':checked')) {
             
             if($('#grade').is(':checked')) {
-                if($('#common_course').val().length==0 || $('#common_course_other').val().length==0 || $('#open_course').val().length==0) {
-                    alert('You should enter all your open course, open course (other than english) and open course names');
+                if($('#common_course').val()==0 || $('#common_course_other').val()==0 || $('#additional_common_course').val().length==0 || $('#open_course').val()==0) {
+                    alert('You should enter/select all your common course, common course (other than english), additional common course and open course names');
                     return;
                 }
+                var add_common_course=$('#additional_common_course').val();
                 var common_course=$('#common_course').val();
                 var common_course_other=$('#common_course_other').val();
                  var overall_credit=$('#overall_credit').val();
                  var overall_cgpa=$('#overall_cgpa').val();
                 var open_course=$('#open_course').val();
 
-                $("#mark_table").append("<table class='table table-bordered markTable'><tr><th>Course</th><th>Credit</th><th>CGPA</th></tr><tr><td>1. Core:</td><td><input type='number' name='core_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core_cgpa' class='form-control' required></td></tr><tr><td>2. Complementary-1:</td><td><input type='number' name='comp1_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='comp1_cgpa' class='form-control' required></td></tr><tr><td>3. Common Course: "+common_course+"</td><td><input type='number' name='common_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_cgpa' class='form-control' required></td></tr><tr><td>4. Common Course (Other than English): "+common_course_other+"</td><td><input type='number' name='common_course_other_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_other_cgpa' class='form-control' required></td></tr><tr><td>5. Open Course: "+open_course+"</td><td><input type='number' name='open_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='open_course_cgpa' class='form-control' required></td></tr><tr><td> Overall Credit and CGPA of the programme: </td><td><input type='number' name='overall_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='overall_cgpa' class='form-control' required></td></tr></table>");
+                $("#mark_table").append("<table class='table table-bordered markTable'><tr><th>Course</th><th>Credit</th><th>CGPA</th></tr><tr><td>1. Core:</td><td><input type='number' name='core_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core_cgpa' class='form-control' required></td></tr><tr><td>2. Complementary-1:</td><td><input type='number' name='comp1_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='comp1_cgpa' class='form-control' required></td></tr><tr><td>3. Common Course: "+common_course+"</td><td><input type='number' name='common_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_cgpa' class='form-control' required></td></tr><tr><td>4. Common Course (Other than English): "+common_course_other+"</td><td><input type='number' name='common_course_other_credit' class='form-control' required "+(common_course_other=='Nil' ? 'readonly' : '')+"></td><td><input type='number' step='0.01' min='0' max='4' name='common_course_other_cgpa' class='form-control' required "+(common_course_other=='Nil' ? 'readonly' : '')+"></td></tr><tr><td>5. Additional Common Course: "+add_common_course+"</td><td><input type='number' name='add_common_course_credit' class='form-control' required "+(add_common_course=='Nil' ? 'readonly' : '')+"></td><td><input type='number' step='0.01' min='0' max='4' name='add_common_course_cgpa' class='form-control' required "+(add_common_course=='Nil' ? 'readonly' : '')+"></td></tr><tr><td>6. Open Course: "+open_course+"</td><td><input type='number' name='open_course_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='open_course_cgpa' class='form-control' required></td></tr><tr><td> Overall Credit and CGPA of the programme: </td><td><input type='number' name='overall_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='overall_cgpa' class='form-control' required></td></tr></table>");
             
                 $('#mark_table').show();
             } else if($('#mark').is(':checked')) {
