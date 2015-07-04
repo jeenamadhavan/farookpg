@@ -1097,6 +1097,7 @@ $randnum=rand ( 1 ,5 );
                                     <table class="table table-bordered">
                                     <?php if($marks['Mark']['mark_grade']=='G') {
                                         if($marks['Mark']['main']==1) { ?>
+                                        <?php if($marks['Mark']['university_id']!=4){ ?>
                                         <tr>
                                             <th>Course</th>
                                             <th>Credit</th>
@@ -1139,6 +1140,43 @@ $randnum=rand ( 1 ,5 );
                                             <td><?php echo $marks['Mark']['open_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['open_cgpa']; ?></td>
                                         </tr>
+                                    <?php } else { //if kannur ?>
+                                        <tr>
+                                            <th>Course</th>
+                                            <th>Weights</th>
+                                            <th>SGPA</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Part-3 (Main) <?php echo $marks['Mark']['main1_sub']; ?></td>
+                                            <td><?php echo $marks['Mark']['main1_credit']; ?></td>
+                                            <td><?php echo $marks['Mark']['main1_cgpa']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Part-3 (Sub1): <?php echo $marks['Mark']['comp1_sub']; ?></td>
+                                            <td><?php echo $marks['Mark']['comp1_credit']; ?></td>
+                                            <td><?php echo $marks['Mark']['comp1_cgpa']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Part-3 (Sub1): <?php echo $marks['Mark']['comp2_sub']; ?></td>
+                                            <td><?php echo $marks['Mark']['comp2_credit']; ?></td>
+                                            <td><?php echo $marks['Mark']['comp2_cgpa']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Part-1: <?php echo $marks['Mark']['common_sub']; ?></td>
+                                            <td><?php echo $marks['Mark']['common_credit']; ?></td>
+                                            <td><?php echo $marks['Mark']['common_cgpa']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Part-2 (Language): <?php echo $marks['Mark']['com_other_sub']; ?></td>
+                                            <td><?php echo $marks['Mark']['com_other_credit']; ?></td>
+                                            <td><?php echo $marks['Mark']['com_other_cgpa']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Part-2 (Other): <?php echo $marks['Mark']['add_common_course_sub']; ?></td>
+                                            <td><?php echo $marks['Mark']['add_common_course_credit']; ?></td>
+                                            <td><?php echo $marks['Mark']['add_common_course_cgpa']; ?></td>
+                                        </tr>
+                                    <?php } // if kannur ?>
                                     <?php } else if($marks['Mark']['main']==2) { ?>
                                         <tr>
                                             <th>Course</th>
@@ -1222,16 +1260,28 @@ $randnum=rand ( 1 ,5 );
                                             <td><?php echo $marks['Mark']['open_cgpa']; ?></td>
                                         </tr>
                                     <?php  } ?>
-                                    <tr>
-                                        <th>Overall Credit</th>
-                                        <td><?php echo $marks['Mark']['overall_credit']; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Overall CGPA</th>
-                                        <td><?php echo $marks['Mark']['overall_cgpa']; ?></td>
-                                    </tr>
+                                    <?php if($marks['Mark']['university_id']==4){ ?>
+                                        <tr>
+                                            <th>Overall Weights for Part-3</th>
+                                            <td><?php echo $marks['Mark']['overall_credit']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Overall CGPA for Part-3</th>
+                                            <td><?php echo $marks['Mark']['overall_cgpa']; ?></td>
+                                        </tr>
+                                    <?php } else { ?>
+                                        <tr>
+                                            <th>Overall Credit</th>
+                                            <td><?php echo $marks['Mark']['overall_credit']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Overall CGPA</th>
+                                            <td><?php echo $marks['Mark']['overall_cgpa']; ?></td>
+                                        </tr>
+                                    <?php } ?>
                                     <?php  } else if($marks['Mark']['mark_grade']=='M') { 
                                         if($marks['Mark']['main']==1) { ?>
+                                        <?php if($marks['Mark']['university_id']!=4) { ?>
                                         <tr>
                                             <th>Subject</th>
                                             <th>Marks Awarded</th>
@@ -1264,6 +1314,38 @@ $randnum=rand ( 1 ,5 );
                                             <td><?php echo $marks['Mark']['part2_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['part2_max']; ?></td>
                                         </tr>
+                                    <?php } else { // if kannur ?>
+                                        <tr>
+                                            <th>Subject</th>
+                                            <th>Marks Awarded</th>
+                                            <th>Max. Marks</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Part-3 (Main): <?php echo $marks['Mark']['main1_sub']; ?></td>
+                                            <td><?php echo $marks['Mark']['main1_mark']; ?></td>
+                                            <td><?php echo $marks['Mark']['main1_max']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Part-3 (Sub1): <?php echo $marks['Mark']['comp1_sub']; ?></td>
+                                            <td><?php echo $marks['Mark']['comp1_mark']; ?></td>
+                                            <td><?php echo $marks['Mark']['comp1_max']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Part-3 (Sub2): <?php echo $marks['Mark']['comp2_sub']; ?></td>
+                                            <td><?php echo $marks['Mark']['comp2_mark']; ?></td>
+                                            <td><?php echo $marks['Mark']['comp2_max']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Part-1: <?php echo $marks['Mark']['part1_sub']; ?></td>
+                                            <td><?php echo $marks['Mark']['part1_mark']; ?></td>
+                                            <td><?php echo $marks['Mark']['part1_max']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Part-2: <?php echo $marks['Mark']['part2_sub']; ?></td>
+                                            <td><?php echo $marks['Mark']['part2_mark']; ?></td>
+                                            <td><?php echo $marks['Mark']['part2_max']; ?></td>
+                                        </tr>
+                                    <?php } ?>
                                     <?php } else if($marks['Mark']['main']==2) { ?>
                                         <tr>
                                             <th>Subject</th>
@@ -1480,6 +1562,67 @@ $randnum=rand ( 1 ,5 );
                                             </tr>
                                         </table>
                                     </div>
+                                    <div id="kannur_grade_append" style="display:none;">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th>Part-1 (English)<sup class="madadatory">*</sup></th>
+                                                <th>Part-2 (Language)<sup class="madadatory">*</sup></th>
+                                                <th>Part-2 (other)<sup class="madadatory">*</sup></th>
+                                                <!--<th>Open Course<sup class="madadatory">*</sup></th>-->
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $this->Form->input('PrimaryRegister.part_one_english',
+                                                        array(
+                                                            'label'=>false,
+                                                            'value'=>'English',
+                                                            'class'=>'form-control',
+                                                            //'placeholder'=>'Enter Common Course (English)',
+                                                            'id'=>'part_one_english',
+                                                            //'required'=>'required'
+                                                            )); ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $this->Form->input('PrimaryRegister.part_two_lang',
+                                                        array(
+                                                            'label'=>false,
+                                                            'options'=>array(
+                                                                'Arabic'=>'Arabic',
+                                                                'Malayalam'=>'Malayalam',
+                                                                'Hindi'=>'Hindi',
+                                                                'Urudu'=>'Urudu',
+                                                                'Sanskrit'=>'Sanskrit',
+                                                                'Kannada'=>'Kannada',
+                                                                'Tamil'=>'Tamil',
+                                                                'French'=>'French',
+                                                                'German'=>'German',
+                                                                'Nil'=>'Nil'
+                                                                ),
+                                                            'class'=>'form-control',
+                                                            //'placeholder'=>'Enter Common Course (Other the English)',
+                                                            'id'=>'part_two_lang',
+                                                            'empty'=>'-- select one --',
+                                                            //'required'=>'required'
+                                                            )); ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $this->Form->input('PrimaryRegister.part_two_other',
+                                                        array(
+                                                            'label'=>false,
+                                                            'options'=>array(
+                                                                'Common course other than languages'=>'Common course other than languages',
+                                                                'Nil'=>'Nil',
+                                                                ),
+                                                            'class'=>'form-control',
+                                                            //'placeholder'=>'Enter Common Course (Other the English)',
+                                                            'id'=>'part_two_other',
+                                                            'empty'=>'-- select one --',
+                                                            //'required'=>'required'
+                                                            )); ?>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                     <div id="mark_append" style="display:none;">
                                         <table class="table table-bordered">
                                             <tr>
@@ -1560,6 +1703,112 @@ $randnum=rand ( 1 ,5 );
                                                     'empty'=>'-- select one --',
                                                     'id'=>'CompSubject2',
                                                     'class'=>'form-control select1 singleCompSubject2',
+                                                    )
+                                                );
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <div id="kannur_single_main_form" style="display:none;">
+                                        <h4><b>Select your subjects</b></h4>
+                                        <div class="form-group">
+                                            <label>Part-3 (main)<sup class="madadatory">*</sup></label>
+                                            <?php
+                                            echo $this->Form->input('PrimaryRegister.part_three_main',
+                                                array(
+                                                    'label'=>false,
+                                                    'options'=>'',
+                                                    'empty'=>'-- select one --',
+                                                    'class'=>'form-control select1 part_three_main',
+                                                    'id'=>'part_three_main',
+                                                    )
+                                                );
+                                            ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Part-3 (Sub-1)<sup class="madadatory">*</sup></label>
+                                            <?php
+                                            echo $this->Form->input('PrimaryRegister.part_three_sub1',
+                                                array(
+                                                    'label'=>false,
+                                                    'options'=>'',
+                                                    'empty'=>'-- select one --',
+                                                    'id'=>'part_three_sub1',
+                                                    'class'=>'form-control select1 part_three_sub1',
+                                                    )
+                                                );
+                                            ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Part-3 (Sub-2)<sup class="madadatory">*</sup></label>
+                                            <?php
+                                            echo $this->Form->input('PrimaryRegister.part_three_sub2',
+                                                array(
+                                                    'label'=>false,
+                                                    'options'=>'',
+                                                    'empty'=>'-- select one --',
+                                                    'id'=>'part_three_sub2',
+                                                    'class'=>'form-control select1 part_three_sub2',
+                                                    )
+                                                );
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <div id="kannur_com_single_main_form" style="display:none;">
+                                        <h4><b>Select your subjects</b></h4>
+                                        <div class="form-group">
+                                            <label>Part-3 (main)<sup class="madadatory">*</sup></label>
+                                            <?php
+                                            echo $this->Form->input('PrimaryRegister.com_part_three_main',
+                                                array(
+                                                    'label'=>false,
+                                                    'value'=>'Commerce',
+                                                    'readonly'=>'readonly',
+                                                    'class'=>'form-control select1 com_part_three_main',
+                                                    'id'=>'com_part_three_main',
+                                                    )
+                                                );
+                                            ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Part-3 (Sub-1)<sup class="madadatory">*</sup></label>
+                                            <?php
+                                            echo $this->Form->input('PrimaryRegister.com_part_three_sub1',
+                                                array(
+                                                    'label'=>false,
+                                                    'options'=>array(
+                                                        'Commerce'=>'Commerce',
+                                                        'Finance'=>'Finance',
+                                                        'Travel and Tourism'=>'Travel and Tourism',
+                                                        'Cooperation'=>'Cooperation',
+                                                        'Computer Applications'=>'Computer Applications',
+                                                        'Islamic Finance'=>'Islamic Finance',
+                                                        'Nil'=>'Nil'
+                                                        ),
+                                                    'empty'=>'-- select one --',
+                                                    'id'=>'com_part_three_sub1',
+                                                    'class'=>'form-control select1 com_part_three_sub1',
+                                                    )
+                                                );
+                                            ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Part-3 (Sub-2)<sup class="madadatory">*</sup></label>
+                                            <?php
+                                            echo $this->Form->input('PrimaryRegister.com_part_three_sub2',
+                                                array(
+                                                    'label'=>false,
+                                                    'options'=>array(
+                                                        'Commerce'=>'Commerce',
+                                                        'Finance'=>'Finance',
+                                                        'Travel and Tourism'=>'Travel and Tourism',
+                                                        'Cooperation'=>'Cooperation',
+                                                        'Computer Applications'=>'Computer Applications',
+                                                        'Islamic Finance'=>'Islamic Finance',
+                                                        'Nil'=>'Nil'
+                                                        ),
+                                                    'empty'=>'-- select one --',
+                                                    'id'=>'com_part_three_sub2',
+                                                    'class'=>'form-control select1 com_part_three_sub2',
                                                     )
                                                 );
                                             ?>
@@ -2097,42 +2346,86 @@ $(document).ready(function () {
 <script type="text/javascript">
     $('#single_main').on('click',function(){
         if ($(this).is(':checked')) {
-            if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5) {
-                $("#double_main_form").hide();
-                $("#triple_main_form").hide();
-                $("#single_main_form").show();
+            if($('#University').val()!=4) {
+                if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5) {
+                    $("#double_main_form").hide();
+                    $("#triple_main_form").hide();
+                    $("#kannur_single_main_form").hide();
+                    $("#single_main_form").show();
+                }
+            } else {
+                if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5) {
+                    $("#double_main_form").hide();
+                    $("#single_main_form").hide();
+                    $("#triple_main_form").hide();
+                    $("#kannur_single_main_form").show();
+                } else {
+                    if($('#degree').val()==4 || $('#degree').val()==5) { // change for bba and bmmc
+                        alert('please contact the administrator with your mark details');
+                        return;
+                    }
+                    else if($('#degree').val()==2) { // change for bba and bmmc
+                        $("#double_main_form").hide();
+                        $("#single_main_form").hide();
+                        $("#triple_main_form").hide();
+                        $("#kannur_single_main_form").hide();
+                        $("#kannur_com_single_main_form").show();
+                    }
+                    
+                }
             }
+            
         }
     });
     $('#double_main').on('click',function(){
         if ($(this).is(':checked')) {
-            if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5) {
-                $("#single_main_form").hide();
-                $("#triple_main_form").hide();
-                $("#double_main_form").show();
+            if($('#University').val()!=4) {
+                if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5) {
+                    $("#single_main_form").hide();
+                    $("#triple_main_form").hide();
+                    $("#kannur_single_main_form").hide();
+                    $("#double_main_form").show();
+                }
+            } else {
+                alert('You can select single main only');
+                return;
             }
         }
     });
     $('#triple_main').on('click',function(){
         if ($(this).is(':checked')) {
-            if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5) {
-                $("#single_main_form").hide();
-                $("#double_main_form").hide();
-                $("#triple_main_form").show();
+            if($('#University').val()!=4) {
+                if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5) {
+                    $("#single_main_form").hide();
+                    $("#double_main_form").hide();
+                    $("#kannur_single_main_form").hide();
+                    $("#triple_main_form").show();
+                }
+            } else {
+                alert('You can select single main only');
+                return;
             }
         }
     });
 
     $('#grade').on('click',function(){
         if ($(this).is(':checked')) {
-            $("#mark_append").hide();
-            $("#grade_append").show();
+            if($('#University').val()==4) {
+                $("#mark_append").hide();
+                $("#grade_append").hide();
+                $("#kannur_grade_append").show();
+            } else {
+                $("#mark_append").hide();
+                $("#kannur_grade_append").hide();
+                $("#grade_append").show();
+            }
         }
     });
 
     $('#mark').on('click',function(){
         if ($(this).is(':checked')) {
             $("#grade_append").hide();
+            $("#kannur_grade_append").hide();
             $("#mark_append").show();
         }
     });
@@ -2167,6 +2460,7 @@ $(document).ready(function(){
             return;
         }
         else {
+        if($('#University').val()!=4) { // if not kannur
         if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5){ // if not bcom, bba and bmmc
         if($('.markTable').length>0){ $('.markTable').hide(); }
         if($('#single_main').is(':checked')) {
@@ -2349,38 +2643,139 @@ $(document).ready(function(){
             return;
         }
     }// degree bcome or bba or bmmc
+    } // if not kannur
+    else if($('#University').val()==4) { // if kannur
+        
+        if($('.markTable').length>0){ $('.markTable').hide(); }
+        if($('#single_main').is(':checked')) {
+            if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5) { // if not bcom, bba and bmmc
+                if($('.part_three_main').val()==0 || $('.part_three_sub1').val()==0 || $('.part_three_sub2').val()==0) {
+                        alert('You should select main subjects and complimentary subjects');
+                        return;
+                    }
+            } else if($('#degree').val()==2 || $('#degree').val()==4 || $('#degree').val()==5){ // if   bcom or bba or bmmc
+                if($('.com_part_three_sub1').val()==0 || $('.com_part_three_sub2').val()==0) {
+                        alert('You should select complimentary subjects');
+                        return;
+                    }
+            }
+            if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5) { // if not bcom, bba and bmmc
+                if($('.part_three_main').val()=='Nil') {
+                   alert('You cannot select Nil as core subject');
+                   $('.part_three_main').val(0);
+                    return; 
+                }
+                var comp1=$('.part_three_sub1 option:selected').text();
+                var comp2=$('.part_three_sub2 option:selected').text();
+                var core=$('.part_three_main option:selected').text();
+            } else if($('#degree').val()==2 || $('#degree').val()==4 || $('#degree').val()==5) { // if bcom or bba or bmmc
+                var core=$('.com_part_three_main').val();
+                var comp1=$('.com_part_three_sub1 option:selected').text();
+                var comp2=$('.com_part_three_sub2 option:selected').text();
+            }
+            
+            if($('#grade').is(':checked')) {
+                if($('#part_one_english').val().length==0 || $('#part_two_lang').val().length==0 || $('#part_two_other').val().length==0) {
+                    alert('You should enter/select all your part-1, part-2 (Language) and part-2 other subject names');
+                    return;
+                }
+                var part_one_english=$('#part_one_english').val();
+                var part_two_lang=$('#part_two_lang').val();
+                var part_two_other=$('#part_two_other').val();
+                    $("#mark_table").append("<table class='table table-bordered markTable'><tr><th>Course</th><th>Weights</th><th>SGPA</th></tr><tr><td>1. Part-3 (main): "+core+"</td><td><input type='number' name='core_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='core_cgpa' class='form-control' required></td></tr><tr><td>2. Part-3 (Sub-1): "+comp1+"</td><td><input type='number' name='comp1_credit' class='form-control' "+(comp1=='Nil' ? 'readonly' : '')+"></td><td><input type='number' name='comp1_cgpa'  step='0.01' min='0' max='4' class='form-control' "+(comp1=='Nil' ? 'readonly' : '')+"></td></tr><tr><td>3. Part-3 (Sub-2): "+comp2+"</td><td><input type='number' name='comp2_credit' class='form-control' "+(comp2=='Nil' ? 'readonly' : '')+"></td><td><input type='number' name='comp2_cgpa' step='0.01' min='0' max='4' class='form-control' "+(comp2=='Nil' ? 'readonly' : '')+"></td></tr><tr><td>4. Part-1: "+part_one_english+"</td><td><input type='number' name='part_one_credit' class='form-control' required></td><td><input type='number' step='0.01' min='0' max='4' name='part_one_cgpa' class='form-control' required></td></tr><tr><td>5. part-2 (Language): "+part_two_lang+"</td><td><input type='number' name='part_two_lang_credit' class='form-control' required "+(part_two_lang=='Nil' ? 'readonly' : '')+"></td><td><input type='number' step='0.01' min='0' max='4' name='part_two_lang_cgpa' class='form-control' required "+(part_two_lang=='Nil' ? 'readonly' : '')+"></td></tr><tr><td>6. Part-2 (Other): "+part_two_other+"</td><td><input type='number' name='part_two_other_credit' class='form-control' required "+(part_two_other=='Nil' ? 'readonly' : '')+"></td><td><input type='number' step='0.01' min='0' max='4' name='part_two_other_cgpa' class='form-control' required "+(part_two_other=='Nil' ? 'readonly' : '')+"></td></tr><tr><td> Overall Weights for part-3: </td><td><input type='number' name='overall_credit' class='form-control' required></td></tr><tr><td>Overall CGPA for part-3: </td><td><input type='number' step='0.01' min='0' max='4' name='overall_cgpa' class='form-control' required></td></tr></table>");
+                $('#mark_table').show();
+            } else if($('#mark').is(':checked')) {
+                if($('#part_one_subject').val()=='' || $('#part_two_subject').val()=='') {
+                    alert('You should enter all your part one, part two subject names');
+                    return;
+                }
+                var part_one_subject=$('#part_one_subject').val();
+                var part_two_subject=$('#part_two_subject').val();
+                if(comp1=='Nil' && comp2=='Nil') {
+                    $("#mark_table").append("<table class='table table-bordered markTable'><tr><th>Subject</th><th>Marks Awarded</th><th>Max. Marks</th></tr><tr><td>1. Core: "+core+"</td><td><input type='number' name='core_marks' min='0' id='core_marks' class='form-control marks' required></td><td><input type='number' name='core_max' class='form-control max' min='0' id='core_max' required></td></tr><tr><td>2. Complementary-1: "+comp1+"</td><td><input type='number' name='comp1_marks' class='form-control' readonly></td><td><input type='number' name='comp1_max' class='form-control' readonly></td></tr><tr><td>3. Complementary-2: "+comp2+"</td><td><input type='number' name='comp2_marks' class='form-control' readonly></td><td><input type='number' name='comp2_max' class='form-control' readonly></td></tr><tr><td>4. Part 1: "+part_one_subject+"</td><td><input type='number' name='part_one_marks' class='form-control marks' id='part1_marks' min='0' required></td><td><input type='number' name='part_one_max' id='part1_max'  class='form-control max' required></td></tr><tr><td>5. Part 2: "+part_two_subject+"</td><td><input type='number' name='part_two_marks' id='part2_marks' class='form-control marks' min='0' required></td><td><input type='number' name='part_two_max' id='part2_max' class='form-control max' required></td></tr></table>");
+                }
+                else if(comp1=='Nil') {
+                    $("#mark_table").append("<table class='table table-bordered markTable'><tr><th>Subject</th><th>Marks Awarded</th><th>Max. Marks</th></tr><tr><td>1. Core: "+core+"</td><td><input type='number' id='core_marks' min='0' name='core_marks' class='form-control marks' required></td><td><input type='number' name='core_max' class='form-control max' id='core_max' required></td></tr><tr><td>2. Complementary-1: "+comp1+"</td><td><input type='number' name='comp1_marks' class='form-control' readonly></td><td><input type='number' name='comp1_max' class='form-control' readonly></td></tr><tr><td>3. Complementary-2: "+comp2+"</td><td><input type='number' min='0' name='comp2_marks' class='form-control marks' id='comp2_marks' required></td><td><input type='number' name='comp2_max' class='form-control max' id='comp2_max' required></td></tr><tr><td>4. Part 1: "+part_one_subject+"</td><td><input type='number' name='part_one_marks' min='0' id='part1_marks' class='form-control marks' required></td><td><input type='number' name='part_one_max' class='form-control max' id='part1_max' required></td></tr><tr><td>5. Part 2: "+part_two_subject+"</td><td><input type='number' min='0' name='part_two_marks' id='part2_marks' class='form-control marks' required></td><td><input type='number' name='part_two_max' id='part2_max' class='form-control max' required></td></tr></table>");
+                } else if(comp2=='Nil') {
+                    $("#mark_table").append("<table class='table table-bordered markTable'><tr><th>Subject</th><th>Marks Awarded</th><th>Max. Marks</th></tr><tr><td>1. Core: "+core+"</td><td><input type='number' id='core_marks' min='0' name='core_marks' class='form-control marks' required></td><td><input type='number' name='core_max' class='form-control max' id='core_max' required></td></tr><tr><td>2. Complementary-1: "+comp1+"</td><td><input type='number' name='comp1_marks' class='form-control marks' id='comp1_marks' min='0' required></td><td><input type='number' name='comp1_max' class='form-control max' id='comp1_max' required></td></tr><tr><td>3. Complementary-2: "+comp2+"</td><td><input type='number' name='comp2_marks' class='form-control' readonly></td><td><input type='number' name='comp2_max' class='form-control' readonly></td></tr><tr><td>4. Part 1: "+part_one_subject+"</td><td><input type='number' name='part_one_marks' class='form-control marks' min='0' id='part1_marks' required></td><td><input type='number' name='part_one_max' class='form-control max' id='part1_max' required></td></tr><tr><td>5. Part 2: "+part_two_subject+"</td><td><input type='number' min='0' name='part_two_marks' id='part2_marks' class='form-control marks' required></td><td><input type='number' id='part2_max' name='part_two_max' class='form-control max' required></td></tr></table>");
+                }
+                else {
+                $("#mark_table").append("<table class='table table-bordered markTable'><tr><th>Subject</th><th>Marks Awarded</th><th>Max. Marks</th></tr><tr><td>1. Core: "+core+"</td><td><input type='number' name='core_marks' id='core_marks' min='0' class='form-control marks' required></td><td><input type='number' name='core_max' id='core_max' class='form-control max' required></td></tr><tr><td>2. Complementary-1: "+comp1+"</td><td><input type='number' name='comp1_marks' class='form-control marks' id='comp1_marks' min='0' required></td><td><input type='number' name='comp1_max' id='comp1_max' class='form-control max' required></td></tr><tr><td>3. Complementary-2: "+comp2+"</td><td><input type='number' min='0' name='comp2_marks' class='form-control marks' id='comp2_marks' required></td><td><input type='number' name='comp2_max' class='form-control max' id='comp2_max' required></td></tr><tr><td>4. Part 1: "+part_one_subject+"</td><td><input type='number' name='part_one_marks' min='0' class='form-control marks' id='part1_marks' required></td><td><input type='number' name='part_one_max' id='part1_max' class='form-control max' required></td></tr><tr><td>5. Part 2: "+part_two_subject+"</td><td><input type='number' name='part_two_marks' min='0' id='part2_marks' class='form-control marks' required></td><td><input type='number' name='part_two_max' id='part2_max' class='form-control max' required></td></tr></table>");
+            }
+                $('#mark_table').show();
+                limit_marks();
+            } //mark
+        } else if($('#double_main').is(':checked')) {
+            alert('You can select only single main');
+            return;
+        } else if($('#triple_main').is(':checked')) {
+            alert('You can select only single main');
+            return;
+        }
+    
+    } // if kannur
     }//else
     });
 });
 </script>
 <script type="text/javascript">
     $('#degree').change(function(){
+        $('.markTable').hide();
+        $('#single_main_form').hide();
+        $('#double_main_form').hide();
+        $('#triple_main_form').hide();
+        $('#kannur_single_main_form').hide();
+        $('#kannur_com_single_main_form').hide();
         var degree_id=$(this).val();
         var base_url='<?php echo Router::url('/', true); ?>';
-        if(degree_id!=2 && degree_id!=4 && degree_id!=5) {
-            $.ajax({
-                type:'post',
-                data:'degree_id='+degree_id,
-                dataType:'html',
-                url:base_url+'pages/get_subjects',
-                async:false,
-                success: function(data){
-                    $('.singleMainSubject1').html(data);
-                    $('.singleCompSubject1').html(data);
-                    $('.singleCompSubject2').html(data);
-                    $('.doubleMainSubject1').html(data);
-                    $('.doubleMainSubject2').html(data);
-                    $('.doubleCompSubject1').html(data);
-                    $('.tripleMainSubject1').html(data);
-                    $('.tripleMainSubject2').html(data);
-                    $('.tripleMainSubject3').html(data);
-                }
-            })
-        }else if(degree_id==2 || degree_id==4 || degree_id==5) {
-            $('#single_main_form').hide();
-            $('#double_main_form').hide();
-            $('#triple_main_form').hide();
-        }
+        if($('#University').val()!=4) { // if not kannur
+            if(degree_id!=2 && degree_id!=4 && degree_id!=5) {
+                $.ajax({
+                    type:'post',
+                    data:'degree_id='+degree_id,
+                    dataType:'html',
+                    url:base_url+'pages/get_subjects',
+                    async:false,
+                    success: function(data){
+                        $('.singleMainSubject1').html(data);
+                        $('.singleCompSubject1').html(data);
+                        $('.singleCompSubject2').html(data);
+                        $('.doubleMainSubject1').html(data);
+                        $('.doubleMainSubject2').html(data);
+                        $('.doubleCompSubject1').html(data);
+                        $('.tripleMainSubject1').html(data);
+                        $('.tripleMainSubject2').html(data);
+                        $('.tripleMainSubject3').html(data);
+                    }
+                })
+            }else if(degree_id==2 || degree_id==4 || degree_id==5) {
+                $('#single_main_form').hide();
+                $('#double_main_form').hide();
+                $('#triple_main_form').hide();
+            }
+        } // if not kannur
+        else { // if kannur
+            if(degree_id!=2 && degree_id!=4 && degree_id!=5) {
+                $.ajax({
+                    type:'post',
+                    data:'degree_id='+degree_id,
+                    dataType:'html',
+                    url:base_url+'pages/get_subjects',
+                    async:false,
+                    success: function(data){
+                        $('.part_three_main').html(data);
+                        $('.part_three_sub1').html(data);
+                        $('.part_three_sub2').html(data);
+                        
+                    }
+                })
+            }else if(degree_id==2 || degree_id==4 || degree_id==5) {
+                $('#single_main_form').hide();
+                $('#double_main_form').hide();
+                $('#triple_main_form').hide();
+            }
+        } // if kannur
+        
         
     });
 </script>
@@ -2389,6 +2784,16 @@ $(document).ready(function(){
 $('.next_tenth_btn').click(function(){
 alert('Instructions for the next step\n\n• If course / subjects in core or complementary are not listed, please mail us at admission@farookcollege.ac.in with a copy of marks / grade sheet attached.\n• Credit: Sum total of all credits of the concerned subject in various semesters. For example, if the core subject has 4 credits in Sem1, 4 credits in Sem2, 8 credits in Sem3 , 8 credits in Sem4, 16 credits in Sem5, 18 credit Sem6 and project of 4 credits, credit for the core=4+4+8+8+16+18+4=62.\n• Overall credit is the sum total of all credits of the course');
 });
+</script>
+
+<script type="text/javascript"> // to be changed by rafeeque if kannur marks case
+    $('#mark').click(function(){
+        if($('#University').val()==4 && $(this).is(':checked')) {
+            alert('Please contact the administrator with your mark sheet');
+            $(this).attr('checked',false);
+            return;
+        }
+    });
 </script>
 
 
