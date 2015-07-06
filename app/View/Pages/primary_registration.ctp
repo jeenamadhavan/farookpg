@@ -1113,7 +1113,7 @@ $randnum=rand ( 1 ,5 );
                                             <td><?php echo $marks['Mark']['comp1_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['comp1_cgpa']; ?></td>
                                         </tr>
-                                        <?php if($marks['Mark']['degree_id']!=2 && $marks['Mark']['degree_id']!=4 && $marks['Mark']['degree_id']!=5) { ?>
+                                        <?php if($marks['Mark']['degree_id']!=2 && $marks['Mark']['degree_id']!=4 && $marks['Mark']['degree_id']!=5 && $marks['Mark']['degree_id']!=6) { ?>
                                         <tr>
                                             <td>Complementary-2: <?php echo $marks['Mark']['comp2_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['comp2_credit']; ?></td>
@@ -1297,7 +1297,7 @@ $randnum=rand ( 1 ,5 );
                                             <td><?php echo $marks['Mark']['comp1_mark']; ?></td>
                                             <td><?php echo $marks['Mark']['comp1_max']; ?></td>
                                         </tr>
-                                        <?php if($marks['Mark']['degree_id']!=2 && $marks['Mark']['degree_id']!=4 && $marks['Mark']['degree_id']!=5) { ?>
+                                        <?php if($marks['Mark']['degree_id']!=2 && $marks['Mark']['degree_id']!=4 && $marks['Mark']['degree_id']!=5 && $marks['Mark']['degree_id']!=6) { ?>
                                         <tr>
                                             <td>Complementary-2: <?php echo $marks['Mark']['comp2_sub']; ?></td>
                                             <td><?php echo $marks['Mark']['comp2_mark']; ?></td>
@@ -2347,7 +2347,7 @@ $(document).ready(function () {
     $('#single_main').on('click',function(){
         if ($(this).is(':checked')) {
             if($('#University').val()!=4) {
-                if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5) {
+                if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5 && $('#degree').val()!=6) {
                     $("#double_main_form").hide();
                     $("#triple_main_form").hide();
                     $("#kannur_single_main_form").hide();
@@ -2380,7 +2380,7 @@ $(document).ready(function () {
     $('#double_main').on('click',function(){
         if ($(this).is(':checked')) {
             if($('#University').val()!=4) {
-                if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5) {
+                if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5  && $('#degree').val()!=6) {
                     $("#single_main_form").hide();
                     $("#triple_main_form").hide();
                     $("#kannur_single_main_form").hide();
@@ -2395,7 +2395,7 @@ $(document).ready(function () {
     $('#triple_main').on('click',function(){
         if ($(this).is(':checked')) {
             if($('#University').val()!=4) {
-                if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5) {
+                if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5 && $('#degree').val()!=6) {
                     $("#single_main_form").hide();
                     $("#double_main_form").hide();
                     $("#kannur_single_main_form").hide();
@@ -2461,7 +2461,7 @@ $(document).ready(function(){
         }
         else {
         if($('#University').val()!=4) { // if not kannur
-        if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5){ // if not bcom, bba and bmmc
+        if($('#degree').val()!=2 && $('#degree').val()!=4 && $('#degree').val()!=5 && $('#degree').val()!=6){ // if not bcom, bba,bca and bmmc
         if($('.markTable').length>0){ $('.markTable').hide(); }
         if($('#single_main').is(':checked')) {
             if($('.singleMainSubject1').val()==0 || $('.singleCompSubject1').val()==0 || $('.singleCompSubject2').val()==0) {
@@ -2600,8 +2600,8 @@ $(document).ready(function(){
                 limit_marks();
             }
         }
-    }// degree not bcom,bba and bmmc
-    else if($('#degree').val()==2 || $('#degree').val()==4 || $('#degree').val()==5) { // if bcom or bba or bmmc
+    }// degree not bcom,bba,bca and bmmc
+    else if($('#degree').val()==2 || $('#degree').val()==4 || $('#degree').val()==5 || $('#degree').val()==6) { // if bcom or bba or bmmc or bca
         if($('.markTable').length>0){ $('.markTable').hide(); }
         if($('#single_main').is(':checked')) {
             
@@ -2637,9 +2637,11 @@ $(document).ready(function(){
         }// main
         else if($('#double_main').is(':checked')) {
             alert('You can only click single main');
+            $(this).attr('checked',false);
             return;
         } else if($('#triple_main').is(':checked')) {
             alert('You can only click single main');
+            $(this).attr('checked',false);
             return;
         }
     }// degree bcome or bba or bmmc
