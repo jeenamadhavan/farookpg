@@ -72,7 +72,8 @@ class PagesController extends AppController {
         'Subjects',
         'Mark',
         'Completedpayment',
-        'Final_community'
+        'Final_community',
+        'Undetectedpayment'
     );
     var $name = 'Pages';
     public $helpers = array('Html', 'Form', 'Session');
@@ -1279,9 +1280,9 @@ class PagesController extends AppController {
             $this->Session->setFlash(__('Please Login!.'));
             return $this->redirect(array('action' => 'login'));
         } else {
-
+            $paymentUndetected=$this->Undetectedpayment->find('first',array('conditions'=>array('user_id'=>$this->Session->read('User.userid'))));
             $paymentCompleted=$this->Completedpayment->find('first',array('conditions'=>array('user_id'=>$this->Session->read('User.userid'))));
-            if(empty($paymentCompleted)) {
+            if(empty($paymentCompleted) && empty($paymentUndetected)) {
                 $this->Session->setFlash(__('Your Payment is pending! For further details, please contact admission@farookcollege.ac.in'));
                 return $this->redirect(array('action' => 'choice_select'));
             }
@@ -3708,8 +3709,10 @@ class PagesController extends AppController {
         if(count($payment)>0) {
             $this->set('cannot_edit',1);
         }
+        // allowing undetected payments to fill the form
+        $paymentUndetected=$this->Undetectedpayment->find('first',array('conditions'=>array('user_id'=>$this->Session->read('User.userid'))));
         $paymentCompleted=$this->Completedpayment->find('first',array('conditions'=>array('user_id'=>$this->Session->read('User.userid'))));
-        if(empty($paymentCompleted)) {
+        if(empty($paymentCompleted) && empty($paymentUndetected)) {
             $this->set('cannot_fill',1);
         }
         $this->set('choices_name',$choices_name);
