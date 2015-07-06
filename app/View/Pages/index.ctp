@@ -33,7 +33,7 @@ $randnum=rand ( 1 ,5 );
                       
                         
                        
-                            <li class="fontcolor">The last date of registration for PG Admission 2015 has been extended to 06/07/2015.</li>
+                            <li class="fontcolor">The last date of registration for PG Admission 2015 has been extended to 08/07/2015.</li>
                         <li class="fontcolor">The other dates will be shortly announced.</li>
                     <li class="fontcolor">The second phase will be open by 2nd July 2015 for payment confirmed candidates.</li>
                     <li class="fontcolor">Please download  the consolidated grade sheet from the university website before login for 2nd phase.</li>
