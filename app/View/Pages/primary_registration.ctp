@@ -71,6 +71,7 @@ $randnum=rand ( 1 ,5 );
                                             'id' => 'Email',
                                             'type'=>'email',
                                             'maxlength' => '250',
+                                            'readonly' => 'readonly',
                                             'placeholder' => 'Enter a valid Email Address',
                                             'required'=>'required')
                                         ); ?>

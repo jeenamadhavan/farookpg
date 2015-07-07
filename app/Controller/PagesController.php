@@ -1477,7 +1477,7 @@ class PagesController extends AppController {
                 
                 $userTabaleSaveData = array(
                     'frkUserName' => "'" . $this->request->data['PrimaryRegister']['name'] . "'",
-                    'frkUserEmail' => "'" . $this->request->data['PrimaryRegister']['email'] . "'",
+                    //'frkUserEmail' => "'" . $this->request->data['PrimaryRegister']['email'] . "'",
                     //'frkUserAdhaarNo' => "'" . $this->request->data['PrimaryRegister']['adhaar'] . "'",
                     'frkUserBloodGroup' => "'" . $this->request->data['PrimaryRegister']['blood'] . "'",
                     'frkUserReligion' => "'" . $userRelegion . "'",
