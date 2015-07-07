@@ -1546,19 +1546,19 @@ class PagesController extends AppController {
                 if (count($applicantdetails) > 0) {
                     $ApplicantTableData = array(
                         //'frkApplicantAmbition' => "'" . $careerAmbition . "'",
-                        'frkTenthSchool' => "'" . $this->request->data['PrimaryRegister']['ten-school'] . "'",
-                        'frkTenthRegno' => "'" . $this->request->data['PrimaryRegister']['tenthRegno'] . "'",
+                        'frkTenthSchool' => "'".$this->request->data['PrimaryRegister']['ten-school']."'",
+                        'frkTenthRegno' => "'".$this->request->data['PrimaryRegister']['tenthRegno']."'",
                         //'frkTenthYOS' => "'" . $this->request->data['PrimaryRegister']['tenyearofstudy'] . "'",
-                        'frlTenthYOP' => "'" . $this->request->data['PrimaryRegister']['TenYearofPassing'] . "'",
+                        'frlTenthYOP' => "'".$this->request->data['PrimaryRegister']['TenYearofPassing']."'",
                         //'TenthTotalMarks' => "'" . $this->request->data['PrimaryRegister']['tenthTotalMarks'] . "'",
-                        'tenthParcentage' => "'" . $this->request->data['PrimaryRegister']['tenthParcentage'] . "'",
-                        'plusTwoSchool' => "'" . $this->request->data['PrimaryRegister']['plusTwo-school'] . "'",
-                        'plusTwoStream' => "'" . $this->request->data['PrimaryRegister']['plusTwoStream'] . "'",
-                        'plusTwoRegno' => "'" . $this->request->data['PrimaryRegister']['plusTwoRegno'] . "'",
-                        'plusTwoBoard' => "'" . $plusTwoBoard . "'",
+                        'tenthParcentage' => "'".$this->request->data['PrimaryRegister']['tenthParcentage']."'",
+                        'plusTwoSchool' => "'".$this->request->data['PrimaryRegister']['plusTwo-school']."'",
+                        'plusTwoStream' => "'".$this->request->data['PrimaryRegister']['plusTwoStream']."'",
+                        'plusTwoRegno' => "'".$this->request->data['PrimaryRegister']['plusTwoRegno']."'",
+                        'plusTwoBoard' => "'".$plusTwoBoard."'",
                         //'plusTwoTotalMarks' => $this->request->data['PrimaryRegister']['plusTwoTotalMarks'],
-                        'plusTwoPercentage' => $this->request->data['PrimaryRegister']['plusTwoPercentage'],
-                        'plusTwoYOP' => $this->request->data['PrimaryRegister']['plusTwoYearofPassing'],
+                        'plusTwoPercentage' => "'".$this->request->data['PrimaryRegister']['plusTwoPercentage']."'",
+                        'plusTwoYOP' => "'".$this->request->data['PrimaryRegister']['plusTwoYearofPassing']."'",
 
                     );
                     $applicantsaved=$this->Applicant->updateAll($ApplicantTableData, $cnd2);
@@ -3715,6 +3715,12 @@ class PagesController extends AppController {
         if(empty($paymentCompleted) && empty($paymentUndetected)) {
             $this->set('cannot_fill',1);
         }
+        // if marks exists, allowing to edit
+        $markExists=$this->Mark->find('first',array('conditions'=>array('user_id'=>$this->Session->read('User.userid'))));
+        if(!empty($markExists)) {
+            $this->set('edit_form',1);
+        }
+
         $this->set('choices_name',$choices_name);
         
             $this->set('choices',$choice_result);
@@ -4396,4 +4402,4 @@ public function choice_edit() {
         }
     }
 
-} //y8uhui
+}
