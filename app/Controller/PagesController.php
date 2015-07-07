@@ -1544,15 +1544,17 @@ class PagesController extends AppController {
 
 
                 if (count($applicantdetails) > 0) {
+                        $frkTenthSchool=str_replace("'","",$this->request->data['PrimaryRegister']['ten-school']);
+                        $plusTwoSchool=str_replace("'","",$this->request->data['PrimaryRegister']['plusTwo-school']);
                     $ApplicantTableData = array(
                         //'frkApplicantAmbition' => "'" . $careerAmbition . "'",
-                        'frkTenthSchool' => "'".$this->request->data['PrimaryRegister']['ten-school']."'",
+                        'frkTenthSchool' => "'".$frkTenthSchool."'",
                         'frkTenthRegno' => "'".$this->request->data['PrimaryRegister']['tenthRegno']."'",
                         //'frkTenthYOS' => "'" . $this->request->data['PrimaryRegister']['tenyearofstudy'] . "'",
                         'frlTenthYOP' => "'".$this->request->data['PrimaryRegister']['TenYearofPassing']."'",
                         //'TenthTotalMarks' => "'" . $this->request->data['PrimaryRegister']['tenthTotalMarks'] . "'",
                         'tenthParcentage' => "'".$this->request->data['PrimaryRegister']['tenthParcentage']."'",
-                        'plusTwoSchool' => "'".$this->request->data['PrimaryRegister']['plusTwo-school']."'",
+                        'plusTwoSchool' => "'".$plusTwoSchool."'",
                         'plusTwoStream' => "'".$this->request->data['PrimaryRegister']['plusTwoStream']."'",
                         'plusTwoRegno' => "'".$this->request->data['PrimaryRegister']['plusTwoRegno']."'",
                         'plusTwoBoard' => "'".$plusTwoBoard."'",
@@ -1571,18 +1573,20 @@ class PagesController extends AppController {
                         'fields'=>array('application_no')
                         ));
                     $ApplicationNumber=$result['Choice']['application_no'];
+                    $frkTenthSchool=str_replace("'","",$this->request->data['PrimaryRegister']['ten-school']);
+                    $plusTwoSchool=str_replace("'","",$this->request->data['PrimaryRegister']['plusTwo-school']);
 
                     $ApplicantTableData = array(
                         'frkUserID' => $userid,
                         //'frkApplicantAmbition' => $careerAmbition,
                         'frkApplicationNumber' => $ApplicationNumber,
-                        'frkTenthSchool' =>$this->request->data['PrimaryRegister']['ten-school'],
+                        'frkTenthSchool' =>$frkTenthSchool,
                         'frkTenthRegno' => $this->request->data['PrimaryRegister']['tenthRegno'],
                         //'frkTenthYOS' => "'" . $this->request->data['PrimaryRegister']['tenyearofstudy'] . "'",
                         'frlTenthYOP' => $this->request->data['PrimaryRegister']['TenYearofPassing'],
                         //'TenthTotalMarks' => $this->request->data['PrimaryRegister']['tenthTotalMarks'],
                         'tenthParcentage' => $this->request->data['PrimaryRegister']['tenthParcentage'],
-                        'plusTwoSchool' => $this->request->data['PrimaryRegister']['plusTwo-school'],
+                        'plusTwoSchool' => $plusTwoSchool,
                         'plusTwoStream' => $this->request->data['PrimaryRegister']['plusTwoStream'],
                         'plusTwoRegno' => $this->request->data['PrimaryRegister']['plusTwoRegno'],
                         'plusTwoBoard' => $plusTwoBoard,
