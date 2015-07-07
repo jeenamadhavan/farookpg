@@ -1540,6 +1540,8 @@ $randnum=rand ( 1 ,5 );
                                                             'label'=>false,
                                                             'options'=>array(
                                                                 'Common course other than languages'=>'Common course other than languages',
+                                                                'General Course'=>'General Course',
+                                                                'Vocational Course'=>'Vocational Course',
                                                                 'Nil'=>'Nil',
                                                                 ),
                                                             'class'=>'form-control',
@@ -1611,6 +1613,7 @@ $randnum=rand ( 1 ,5 );
                                                             'label'=>false,
                                                             'options'=>array(
                                                                 'Common course other than languages'=>'Common course other than languages',
+                                                                'General Course'=>'General Course',
                                                                 'Nil'=>'Nil',
                                                                 ),
                                                             'class'=>'form-control',
