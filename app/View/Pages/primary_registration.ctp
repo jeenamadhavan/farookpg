@@ -1615,6 +1615,7 @@ $randnum=rand ( 1 ,5 );
                                                             'options'=>array(
                                                                 'Common course other than languages'=>'Common course other than languages',
                                                                 'General Course'=>'General Course',
+                                                                'Open Course'=>'Open Course',
                                                                 'Nil'=>'Nil',
                                                                 ),
                                                             'class'=>'form-control',
