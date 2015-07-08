@@ -1795,6 +1795,8 @@ $randnum=rand ( 1 ,5 );
                                                         'Computer Applications'=>'Computer Applications',
                                                         'Islamic Finance'=>'Islamic Finance',
                                                         'BBA'=>'BBA',
+                                                        'General Course'=>'General Course',
+                                                        'Open Course'=>'Open Course',
                                                         'Nil'=>'Nil'
                                                         ),
                                                     'empty'=>'-- select one --',
@@ -1818,6 +1820,8 @@ $randnum=rand ( 1 ,5 );
                                                         'Computer Applications'=>'Computer Applications',
                                                         'Islamic Finance'=>'Islamic Finance',
                                                         'BBA'=>'BBA',
+                                                        'General Course'=>'General Course',
+                                                        'Open Course'=>'Open Course',
                                                         'Nil'=>'Nil'
                                                         ),
                                                     'empty'=>'-- select one --',
