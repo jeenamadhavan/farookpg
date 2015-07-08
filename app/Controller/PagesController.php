@@ -2299,6 +2299,13 @@ class PagesController extends AppController {
         if($this->request->is('post')) {
             if(!empty($this->request->data['SecondaryRegister'])){
                 if (!empty($reservations)) {
+                    $extraCourse=str_replace("'","",$this->request->data['SecondaryRegister']['extra_course']);
+                    $Sports1=str_replace("'","",$this->request->data['SecondaryRegister']['Sports1']);
+                    $Sports2=str_replace("'","",$this->request->data['SecondaryRegister']['Sports2']);
+                    $Sports3=str_replace("'","",$this->request->data['SecondaryRegister']['Sports3']);
+                    $Arts1=str_replace("'","",$this->request->data['SecondaryRegister']['Arts1']);
+                    $Arts2=str_replace("'","",$this->request->data['SecondaryRegister']['Arts2']);
+                    $Arts3=str_replace("'","",$this->request->data['SecondaryRegister']['Arts3']);
                     
                     $ReservationTableData = array(
                      'frkHandiCapped' => "'" .$this->request->data['SecondaryRegister']['HandiCapped']."'" ,
@@ -2310,20 +2317,20 @@ class PagesController extends AppController {
                     'NCC_Certificate_C' => "'" .$this->request->data['SecondaryRegister']['NCC_Certificate_C']."'",
                     'None' => "'" .$this->request->data['SecondaryRegister']['None']."'",
                     'Illiteracy' => "'" .$this->request->data['SecondaryRegister']['Illiteracy']."'",
-                    'frkExtra_course' => "'" .$this->request->data['SecondaryRegister']['extra_course']."'",
+                    'frkExtra_course' => "'" .$extraCourse."'",
                     'frkFeeConcession' => "'" .$this->request->data['SecondaryRegister']['FeeConcession']."'",
 
-                    'sportDis1' => "'" .$this->request->data['SecondaryRegister']['Sports1']."'",
+                    'sportDis1' => "'" .$Sports1."'",
                     'sportlevel1' => "'" .$this->request->data['SecondaryRegister']['SportsLevel1']."'",
-                    'sportDis2' => "'" .$this->request->data['SecondaryRegister']['Sports2']."'",
+                    'sportDis2' => "'" .$Sports2."'",
                     'sportlevel2' => "'" .$this->request->data['SecondaryRegister']['SportsLevel2']."'",
-                    'sportDis3' => "'" .$this->request->data['SecondaryRegister']['Sports3']."'",
+                    'sportDis3' => "'" .$Sports3."'",
                     'sportlevel3' => "'" .$this->request->data['SecondaryRegister']['SportsLevel3']."'",
-                    'Arts1' => "'" .$this->request->data['SecondaryRegister']['Arts1']."'",
+                    'Arts1' => "'" .$Arts1."'",
                     'ArtsLevel1' => "'" .$this->request->data['SecondaryRegister']['ArtsLevel1']."'",
-                    'Arts2' => "'" .$this->request->data['SecondaryRegister']['Arts2']."'",
+                    'Arts2' => "'" .$Arts2."'",
                     'ArtsLevel2' => "'" .$this->request->data['SecondaryRegister']['ArtsLevel2']."'",
-                    'Arts3' => "'" .$this->request->data['SecondaryRegister']['Arts3']."'",
+                    'Arts3' => "'" .$Arts3."'",
                     'ArtsLevel3' => "'" .$this->request->data['SecondaryRegister']['ArtsLevel3']."'"
 
                     );
@@ -2338,6 +2345,15 @@ class PagesController extends AppController {
                         return $this->redirect(array('action' => 'choice_select'));
                     }
                 } else{
+
+                    $extraCourse=str_replace("'","",$this->request->data['SecondaryRegister']['extra_course']);
+                    $Sports1=str_replace("'","",$this->request->data['SecondaryRegister']['Sports1']);
+                    $Sports2=str_replace("'","",$this->request->data['SecondaryRegister']['Sports2']);
+                    $Sports3=str_replace("'","",$this->request->data['SecondaryRegister']['Sports3']);
+                    $Arts1=str_replace("'","",$this->request->data['SecondaryRegister']['Arts1']);
+                    $Arts2=str_replace("'","",$this->request->data['SecondaryRegister']['Arts2']);
+                    $Arts3=str_replace("'","",$this->request->data['SecondaryRegister']['Arts3']);
+
                 $reservations1 = array(
                     'frkHandiCapped' => $this->request->data['SecondaryRegister']['HandiCapped'],
                     'frkUserID' => $userid,
@@ -2348,20 +2364,20 @@ class PagesController extends AppController {
                     'NCC_Certificate_C' => $this->request->data['SecondaryRegister']['NCC_Certificate_C'],
                     'None' => $this->request->data['SecondaryRegister']['None'],
                     'Illiteracy' => $this->request->data['SecondaryRegister']['Illiteracy'],
-                    'frkExtra_course' => $this->request->data['SecondaryRegister']['extra_course'],
+                    'frkExtra_course' => $extraCourse,
                     'frkFeeConcession' => $this->request->data['SecondaryRegister']['FeeConcession'],
 
-                    'sportDis1' => $this->request->data['SecondaryRegister']['Sports1'],
+                    'sportDis1' => $Sports1,
                     'sportlevel1' => $this->request->data['SecondaryRegister']['SportsLevel1'],
-                    'sportDis2' => $this->request->data['SecondaryRegister']['Sports2'],
+                    'sportDis2' => $Sports2,
                     'sportlevel2' => $this->request->data['SecondaryRegister']['SportsLevel2'],
-                    'sportDis3' => $this->request->data['SecondaryRegister']['Sports3'],
+                    'sportDis3' => $Sports3,
                     'sportlevel3' => $this->request->data['SecondaryRegister']['SportsLevel3'],
-                    'Arts1' => $this->request->data['SecondaryRegister']['Arts1'],
+                    'Arts1' => $Arts1,
                     'ArtsLevel1' => $this->request->data['SecondaryRegister']['ArtsLevel1'],
-                    'Arts2' => $this->request->data['SecondaryRegister']['Arts2'],
+                    'Arts2' => $Arts2,
                     'ArtsLevel2' => $this->request->data['SecondaryRegister']['ArtsLevel2'],
-                    'Arts3' => $this->request->data['SecondaryRegister']['Arts3'],
+                    'Arts3' => $Arts3,
                     'ArtsLevel3' => $this->request->data['SecondaryRegister']['ArtsLevel3']
                 ); 
                 $this->Reservation->create();

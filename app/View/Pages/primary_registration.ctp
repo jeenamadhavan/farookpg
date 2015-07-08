@@ -1786,6 +1786,7 @@ $randnum=rand ( 1 ,5 );
                                                         'Cooperation'=>'Cooperation',
                                                         'Computer Applications'=>'Computer Applications',
                                                         'Islamic Finance'=>'Islamic Finance',
+                                                        'BBA'=>'BBA',
                                                         'Nil'=>'Nil'
                                                         ),
                                                     'empty'=>'-- select one --',
@@ -1808,6 +1809,7 @@ $randnum=rand ( 1 ,5 );
                                                         'Cooperation'=>'Cooperation',
                                                         'Computer Applications'=>'Computer Applications',
                                                         'Islamic Finance'=>'Islamic Finance',
+                                                        'BBA'=>'BBA',
                                                         'Nil'=>'Nil'
                                                         ),
                                                     'empty'=>'-- select one --',
@@ -1953,7 +1955,13 @@ $randnum=rand ( 1 ,5 );
             </div>-->
         </div>
     </div>
-
+<script>
+    function set_bba() {
+        if($('#University').val()==4 && $('#degree').val()==4) {
+            $('#com_part_three_main').attr('value','BBA');
+        }
+    }
+</script>
 <script type="text/javascript">
     $('#ten-percantage,#plusTwoPercentage').blur(function(){
         var per=$(this).val();
@@ -2364,16 +2372,17 @@ $(document).ready(function () {
                     $("#triple_main_form").hide();
                     $("#kannur_single_main_form").show();
                 } else {
-                    if($('#degree').val()==4 || $('#degree').val()==5) { // change for bba and bmmc
+                    if($('#degree').val()==5 || $('#degree').val()==6) { // change for bmmc and bca
                         alert('please contact the administrator with your mark details');
                         return;
                     }
-                    else if($('#degree').val()==2) { // change for bba and bmmc
+                    else if($('#degree').val()==2 || $('#degree').val()==4) { // change for bca and bmmc
                         $("#double_main_form").hide();
                         $("#single_main_form").hide();
                         $("#triple_main_form").hide();
                         $("#kannur_single_main_form").hide();
                         $("#kannur_com_single_main_form").show();
+                        set_bba();
                     }
                     
                 }
