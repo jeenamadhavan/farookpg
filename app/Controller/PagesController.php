@@ -1730,9 +1730,11 @@ class PagesController extends AppController {
                                         $markSaveData['comp2_sub']=$this->request->data['PrimaryRegister']['singleCompSubject2'];
                                         $markSaveData['comp2_credit']=$this->request->data['comp2_credit'];
                                         $markSaveData['comp2_cgpa']=$this->request->data['comp2_cgpa'];
-                                        $markSaveData['open_sub']=$this->request->data['PrimaryRegister']['open_course'];
-                                        $markSaveData['open_credit']=$this->request->data['open_course_credit'];
-                                        $markSaveData['open_cgpa']=$this->request->data['open_course_cgpa'];
+                                        if($this->request->data['PrimaryRegister']['University']!=5) {
+                                            $markSaveData['open_sub']=$this->request->data['PrimaryRegister']['open_course'];
+                                            $markSaveData['open_credit']=$this->request->data['open_course_credit'];
+                                            $markSaveData['open_cgpa']=$this->request->data['open_course_cgpa'];
+                                        }
 
                                         $markSaveData['common_sub']=$this->request->data['PrimaryRegister']['common_course'];
                                         $markSaveData['common_credit']=$this->request->data['common_course_credit'];
@@ -1780,9 +1782,11 @@ class PagesController extends AppController {
                                         $markSaveData['comp1_sub']='Complementary';
                                         $markSaveData['comp1_credit']=$this->request->data['comp1_credit'];
                                         $markSaveData['comp1_cgpa']=$this->request->data['comp1_cgpa'];
-                                        $markSaveData['open_sub']=$this->request->data['PrimaryRegister']['open_course'];
-                                        $markSaveData['open_credit']=$this->request->data['open_course_credit'];
-                                        $markSaveData['open_cgpa']=$this->request->data['open_course_cgpa'];
+                                        if($this->request->data['PrimaryRegister']['University']!=5) {
+                                            $markSaveData['open_sub']=$this->request->data['PrimaryRegister']['open_course'];
+                                            $markSaveData['open_credit']=$this->request->data['open_course_credit'];
+                                            $markSaveData['open_cgpa']=$this->request->data['open_course_cgpa'];
+                                        }
 
                                         $markSaveData['common_sub']=$this->request->data['PrimaryRegister']['common_course'];
                                         $markSaveData['common_credit']=$this->request->data['common_course_credit'];
@@ -1828,73 +1832,76 @@ class PagesController extends AppController {
                             $marksaved=$this->Mark->save($markSaveData);
 
                         } else if($this->request->data['main_system']==2) {
-                            $markSaveData=array(
-                                'user_id'=>$this->Session->read('User.userid'),
-                                'university_id'=>$this->request->data['PrimaryRegister']['University'],
-                                'degree_id'=>$this->request->data['PrimaryRegister']['degree'],
-                                'mark_grade'=>$this->request->data['mark_grade'],
-                                'main'=>$this->request->data['main_system'],
-                                'main1_sub'=>$this->request->data['PrimaryRegister']['doubleMainSubject1'],
-                                'main1_credit'=>$this->request->data['core1_credit'],
-                                'main1_cgpa'=>$this->request->data['core1_cgpa'],
-                                'main2_sub'=>$this->request->data['PrimaryRegister']['doubleMainSubject2'],
-                                'main2_credit'=>$this->request->data['core2_credit'],
-                                'main2_cgpa'=>$this->request->data['core2_cgpa'],
-                                'comp1_sub'=>$this->request->data['PrimaryRegister']['doubleCompSubject1'],
-                                'comp1_credit'=>$this->request->data['comp1_credit'],
-                                'comp1_cgpa'=>$this->request->data['comp1_cgpa'],
-                                'common_sub'=>$this->request->data['PrimaryRegister']['common_course'],
-                                'common_credit'=>$this->request->data['common_course_credit'],
-                                'common_cgpa'=>$this->request->data['common_course_cgpa'],
-                                'com_other_sub'=>$this->request->data['PrimaryRegister']['common_course_other'],
-                                'com_other_credit'=>$this->request->data['common_course_other_credit'],
-                                'com_other_cgpa'=>$this->request->data['common_course_other_cgpa'],
-                                'add_common_course_sub'=>$this->request->data['PrimaryRegister']['additional_common_course'],
-                                'add_common_course_credit'=>$this->request->data['add_common_course_credit'],
-                                'add_common_course_cgpa'=>$this->request->data['add_common_course_cgpa'],
-                                'open_sub'=>$this->request->data['PrimaryRegister']['open_course'],
-                                'open_credit'=>$this->request->data['open_course_credit'],
-                                'open_cgpa'=>$this->request->data['open_course_cgpa'],
-                                'overall_credit'=>$this->request->data['overall_credit'],
-                                'overall_cgpa'=>$this->request->data['overall_cgpa'],
+                            $markSaveData=array();
 
-                                );
+                                $markSaveData['user_id']=$this->Session->read('User.userid');
+                                $markSaveData['university_id']=$this->request->data['PrimaryRegister']['University'];
+                                $markSaveData['degree_id']=$this->request->data['PrimaryRegister']['degree'];
+                                $markSaveData['mark_grade']=$this->request->data['mark_grade'];
+                                $markSaveData['main']=$this->request->data['main_system'];
+                                $markSaveData['main1_sub']=$this->request->data['PrimaryRegister']['doubleMainSubject1'];
+                                $markSaveData['main1_credit']=$this->request->data['core1_credit'];
+                                $markSaveData['main1_cgpa']=$this->request->data['core1_cgpa'];
+                                $markSaveData['main2_sub']=$this->request->data['PrimaryRegister']['doubleMainSubject2'];
+                                $markSaveData['main2_credit']=$this->request->data['core2_credit'];
+                                $markSaveData['main2_cgpa']=$this->request->data['core2_cgpa'];
+                                $markSaveData['comp1_sub']=$this->request->data['PrimaryRegister']['doubleCompSubject1'];
+                                $markSaveData['comp1_credit']=$this->request->data['comp1_credit'];
+                                $markSaveData['comp1_cgpa']=$this->request->data['comp1_cgpa'];
+                                $markSaveData['common_sub']=$this->request->data['PrimaryRegister']['common_course'];
+                                $markSaveData['common_credit']=$this->request->data['common_course_credit'];
+                                $markSaveData['common_cgpa']=$this->request->data['common_course_cgpa'];
+                                $markSaveData['com_other_sub']=$this->request->data['PrimaryRegister']['common_course_other'];
+                                $markSaveData['com_other_credit']=$this->request->data['common_course_other_credit'];
+                                $markSaveData['com_other_cgpa']=$this->request->data['common_course_other_cgpa'];
+                                $markSaveData['add_common_course_sub']=$this->request->data['PrimaryRegister']['additional_common_course'];
+                                $markSaveData['add_common_course_credit']=$this->request->data['add_common_course_credit'];
+                                $markSaveData['add_common_course_cgpa']=$this->request->data['add_common_course_cgpa'];
+                                if($this->request->data['PrimaryRegister']['University']!=5) {
+                                    $markSaveData['open_sub']=$this->request->data['PrimaryRegister']['open_course'];
+                                    $markSaveData['open_credit']=$this->request->data['open_course_credit'];
+                                    $markSaveData['open_cgpa']=$this->request->data['open_course_cgpa'];
+                                }
+                                $markSaveData['overall_credit']=$this->request->data['overall_credit'];
+                                $markSaveData['overall_cgpa']=$this->request->data['overall_cgpa'];
+
                             $this->Mark->create();
                             $marksaved=$this->Mark->save($markSaveData);
 
                         } else if($this->request->data['main_system']==3) {
-                            $markSaveData=array(
-                                'user_id'=>$this->Session->read('User.userid'),
-                                'university_id'=>$this->request->data['PrimaryRegister']['University'],
-                                'degree_id'=>$this->request->data['PrimaryRegister']['degree'],
-                                'mark_grade'=>$this->request->data['mark_grade'],
-                                'main'=>$this->request->data['main_system'],
-                                'main1_sub'=>$this->request->data['PrimaryRegister']['tripleMainSubject1'],
-                                'main1_credit'=>$this->request->data['core1_credit'],
-                                'main1_cgpa'=>$this->request->data['core1_cgpa'],
-                                'main2_sub'=>$this->request->data['PrimaryRegister']['tripleMainSubject2'],
-                                'main2_credit'=>$this->request->data['core2_credit'],
-                                'main2_cgpa'=>$this->request->data['core2_cgpa'],
-                                'main3_sub'=>$this->request->data['PrimaryRegister']['tripleMainSubject3'],
-                                'main3_credit'=>$this->request->data['core3_credit'],
-                                'main3_cgpa'=>$this->request->data['core3_cgpa'],
-                                'common_sub'=>$this->request->data['PrimaryRegister']['common_course'],
-                                'common_credit'=>$this->request->data['common_course_credit'],
-                                'common_cgpa'=>$this->request->data['common_course_cgpa'],
-                                'com_other_sub'=>$this->request->data['PrimaryRegister']['common_course_other'],
-                                'com_other_credit'=>$this->request->data['common_course_other_credit'],
-                                'com_other_cgpa'=>$this->request->data['common_course_other_cgpa'],
-                                'add_common_course_sub'=>$this->request->data['PrimaryRegister']['additional_common_course'],
-                                'add_common_course_credit'=>$this->request->data['add_common_course_credit'],
-                                'add_common_course_cgpa'=>$this->request->data['add_common_course_cgpa'],
-                                'open_sub'=>$this->request->data['PrimaryRegister']['open_course'],
-                                'open_credit'=>$this->request->data['open_course_credit'],
-                                'open_cgpa'=>$this->request->data['open_course_cgpa'],
-                                'overall_credit'=>$this->request->data['overall_credit'],
-                                'overall_cgpa'=>$this->request->data['overall_cgpa'],
+                            $markSaveData=array();
+                                $markSaveData['user_id']=$this->Session->read('User.userid');
+                                $markSaveData['university_id']=$this->request->data['PrimaryRegister']['University'];
+                                $markSaveData['degree_id']=$this->request->data['PrimaryRegister']['degree'];
+                                $markSaveData['mark_grade']=$this->request->data['mark_grade'];
+                                $markSaveData['main']=$this->request->data['main_system'];
+                                $markSaveData['main1_sub']=$this->request->data['PrimaryRegister']['tripleMainSubject1'];
+                                $markSaveData['main1_credit']=$this->request->data['core1_credit'];
+                                $markSaveData['main1_cgpa']=$this->request->data['core1_cgpa'];
+                                $markSaveData['main2_sub']=$this->request->data['PrimaryRegister']['tripleMainSubject2'];
+                                $markSaveData['main2_credit']=$this->request->data['core2_credit'];
+                                $markSaveData['main2_cgpa']=$this->request->data['core2_cgpa'];
+                                $markSaveData['main3_sub']=$this->request->data['PrimaryRegister']['tripleMainSubject3'];
+                                $markSaveData['main3_credit']=$this->request->data['core3_credit'];
+                                $markSaveData['main3_cgpa']=$this->request->data['core3_cgpa'];
+                                $markSaveData['common_sub']=$this->request->data['PrimaryRegister']['common_course'];
+                                $markSaveData['common_credit']=$this->request->data['common_course_credit'];
+                                $markSaveData['common_cgpa']=$this->request->data['common_course_cgpa'];
+                                $markSaveData['com_other_sub']=$this->request->data['PrimaryRegister']['common_course_other'];
+                                $markSaveData['com_other_credit']=$this->request->data['common_course_other_credit'];
+                                $markSaveData['com_other_cgpa']=$this->request->data['common_course_other_cgpa'];
+                                $markSaveData['add_common_course_sub']=$this->request->data['PrimaryRegister']['additional_common_course'];
+                                $markSaveData['add_common_course_credit']=$this->request->data['add_common_course_credit'];
+                                $markSaveData['add_common_course_cgpa']=$this->request->data['add_common_course_cgpa'];
+                                if($this->request->data['PrimaryRegister']['University']!=5) {
+                                    $markSaveData['open_sub']=$this->request->data['PrimaryRegister']['open_course'];
+                                    $markSaveData['open_credit']=$this->request->data['open_course_credit'];
+                                    $markSaveData['open_cgpa']=$this->request->data['open_course_cgpa'];
+                                }
+                                $markSaveData['overall_credit']=$this->request->data['overall_credit'];
+                                $markSaveData['overall_cgpa']=$this->request->data['overall_cgpa'];
                                 
 
-                                );
                             $this->Mark->create();
                             $marksaved=$this->Mark->save($markSaveData);
                         }
@@ -2032,9 +2039,11 @@ class PagesController extends AppController {
                                         $markSaveData['comp2_sub']="'".$this->request->data['PrimaryRegister']['singleCompSubject2']."'";
                                         $markSaveData['comp2_credit']="'".$this->request->data['comp2_credit']."'";
                                         $markSaveData['comp2_cgpa']="'".$this->request->data['comp2_cgpa']."'";
-                                        $markSaveData['open_sub']="'".$this->request->data['PrimaryRegister']['open_course']."'";
-                                        $markSaveData['open_credit']="'".$this->request->data['open_course_credit']."'";
-                                        $markSaveData['open_cgpa']="'".$this->request->data['open_course_cgpa']."'";
+                                        if($this->request->data['PrimaryRegister']['University']!=5) {
+                                            $markSaveData['open_sub']="'".$this->request->data['PrimaryRegister']['open_course']."'";
+                                            $markSaveData['open_credit']="'".$this->request->data['open_course_credit']."'";
+                                            $markSaveData['open_cgpa']="'".$this->request->data['open_course_cgpa']."'";
+                                        }
 
                                         $markSaveData['common_sub']="'".$this->request->data['PrimaryRegister']['common_course']."'";
                                         $markSaveData['common_credit']="'".$this->request->data['common_course_credit']."'";
@@ -2080,9 +2089,11 @@ class PagesController extends AppController {
                                         $markSaveData['comp1_sub']="'".$comp."'";
                                         $markSaveData['comp1_credit']="'".$this->request->data['comp1_credit']."'";
                                         $markSaveData['comp1_cgpa']="'".$this->request->data['comp1_cgpa']."'";
-                                        $markSaveData['open_sub']="'".$this->request->data['PrimaryRegister']['open_course']."'";
-                                        $markSaveData['open_credit']="'".$this->request->data['open_course_credit']."'";
-                                        $markSaveData['open_cgpa']="'".$this->request->data['open_course_cgpa']."'";
+                                        if($this->request->data['PrimaryRegister']['University']!=5) {
+                                            $markSaveData['open_sub']="'".$this->request->data['PrimaryRegister']['open_course']."'";
+                                            $markSaveData['open_credit']="'".$this->request->data['open_course_credit']."'";
+                                            $markSaveData['open_cgpa']="'".$this->request->data['open_course_cgpa']."'";
+                                        }
 
                                         $markSaveData['common_sub']="'".$this->request->data['PrimaryRegister']['common_course']."'";
                                         $markSaveData['common_credit']="'".$this->request->data['common_course_credit']."'";
@@ -2127,72 +2138,73 @@ class PagesController extends AppController {
                             $marksaved=$this->Mark->updateAll($markSaveData,$cond_marks);
 
                         } else if($this->request->data['main_system']==2) {
-                            $markSaveData=array(
-                                'user_id'=>"'".$this->Session->read('User.userid')."'",
-                                'university_id'=>"'".$this->request->data['PrimaryRegister']['University']."'",
-                                'degree_id'=>"'".$this->request->data['PrimaryRegister']['degree']."'",
-                                'mark_grade'=>"'".$this->request->data['mark_grade']."'",
-                                'main'=>"'".$this->request->data['main_system']."'",
-                                'main1_sub'=>"'".$this->request->data['PrimaryRegister']['doubleMainSubject1']."'",
-                                'main1_credit'=>"'".$this->request->data['core1_credit']."'",
-                                'main1_cgpa'=>"'".$this->request->data['core1_cgpa']."'",
-                                'main2_sub'=>"'".$this->request->data['PrimaryRegister']['doubleMainSubject2']."'",
-                                'main2_credit'=>"'".$this->request->data['core2_credit']."'",
-                                'main2_cgpa'=>"'".$this->request->data['core2_cgpa']."'",
-                                'comp1_sub'=>"'".$this->request->data['PrimaryRegister']['doubleCompSubject1']."'",
-                                'comp1_credit'=>"'".$this->request->data['comp1_credit']."'",
-                                'comp1_cgpa'=>"'".$this->request->data['comp1_cgpa']."'",
-                                'common_sub'=>"'".$this->request->data['PrimaryRegister']['common_course']."'",
-                                'common_credit'=>"'".$this->request->data['common_course_credit']."'",
-                                'common_cgpa'=>"'".$this->request->data['common_course_cgpa']."'",
-                                'com_other_sub'=>"'".$this->request->data['PrimaryRegister']['common_course_other']."'",
-                                'com_other_credit'=>"'".$this->request->data['common_course_other_credit']."'",
-                                'com_other_cgpa'=>"'".$this->request->data['common_course_other_cgpa']."'",
-                                'add_common_course_sub'=>"'".$this->request->data['PrimaryRegister']['additional_common_course']."'",
-                                'add_common_course_credit'=>"'".$this->request->data['add_common_course_credit']."'",
-                                'add_common_course_cgpa'=>"'".$this->request->data['add_common_course_cgpa']."'",
-                                'open_sub'=>"'".$this->request->data['PrimaryRegister']['open_course']."'",
-                                'open_credit'=>"'".$this->request->data['open_course_credit']."'",
-                                'open_cgpa'=>"'".$this->request->data['open_course_cgpa']."'",
-                                'overall_credit'=>"'".$this->request->data['overall_credit']."'",
-                                'overall_cgpa'=>"'".$this->request->data['overall_cgpa']."'",
+                            $markSaveData=array();
 
-                                );
+                                $markSaveData['user_id']="'".$this->Session->read('User.userid')."'";
+                                $markSaveData['university_id']="'".$this->request->data['PrimaryRegister']['University']."'";
+                                $markSaveData['degree_id']="'".$this->request->data['PrimaryRegister']['degree']."'";
+                                $markSaveData['mark_grade']="'".$this->request->data['mark_grade']."'";
+                                $markSaveData['main']="'".$this->request->data['main_system']."'";
+                                $markSaveData['main1_sub']="'".$this->request->data['PrimaryRegister']['doubleMainSubject1']."'";
+                                $markSaveData['main1_credit']="'".$this->request->data['core1_credit']."'";
+                                $markSaveData['main1_cgpa']="'".$this->request->data['core1_cgpa']."'";
+                                $markSaveData['main2_sub']="'".$this->request->data['PrimaryRegister']['doubleMainSubject2']."'";
+                                $markSaveData['main2_credit']="'".$this->request->data['core2_credit']."'";
+                                $markSaveData['main2_cgpa']="'".$this->request->data['core2_cgpa']."'";
+                                $markSaveData['comp1_sub']="'".$this->request->data['PrimaryRegister']['doubleCompSubject1']."'";
+                                $markSaveData['comp1_credit']="'".$this->request->data['comp1_credit']."'";
+                                $markSaveData['comp1_cgpa']="'".$this->request->data['comp1_cgpa']."'";
+                                $markSaveData['common_sub']="'".$this->request->data['PrimaryRegister']['common_course']."'";
+                                $markSaveData['common_credit']="'".$this->request->data['common_course_credit']."'";
+                                $markSaveData['common_cgpa']="'".$this->request->data['common_course_cgpa']."'";
+                                $markSaveData['com_other_sub']="'".$this->request->data['PrimaryRegister']['common_course_other']."'";
+                                $markSaveData['com_other_credit']="'".$this->request->data['common_course_other_credit']."'";
+                                $markSaveData['com_other_cgpa']="'".$this->request->data['common_course_other_cgpa']."'";
+                                $markSaveData['add_common_course_sub']="'".$this->request->data['PrimaryRegister']['additional_common_course']."'";
+                                $markSaveData['add_common_course_credit']="'".$this->request->data['add_common_course_credit']."'";
+                                $markSaveData['add_common_course_cgpa']="'".$this->request->data['add_common_course_cgpa']."'";
+                                if($this->request->data['PrimaryRegister']['University']!=5) {
+                                    $markSaveData['open_sub']="'".$this->request->data['PrimaryRegister']['open_course']."'";
+                                    $markSaveData['open_credit']="'".$this->request->data['open_course_credit']."'";
+                                    $markSaveData['open_cgpa']="'".$this->request->data['open_course_cgpa']."'";
+                                }
+                                $markSaveData['overall_credit']="'".$this->request->data['overall_credit']."'";
+                                $markSaveData['overall_cgpa']="'".$this->request->data['overall_cgpa']."'";
+
                             $marksaved=$this->Mark->updateAll($markSaveData,$cond_marks);
 
                         } else if($this->request->data['main_system']==3) {
-                            $markSaveData=array(
-                                'user_id'=>"'".$this->Session->read('User.userid')."'",
-                                'university_id'=>"'".$this->request->data['PrimaryRegister']['University']."'",
-                                'degree_id'=>"'".$this->request->data['PrimaryRegister']['degree']."'",
-                                'mark_grade'=>"'".$this->request->data['mark_grade']."'",
-                                'main'=>"'".$this->request->data['main_system']."'",
-                                'main1_sub'=>"'".$this->request->data['PrimaryRegister']['tripleMainSubject1']."'",
-                                'main1_credit'=>"'".$this->request->data['core1_credit']."'",
-                                'main1_cgpa'=>"'".$this->request->data['core1_cgpa']."'",
-                                'main2_sub'=>"'".$this->request->data['PrimaryRegister']['tripleMainSubject2']."'",
-                                'main2_credit'=>"'".$this->request->data['core2_credit']."'",
-                                'main2_cgpa'=>"'".$this->request->data['core2_cgpa']."'",
-                                'main3_sub'=>"'".$this->request->data['PrimaryRegister']['tripleMainSubject3']."'",
-                                'main3_credit'=>"'".$this->request->data['core3_credit']."'",
-                                'main3_cgpa'=>"'".$this->request->data['core3_cgpa']."'",
-                                'common_sub'=>"'".$this->request->data['PrimaryRegister']['common_course']."'",
-                                'common_credit'=>"'".$this->request->data['common_course_credit']."'",
-                                'common_cgpa'=>"'".$this->request->data['common_course_cgpa']."'",
-                                'com_other_sub'=>"'".$this->request->data['PrimaryRegister']['common_course_other']."'",
-                                'com_other_credit'=>"'".$this->request->data['common_course_other_credit']."'",
-                                'com_other_cgpa'=>"'".$this->request->data['common_course_other_cgpa']."'",
-                                'add_common_course_sub'=>"'".$this->request->data['PrimaryRegister']['additional_common_course']."'",
-                                'add_common_course_credit'=>"'".$this->request->data['add_common_course_credit']."'",
-                                'add_common_course_cgpa'=>"'".$this->request->data['add_common_course_cgpa']."'",
-                                'open_sub'=>"'".$this->request->data['PrimaryRegister']['open_course']."'",
-                                'open_credit'=>"'".$this->request->data['open_course_credit']."'",
-                                'open_cgpa'=>"'".$this->request->data['open_course_cgpa']."'",
-                                'overall_credit'=>"'".$this->request->data['overall_credit']."'",
-                                'overall_cgpa'=>"'".$this->request->data['overall_cgpa']."'",
+                            $markSaveData=array();
+                                $markSaveData['user_id']="'".$this->Session->read('User.userid')."'";
+                                $markSaveData['university_id']="'".$this->request->data['PrimaryRegister']['University']."'";
+                                $markSaveData['degree_id']="'".$this->request->data['PrimaryRegister']['degree']."'";
+                                $markSaveData['mark_grade']="'".$this->request->data['mark_grade']."'";
+                                $markSaveData['main']="'".$this->request->data['main_system']."'";
+                                $markSaveData['main1_sub']="'".$this->request->data['PrimaryRegister']['tripleMainSubject1']."'";
+                                $markSaveData['main1_credit']="'".$this->request->data['core1_credit']."'";
+                                $markSaveData['main1_cgpa']="'".$this->request->data['core1_cgpa']."'";
+                                $markSaveData['main2_sub']="'".$this->request->data['PrimaryRegister']['tripleMainSubject2']."'";
+                                $markSaveData['main2_credit']="'".$this->request->data['core2_credit']."'";
+                                $markSaveData['main2_cgpa']="'".$this->request->data['core2_cgpa']."'";
+                                $markSaveData['main3_sub']="'".$this->request->data['PrimaryRegister']['tripleMainSubject3']."'";
+                                $markSaveData['main3_credit']="'".$this->request->data['core3_credit']."'";
+                                $markSaveData['main3_cgpa']="'".$this->request->data['core3_cgpa']."'";
+                                $markSaveData['common_sub']="'".$this->request->data['PrimaryRegister']['common_course']."'";
+                                $markSaveData['common_credit']="'".$this->request->data['common_course_credit']."'";
+                                $markSaveData['common_cgpa']="'".$this->request->data['common_course_cgpa']."'";
+                                $markSaveData['com_other_sub']="'".$this->request->data['PrimaryRegister']['common_course_other']."'";
+                                $markSaveData['com_other_credit']="'".$this->request->data['common_course_other_credit']."'";
+                                $markSaveData['com_other_cgpa']="'".$this->request->data['common_course_other_cgpa']."'";
+                                $markSaveData['add_common_course_sub']="'".$this->request->data['PrimaryRegister']['additional_common_course']."'";
+                                $markSaveData['add_common_course_credit']="'".$this->request->data['add_common_course_credit']."'";
+                                $markSaveData['add_common_course_cgpa']="'".$this->request->data['add_common_course_cgpa']."'";
+                                $markSaveData['open_sub']="'".$this->request->data['PrimaryRegister']['open_course']."'";
+                                $markSaveData['open_credit']="'".$this->request->data['open_course_credit']."'";
+                                $markSaveData['open_cgpa']="'".$this->request->data['open_course_cgpa']."'";
+                                $markSaveData['overall_credit']="'".$this->request->data['overall_credit']."'";
+                                $markSaveData['overall_cgpa']="'".$this->request->data['overall_cgpa']."'";
                                 
 
-                                );
                             $marksaved=$this->Mark->updateAll($markSaveData,$cond_marks);
                         }
 
@@ -2306,7 +2318,7 @@ class PagesController extends AppController {
                     $Arts1=str_replace("'","",$this->request->data['SecondaryRegister']['Arts1']);
                     $Arts2=str_replace("'","",$this->request->data['SecondaryRegister']['Arts2']);
                     $Arts3=str_replace("'","",$this->request->data['SecondaryRegister']['Arts3']);
-                    
+
                     $ReservationTableData = array(
                      'frkHandiCapped' => "'" .$this->request->data['SecondaryRegister']['HandiCapped']."'" ,
                    

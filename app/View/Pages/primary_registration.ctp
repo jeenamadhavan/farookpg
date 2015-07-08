@@ -1136,11 +1136,13 @@ $randnum=rand ( 1 ,5 );
                                             <td><?php echo $marks['Mark']['add_common_course_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['add_common_course_cgpa']; ?></td>
                                         </tr>
-                                        <tr>
-                                            <td>Open course: <?php echo $marks['Mark']['open_sub']; ?></td>
-                                            <td><?php echo $marks['Mark']['open_credit']; ?></td>
-                                            <td><?php echo $marks['Mark']['open_cgpa']; ?></td>
-                                        </tr>
+                                        <?php if($marks['Mark']['university_id']!=5) { ?>
+                                            <tr>
+                                                <td>Open course: <?php echo $marks['Mark']['open_sub']; ?></td>
+                                                <td><?php echo $marks['Mark']['open_credit']; ?></td>
+                                                <td><?php echo $marks['Mark']['open_cgpa']; ?></td>
+                                            </tr>
+                                        <?php } ?>
                                     <?php } else { //if kannur ?>
                                         <tr>
                                             <th>Course</th>
@@ -1214,11 +1216,13 @@ $randnum=rand ( 1 ,5 );
                                             <td><?php echo $marks['Mark']['add_common_course_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['add_common_course_cgpa']; ?></td>
                                         </tr>
-                                        <tr>
-                                            <td>Open course: <?php echo $marks['Mark']['open_sub']; ?></td>
-                                            <td><?php echo $marks['Mark']['open_credit']; ?></td>
-                                            <td><?php echo $marks['Mark']['open_cgpa']; ?></td>
-                                        </tr>
+                                        <?php if($marks['Mark']['university_id']!=5) { ?>
+                                            <tr>
+                                                <td>Open course: <?php echo $marks['Mark']['open_sub']; ?></td>
+                                                <td><?php echo $marks['Mark']['open_credit']; ?></td>
+                                                <td><?php echo $marks['Mark']['open_cgpa']; ?></td>
+                                            </tr>
+                                        <?php } ?>
                                     <?php  } else if($marks['Mark']['main']==3) { ?>
                                         <tr>
                                             <th>Course</th>
@@ -1255,11 +1259,13 @@ $randnum=rand ( 1 ,5 );
                                             <td><?php echo $marks['Mark']['add_common_course_credit']; ?></td>
                                             <td><?php echo $marks['Mark']['add_common_course_cgpa']; ?></td>
                                         </tr>
-                                        <tr>
-                                            <td>Open course: <?php echo $marks['Mark']['open_sub']; ?></td>
-                                            <td><?php echo $marks['Mark']['open_credit']; ?></td>
-                                            <td><?php echo $marks['Mark']['open_cgpa']; ?></td>
-                                        </tr>
+                                        <?php if($marks['Mark']['university_id']!=5) { ?>
+                                            <tr>
+                                                <td>Open course: <?php echo $marks['Mark']['open_sub']; ?></td>
+                                                <td><?php echo $marks['Mark']['open_credit']; ?></td>
+                                                <td><?php echo $marks['Mark']['open_cgpa']; ?></td>
+                                            </tr>
+                                        <?php } ?>
                                     <?php  } ?>
                                     <?php if($marks['Mark']['university_id']==4){ ?>
                                         <tr>
@@ -1498,7 +1504,7 @@ $randnum=rand ( 1 ,5 );
                                                 <th>Common Course (English)<sup class="madadatory">*</sup></th>
                                                 <th>Common Course (Other than English)<sup class="madadatory">*</sup></th>
                                                 <th>Additional Common Course<sup class="madadatory">*</sup></th>
-                                                <th>Open Course<sup class="madadatory">*</sup></th>
+                                                <th id="open_head">Open Course<sup class="madadatory">*</sup></th>
                                             </tr>
                                             <tr>
                                                 <td>
@@ -1543,6 +1549,7 @@ $randnum=rand ( 1 ,5 );
                                                                 'Common course other than languages'=>'Common course other than languages',
                                                                 'General Course'=>'General Course',
                                                                 'Vocational Course'=>'Vocational Course',
+                                                                'Other Subjects'=>'Other Subjects',
                                                                 'Nil'=>'Nil',
                                                                 ),
                                                             'class'=>'form-control',
@@ -1552,7 +1559,7 @@ $randnum=rand ( 1 ,5 );
                                                             //'required'=>'required'
                                                             )); ?>
                                                 </td>
-                                                <td>
+                                                <td id="open_body">
                                                     <?php echo $this->Form->input('PrimaryRegister.open_course',
                                                         array(
                                                             'label'=>false,
@@ -1960,6 +1967,14 @@ $randnum=rand ( 1 ,5 );
     function set_bba() {
         if($('#University').val()==4 && $('#degree').val()==4) {
             $('#com_part_three_main').attr('value','BBA');
+        }
+    }
+</script>
+<script>
+    function hide_open() {
+        if($('#University').val()==5) {
+            $('#open_head').hide();
+            $('#open_body').hide();
         }
     }
 </script>
@@ -2432,6 +2447,7 @@ $(document).ready(function () {
                 $("#mark_append").hide();
                 $("#kannur_grade_append").hide();
                 $("#grade_append").show();
+                hide_open();
             }
         }
     });
@@ -2491,9 +2507,16 @@ $(document).ready(function(){
             var comp1=$('.singleCompSubject1 option:selected').text();
             var comp2=$('.singleCompSubject2 option:selected').text();
             if($('#grade').is(':checked')) {
-                if($('#common_course').val().length==0 || $('#common_course_other').val().length==0 || $('#additional_common_course').val().length==0 || $('#open_course').val().length==0) {
-                    alert('You should enter/select all your common course, common course (other than english), additional common course and open course names');
-                    return;
+                if($('#University').val()==5) {
+                    if($('#common_course').val().length==0 || $('#common_course_other').val().length==0 || $('#additional_common_course').val().length==0) {
+                        alert('You should enter/select all your common course, common course (other than english) and additional common course names');
+                        return;
+                    }
+                } else {
+                    if($('#common_course').val().length==0 || $('#common_course_other').val().length==0 || $('#additional_common_course').val().length==0 || $('#open_course').val().length==0) {
+                        alert('You should enter/select all your common course, common course (other than english), additional common course and open course names');
+                        return;
+                    }
                 }
                 var common_course=$('#common_course').val();
                 var common_course_other=$('#common_course_other').val();
@@ -2543,9 +2566,16 @@ $(document).ready(function(){
             var core2=$('.doubleMainSubject2 option:selected').text();
             var comp1=$('.doubleCompSubject1 option:selected').text();
             if($('#grade').is(':checked')) {
-                if($('#common_course').val()==0 || $('#common_course_other').val()==0 || $('#additional_common_course').val().length==0 || $('#open_course').val()==0) {
-                    alert('You should enter/select all your common course, common course (other than english), additional common course and open course names');
-                    return;
+                if($('#University').val()==5) {
+                    if($('#common_course').val().length==0 || $('#common_course_other').val().length==0 || $('#additional_common_course').val().length==0) {
+                        alert('You should enter/select all your common course, common course (other than english) and additional common course names');
+                        return;
+                    }
+                } else {
+                    if($('#common_course').val()==0 || $('#common_course_other').val()==0 || $('#additional_common_course').val().length==0 || $('#open_course').val()==0) {
+                        alert('You should enter/select all your common course, common course (other than english), additional common course and open course names');
+                        return;
+                    }
                 }
                 var add_common_course=$('#additional_common_course').val();
                 var common_course=$('#common_course').val();
@@ -2592,9 +2622,16 @@ $(document).ready(function(){
             var core2=$('.tripleMainSubject2 option:selected').text();
             var core3=$('.tripleMainSubject3 option:selected').text();
             if($('#grade').is(':checked')) {
-                if($('#common_course').val()==0 || $('#common_course_other').val()==0 || $('#additional_common_course').val().length==0 || $('#open_course').val()==0) {
-                    alert('You should enter/select all your common course, common course (other than english), additional common course and open course names');
-                    return;
+                if($('#University').val()==5) {
+                    if($('#common_course').val().length==0 || $('#common_course_other').val().length==0 || $('#additional_common_course').val().length==0) {
+                        alert('You should enter/select all your common course, common course (other than english) and additional common course names');
+                        return;
+                    }
+                } else {
+                    if($('#common_course').val()==0 || $('#common_course_other').val()==0 || $('#additional_common_course').val().length==0 || $('#open_course').val()==0) {
+                        alert('You should enter/select all your common course, common course (other than english), additional common course and open course names');
+                        return;
+                    }
                 }
                 var add_common_course=$('#additional_common_course').val();
                 var common_course=$('#common_course').val();
