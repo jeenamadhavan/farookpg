@@ -88,7 +88,7 @@ $randnum=rand ( 1 ,5 );
             
 			<div class="text-center">
             <p><?php echo $this->Html->link(__('Existing User, Plese Login'), "/pages/login", array('escape' => false,'class'=>'btn btn-default btn-lg')) ?>
-            <?php echo $this->Html->link(__('Not Registered, register now!'), "/pages/register", array('escape' => false,'class'=>'btn btn-info btn-lg')) ?></p>
+            <?php //echo $this->Html->link(__('Not Registered, register now!'), "/pages/register", array('escape' => false,'class'=>'btn btn-info btn-lg')) ?></p>
 			</div>
         </div>
     </div>
