@@ -49,9 +49,7 @@
                         </div>
                     <?php echo $this->Form->end(); ?>
                 </div>
-                <div class="panel-footer">Not Registered? 
-				<?php echo $this->Html->link(__('REGISTER NOW!'), "/pages/register", array('escape' => false)) ?>
-                </div>
+                
             </div>
         </div>
     </div>
