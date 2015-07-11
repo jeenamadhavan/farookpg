@@ -3751,6 +3751,24 @@ class PagesController extends AppController {
         $markExists=$this->Mark->find('first',array('conditions'=>array('user_id'=>$this->Session->read('User.userid'))));
         if(!empty($markExists)) {
             $this->set('edit_form',1);
+             // $choiceSelect=$choice_result[0]['Choice']['choices'];
+             $choice_array=explode(',', $choice_result[0]['Choice']['choices'] ); 
+   $courses=array();
+   foreach($choice_array as $choice)
+   {
+    $course=$this->Course->find('first',array('conditions'=>array('frkCourseID'=>$choice)));
+    $courses[]=$course['Course']['frkCourseName'];
+    
+    
+   } 
+   // pr($courses); exit;
+            foreach($courses as $courses)
+            {
+                if($courses=="M.A English" || $courses=="MCJ(Self Financing)" || $courses=="MSc. Psychology(Self Financing)")
+                {
+                    $this->set('choiceSelect',$courses);
+                }
+             }
         }
 
         $this->set('choices_name',$choices_name);
@@ -4436,5 +4454,115 @@ public function choice_edit() {
             }
         }
     }
+
+     public function generatelist()
+   {
+ $this->layout = 'generatelist';
+    // $this->autoRender= false;
+      
+            $choice_resultMscComp=$this->Choice->find('all',array(
+            'conditions'=>array('Choice.choices'=>7),//Msc computer Science
+            'joins'=>array(
+                            array(
+                                'table'=>'users',
+                                'alias'=>'User',
+                                'type'=>'INNER',
+                                'conditions'=>array('User.frkUserID=Choice.user_id')
+                                )
+
+                          ),
+            'fields'=>array('Choice.*','User.*')
+            ));
+            $choice_resultMcj=$this->Choice->find('all',array(
+            'conditions'=>array('Choice.choices'=>14),//Msc computer Science
+            'joins'=>array(
+                            array(
+                                'table'=>'users',
+                                'alias'=>'User',
+                                'type'=>'INNER',
+                                'conditions'=>array('User.frkUserID=Choice.user_id')
+                                )
+
+                          ),
+            'fields'=>array('Choice.*','User.*')
+            ));
+            $choice_resultMaEng=$this->Choice->find('all',array(
+            'conditions'=>array('Choice.choices'=>1),//Msc computer Science
+            'joins'=>array(
+                            array(
+                                'table'=>'users',
+                                'alias'=>'User',
+                                'type'=>'INNER',
+                                'conditions'=>array('User.frkUserID=Choice.user_id')
+                                )
+
+                          ),
+            'fields'=>array('Choice.*','User.*')
+            ));
+            $choice_resultMscPsy=$this->Choice->find('all',array(
+            'conditions'=>array('Choice.choices'=>15),//Msc computer Science
+            'joins'=>array(
+                            array(
+                                'table'=>'users',
+                                'alias'=>'User',
+                                'type'=>'INNER',
+                                'conditions'=>array('User.frkUserID=Choice.user_id')
+                                )
+
+                          ),
+            'fields'=>array('Choice.*','User.*')
+            ));
+   $this->set('All_result',$choice_resultMscPsy);
+
+// pr($choice_resultMscComp); exit;
+// pr($choice_resultMcj); exit;
+// pr($choice_resultMscPsy); 
+// pr($choice_resultMaEng); exit;
+   }
+   public function generatehallticket()
+   {
+ $this->layout = 'generatehallticket';
+    // $this->autoRender= false;
+       $userid = $this->Session->read('User.userid');
+        $choice=$this->Choice->find('all',array('conditions'=>array('user_id'=>$userid)));
+      
+        if(!empty($choice)) {
+
+            $hallticket=$this->Choice->find('all',array(
+            'conditions'=>array('Choice.user_id'=>$userid),
+            'joins'=>array(
+                array(
+                'table'=>'users',
+                'alias'=>'User',
+                'type'=>'INNER',
+                'conditions'=>array('User.frkUserID=Choice.user_id')
+                ),
+                array(
+                'table'=>'courses',
+                'alias'=>'Course',
+                'type'=>'INNER',
+                'conditions'=>array('Course.frkCourseID=Choice.choices')
+                )
+
+            ),
+            'fields'=>array('Choice.*','User.*','Course.*')
+            ));
+        }
+            
+   $this->set('All_result',$hallticket);
+   $choice_array=explode(',', $hallticket[0]['Choice']['choices'] ); 
+   $courses=array();
+   foreach($choice_array as $choice)
+   {
+    $course=$this->Course->find('first',array('conditions'=>array('frkCourseID'=>$choice)));
+    $courses[]=$course['Course']['frkCourseName'];
+    
+    
+   }
+   $this->set('Program',$courses);
+
+// pr($hallticket); exit;
+
+   }
 
 }

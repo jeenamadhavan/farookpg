@@ -46,6 +46,12 @@
                 	} else {
                 		echo $this->Html->link('Fill Application',array('controller'=>'pages','action'=>'primary_registration'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;'));
                 	}
+                	if(isset($choiceSelect))
+                	{
+                		echo $this->Html->link('HallTicket',array('controller'=>'pages','action'=>'generatehallticket'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;'));
+                	}
+
+
 			
 		} else { ?>
 		<?php if(isset($cannot_edit)&&$cannot_edit==1) {
