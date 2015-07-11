@@ -46,13 +46,15 @@ $randnum=rand ( 1 ,5 );
           
           <div class="panel panel-default panel-fk">
           <div class="text-center">
-            <p><?php echo $this->Html->link(__('Provisional rank List for MA.Economic'), "/pages/downloadproranklistmaeco", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+            <p><?php echo $this->Html->link(__('Provisional rank List for MA.Economic'), "/pages/downloadproranklistmaeconomics", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
            </p>
             <p><?php echo $this->Html->link(__('Provisional Rank List for Ma.History'), "/pages/downloadproranklistmahistory", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
            </p>
            <p><?php echo $this->Html->link(__('Provisional Rank List for M.Sc. Physics'), "/pages/downloadproranklistmscphysics", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
            </p>
            <p><?php echo $this->Html->link(__('Provisional Rank List for M.Sc. Zoology'), "/pages/downloadproranklistmsczoology", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+           </p>
+           <p><?php echo $this->Html->link(__('Provisional Rank List for M.Sc. Chemistry'), "/pages/downloadproranklistmscchemistry", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
            </p>
            <p>
                

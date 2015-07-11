@@ -3477,7 +3477,7 @@ class PagesController extends AppController {
     public function downloadprospectus() {
         $this->response->file(WWW_ROOT . 'files/Prospectus2015-16.pdf', array('download' => true, 'name' => 'Farook College Prospectus 2015-16.pdf'));
     }
-    public function downloadproranklistmaeco() {
+    public function downloadproranklistmaeconomics() {
         $this->response->file(WWW_ROOT . 'files/MA-Economics.pdf', array('download' => true, 'name' => 'Provisional Rank List Ma.Economics.pdf'));
     }
     public function downloadproranklistmahistory() {
@@ -3488,6 +3488,9 @@ class PagesController extends AppController {
     }
     public function downloadproranklistmsczoology() {
         $this->response->file(WWW_ROOT . 'files/M.Sc.Zoology.pdf', array('download' => true, 'name' => 'Provisional Rank List M.Sc.Zoology.pdf'));
+    }
+    public function downloadproranklistmscchemistry() {
+        $this->response->file(WWW_ROOT . 'files/M.Sc.Chemistry.pdf', array('download' => true, 'name' => 'Provisional Rank List M.Sc.Chemistry.pdf'));
     }
 
     public function encriptpassword() {
