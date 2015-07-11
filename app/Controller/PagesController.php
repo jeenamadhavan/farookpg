@@ -3492,6 +3492,12 @@ class PagesController extends AppController {
     public function downloadproranklistmscchemistry() {
         $this->response->file(WWW_ROOT . 'files/M.Sc.Chemistry.pdf', array('download' => true, 'name' => 'Provisional Rank List M.Sc.Chemistry.pdf'));
     }
+    public function downloadproranklistmlisc() {
+        $this->response->file(WWW_ROOT . 'files/MLISc_10_7.pdf', array('download' => true, 'name' => 'Provisional Rank List MLISc_10_7.pdf'));
+    }
+    public function downloadproranklistblisc() {
+        $this->response->file(WWW_ROOT . 'files/BLISC_10_7.pdf', array('download' => true, 'name' => 'Provisional Rank List BLISC_10_7.pdf'));
+    }
 
     public function encriptpassword() {
         $users = $this->User->find('all', array(

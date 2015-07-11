@@ -56,6 +56,10 @@ $randnum=rand ( 1 ,5 );
            </p>
            <p><?php echo $this->Html->link(__('Provisional Rank List for M.Sc. Chemistry'), "/pages/downloadproranklistmscchemistry", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
            </p>
+           <p><?php echo $this->Html->link(__('Provisional Rank List for MLISc'), "/pages/downloadproranklistmlisc", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+           </p>
+           <p><?php echo $this->Html->link(__('Provisional Rank List for BLISc'), "/pages/downloadproranklistblisc", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+           </p>
            <p>
                
            </p>
