@@ -3776,7 +3776,7 @@ class PagesController extends AppController {
    // pr($courses); exit;
             foreach($courses as $courses)
             {
-                if($courses=="M.A English" || $courses=="MCJ(Self Financing)" || $courses=="MSc. Psychology(Self Financing)")
+                if($courses=="M.A English" || $courses=="MCJ(Self Financing)" || $courses=="MSc. Psychology(Self Financing)" || $courses=="M.Sc Computer Science")
                 {
                     $this->set('choiceSelect',$courses);
                 }
