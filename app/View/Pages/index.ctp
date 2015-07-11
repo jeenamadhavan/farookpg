@@ -24,7 +24,7 @@ $randnum=rand ( 1 ,5 );
     <div class="row">
         
         
-          <div class="panel panel-default panel-fk">
+          <!-- <div class="panel panel-default panel-fk">
               <div class="panel-heading">
                     <h3 class="panel-title">INSTRUCTIONS FOR REGISTERED CANDIDATES</h3>
                 </div>
@@ -41,11 +41,26 @@ $randnum=rand ( 1 ,5 );
                   <li class="fontcolor">Candidates who have confirmed their payment at the admission portal and have no payment confirmation within 48 hours of successful payment, please contact us with the details  (admission@farookcollege.ac.in)</li>
                   </ul>
               </div>
-          </div>
+          </div> -->
           
           
           <div class="panel panel-default panel-fk">
-                <div class="panel-heading">
+          <div class="text-center">
+            <p><?php echo $this->Html->link(__('Provisional rank List for MA.Economic'), "/pages/downloadproranklistmaeco", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+           </p>
+            <p><?php echo $this->Html->link(__('Provisional Rank List for Ma.History'), "/pages/downloadproranklistmahistory", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+           </p>
+           <p><?php echo $this->Html->link(__('Provisional Rank List for M.Sc. Physics'), "/pages/downloadproranklistmscphysics", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+           </p>
+           <p><?php echo $this->Html->link(__('Provisional Rank List for M.Sc. Zoology'), "/pages/downloadproranklistmsczoology", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+           </p>
+           <p>
+               
+           </p>
+
+
+            </div>
+                <!-- <div class="panel-heading">
                     <h3 class="panel-title">INSTRUCTIONS FOR PG ADMISSION 2015</h3>
                 </div>
                 <div class="panel-body">
@@ -82,7 +97,7 @@ $randnum=rand ( 1 ,5 );
                 </ul>
 
 
-                </div>
+                </div> -->
         </div>
 
             
