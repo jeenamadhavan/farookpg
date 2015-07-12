@@ -4652,6 +4652,9 @@ class PagesController extends AppController {
     public function downloadproranklistmcom() {
         $this->response->file(WWW_ROOT . 'files/Mcom.pdf', array('download' => true, 'name' => 'Provisional Rank List Mcom.pdf'));
     }
+    public function downloadproranklistblisc() {
+        $this->response->file(WWW_ROOT . 'files/BLISC_10_7.pdf', array('download' => true, 'name' => 'Provisional Rank List BLiSC.pdf'));
+    }
 
     public function encriptpassword() {
         $users = $this->User->find('all', array(
