@@ -53,7 +53,7 @@ $randnum=rand ( 1 ,5 );
             </p>
             </strong></b>
             <hr>
-             <p><b>New list will be published on 13/07/15.</b></p>
+             <p><b>New set of provisional lists will be published on 13/07/15.</b></p>
             <p><?php //echo $this->Html->link(__('Provisional rank List for MA.Economics'), "/pages/downloadproranklistmaeconomics", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
            </p>
             <p><?php //echo $this->Html->link(__('Provisional Rank List for Ma.History'), "/pages/downloadproranklistmahistory", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
