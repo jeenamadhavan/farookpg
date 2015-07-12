@@ -4658,6 +4658,9 @@ class PagesController extends AppController {
     public function downloadstatranklist() {
         $this->response->file(WWW_ROOT . 'files/stat.pdf', array('download' => true, 'name' => 'Provisional Rank List Statistics.pdf'));
     }
+    public function downloadcandidatelist() {
+        $this->response->file(WWW_ROOT . 'files/candidate_list.pdf', array('download' => true, 'name' => 'ListOfCandidates_AdmissionTest.pdf'));
+    }
 
     public function encriptpassword() {
         $users = $this->User->find('all', array(

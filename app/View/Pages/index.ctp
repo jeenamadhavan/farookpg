@@ -46,6 +46,12 @@ $randnum=rand ( 1 ,5 );
           
           <div class="panel panel-default panel-fk">
           <div class="text-center">
+            <b><strong>
+            <p>LIST OF CANDIDATES FOR M.Sc (CS), M.Sc. (Psy), MCJ. MA (Eng) to be appeared for Entrance Test.</p>
+            <p>Note: Collect your admit card Number from the list given below.</p>
+             <p><?php echo $this->Html->link(__('List of Candidates'), "/pages/downloadcandidatelist", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+            </p>
+            </strong></b>
             <p><?php echo $this->Html->link(__('Provisional rank List for MA.Economics'), "/pages/downloadproranklistmaeconomics", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
            </p>
             <p><?php echo $this->Html->link(__('Provisional Rank List for Ma.History'), "/pages/downloadproranklistmahistory", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
