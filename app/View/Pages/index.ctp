@@ -43,15 +43,21 @@ $randnum=rand ( 1 ,5 );
               </div>
           </div> -->
           
-          
           <div class="panel panel-default panel-fk">
           <div class="text-center">
-            <b><strong>
-            <p>LIST OF CANDIDATES FOR M.Sc (CS), M.Sc. (Psy), MCJ. MA (Eng) to be appeared for Entrance Test.</p>
-            <p>Note: Collect your admit card Number from the list given below.</p>
-             <p><?php echo $this->Html->link(__('List of Candidates'), "/pages/downloadcandidatelist", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
-            </p>
+            <b style="color:red; font-size:19px;"><strong>
+              <ul>
+                <li>The final rank list of the PG admission will be published on 15th July 2015.</li>
+                <li>The interview is scheduled for 20thJuly 2015 at 9 am in the college office.</li>
+                <li>The regular classes  shall commence from 22nd July 2015.</li>
+              </ul>
+
             </strong></b>
+            </div>
+            </div>
+          <div class="panel panel-default panel-fk">
+          <div class="text-center">
+           
             <hr>
             <table align="center">
               <tr>
