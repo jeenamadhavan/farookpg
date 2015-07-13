@@ -4643,9 +4643,7 @@ class PagesController extends AppController {
     public function downloadproranklistmlisc() {
         $this->response->file(WWW_ROOT . 'files/MLISc_10_7.pdf', array('download' => true, 'name' => 'Provisional Rank List MLISc_10_7.pdf'));
     }
-    public function downloadproranklistblisc() {
-        $this->response->file(WWW_ROOT . 'files/BLISC_10_7.pdf', array('download' => true, 'name' => 'Provisional Rank List BLISc_10_7.pdf'));
-    }
+    
     public function downloadproranklistmaths() {
         $this->response->file(WWW_ROOT . 'files/Maths.pdf', array('download' => true, 'name' => 'Provisional Rank List Maths.pdf'));
     }
