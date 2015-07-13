@@ -53,7 +53,7 @@ $randnum=rand ( 1 ,5 );
             </p>
             </strong></b>
             <hr>
-            <table>
+            <table align="center">
               <tr>
                 <td>
                    <p><?php echo $this->Html->link(__('Provisional rank List for MA.Economics'), "/pages/downloadproranklistmaeconomics", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
