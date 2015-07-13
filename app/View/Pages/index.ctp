@@ -46,31 +46,76 @@ $randnum=rand ( 1 ,5 );
           
           <div class="panel panel-default panel-fk">
           <div class="text-center">
-            <p><?php echo $this->Html->link(__('Provisional rank List for MA.Economics'), "/pages/downloadproranklistmaeconomics", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
-           </p>
-            <p><?php echo $this->Html->link(__('Provisional Rank List for Ma.History'), "/pages/downloadproranklistmahistory", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
-           </p>
-           <p><?php echo $this->Html->link(__('Provisional Rank List for M.Sc. Physics'), "/pages/downloadproranklistmscphysics", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
-           </p>
-           <p><?php echo $this->Html->link(__('Provisional Rank List for M.Sc. Zoology'), "/pages/downloadproranklistmsczoology", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
-           </p>
-           <p><?php echo $this->Html->link(__('Provisional Rank List for M.Sc. Chemistry'), "/pages/downloadproranklistmscchemistry", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
-           </p>
-           <p><?php echo $this->Html->link(__('Provisional Rank List for MLISc'), "/pages/downloadproranklistmlisc", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
-           </p>
-           <p><?php echo $this->Html->link(__('Provisional Rank List for BLISc'), "/pages/downloadproranklistblisc", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
-           </p>
-           <p><?php echo $this->Html->link(__('Provisional Rank List for Mathamatics'), "/pages/downloadproranklistmaths", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
-           </p>
-           <p><?php echo $this->Html->link(__('Provisional Rank List for Arbic'), "/pages/downloadproranklistarabic", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
-           </p>
-            <p><?php echo $this->Html->link(__('Provisional Rank List for M.Com'), "/pages/downloadproranklistmcom", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
-           </p>
-           <p>
-               
-           </p>
+            <b><strong>
+            <p>LIST OF CANDIDATES FOR M.Sc (CS), M.Sc. (Psy), MCJ. MA (Eng) to be appeared for Entrance Test.</p>
+            <p>Note: Collect your admit card Number from the list given below.</p>
+             <p><?php echo $this->Html->link(__('List of Candidates'), "/pages/downloadcandidatelist", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+            </p>
+            </strong></b>
+            <hr>
+            <table align="center">
+              <tr>
+                <td>
+                   <p><?php echo $this->Html->link(__('Provisional rank List for MA.Economics'), "/pages/downloadproranklistmaeconomics", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+                  </p>
+                </td>
+                <td>
+                  <p><?php echo $this->Html->link(__('Provisional Rank List for M.Sc. Physics'), "/pages/downloadproranklistmscphysics", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+                  </p>
+                </td>
+              </tr>
 
+              <tr>
+                <td>
+                   <p><?php echo $this->Html->link(__('Provisional Rank List for Ma.History'), "/pages/downloadproranklistmahistory", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+                   </p>
+                </td>
+                <td>
+                  <p><?php echo $this->Html->link(__('Provisional Rank List for M.Sc. Zoology'), "/pages/downloadproranklistmsczoology", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+                  </p>
+                </td>
+              </tr>
 
+              <tr>
+                <td>
+                  <p><?php echo $this->Html->link(__('Provisional Rank List for Arbic'), "/pages/downloadproranklistarabic", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+                  </p>
+                </td>
+                <td>
+                  <p><?php echo $this->Html->link(__('Provisional Rank List for M.Sc. Chemistry'), "/pages/downloadproranklistmscchemistry", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+                  </p>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                   <p><?php echo $this->Html->link(__('Provisional Rank List for M.Com'), "/pages/downloadproranklistmcom", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+                  </p>
+                </td>
+                <td>
+                  <p><?php echo $this->Html->link(__('Provisional Rank List for MLISc'), "/pages/downloadproranklistmlisc", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+                  </p>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                   <p><?php echo $this->Html->link(__('Provisional Rank List for BLISc'), "/pages/downloadproranklistblisc", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+                   </p>
+                </td>
+                <td>
+                  <p><?php echo $this->Html->link(__('Provisional Rank List for Mathamatics'), "/pages/downloadproranklistmaths", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+                  </p>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                   <p><?php echo $this->Html->link(__('Provisional Rank List for M.Sc Statistics'), "/pages/downloadstatranklist", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+                  </p>
+                </td>
+              </tr>
+            </table>
             </div>
                 <!-- <div class="panel-heading">
                     <h3 class="panel-title">INSTRUCTIONS FOR PG ADMISSION 2015</h3>
