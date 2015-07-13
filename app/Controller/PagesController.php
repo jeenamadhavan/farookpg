@@ -4643,6 +4643,9 @@ class PagesController extends AppController {
     public function downloadproranklistmlisc() {
         $this->response->file(WWW_ROOT . 'files/MLISc_10_7.pdf', array('download' => true, 'name' => 'Provisional Rank List MLISc_10_7.pdf'));
     }
+    public function downloadproranklistblisc() {
+        $this->response->file(WWW_ROOT . 'files/BLISC_10_7.pdf', array('download' => true, 'name' => 'Provisional Rank List BLISc_10_7.pdf'));
+    }
     public function downloadproranklistmaths() {
         $this->response->file(WWW_ROOT . 'files/Maths.pdf', array('download' => true, 'name' => 'Provisional Rank List Maths.pdf'));
     }
@@ -4650,7 +4653,7 @@ class PagesController extends AppController {
         $this->response->file(WWW_ROOT . 'files/Arabic.pdf', array('download' => true, 'name' => 'Provisional Rank List Arbic.pdf'));
     }
     public function downloadproranklistmcom() {
-        $this->response->file(WWW_ROOT . 'files/Mcom.pdf', array('download' => true, 'name' => 'Provisional Rank List Mcom.pdf'));
+        $this->response->file(WWW_ROOT . 'files/mcomm.pdf', array('download' => true, 'name' => 'Provisional Rank List Mcom.pdf'));
     }
 
     public function encriptpassword() {
@@ -4924,27 +4927,34 @@ class PagesController extends AppController {
         }
         // if marks exists, allowing to edit
         $markExists=$this->Mark->find('first',array('conditions'=>array('user_id'=>$this->Session->read('User.userid'))));
+            // $choiceSelect=$choice_result[0]['Choice']['choices'];
+             $choice_array=explode(',', $choice_result[0]['Choice']['choices'] ); 
+               $courses=array();
+               foreach($choice_array as $choice)
+               {
+                $course=$this->Course->find('first',array('conditions'=>array('frkCourseID'=>$choice)));
+                $courses[]=$course['Course']['frkCourseName'];
+               } 
+
+               // pr($courses); exit;
         if(!empty($markExists)) {
             $this->set('edit_form',1);
-             // $choiceSelect=$choice_result[0]['Choice']['choices'];
-             $choice_array=explode(',', $choice_result[0]['Choice']['choices'] ); 
-   $courses=array();
-   foreach($choice_array as $choice)
-   {
-    $course=$this->Course->find('first',array('conditions'=>array('frkCourseID'=>$choice)));
-    $courses[]=$course['Course']['frkCourseName'];
-    
-    
-   } 
-   // pr($courses); exit;
+             
             foreach($courses as $courses)
             {
-                if($courses=="M.A English" || $courses=="MCJ(Self Financing)" || $courses=="MSc. Psychology(Self Financing)" || $courses=="M.Sc Computer Science")
+                if($courses=="M.A English")
                 {
                     $this->set('choiceSelect',$courses);
                 }
              }
         }
+        foreach($courses as $courses)
+            {
+                if($courses=="MCJ(Self Financing)" || $courses=="MSc. Psychology(Self Financing)" || $courses=="M.Sc Computer Science")
+                {
+                    $this->set('choiceSelect',$courses);
+                }
+             }
 
         $this->set('choices_name',$choices_name);
         
