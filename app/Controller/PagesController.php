@@ -20,6 +20,7 @@
  */
 App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
+App::import('Controller', 'Indexes');
 
 /**
  * Static content controller
