@@ -3,9 +3,10 @@ class IndexesController extends AppController {
 
 	
 	
-    function indexing(){
+    function indexing($user_id=null){
 		
 		$db = mysqli_connect("farookpg.cbj29qizqyan.ap-southeast-1.rds.amazonaws.com", "mentor", "m3nt0r#DB", "fkpg_db") or die("No db connection");
+		//$db = mysqli_connect("localhost", "root", "", "farookmail") or die("No db connection");
 		//echo 'hii'; exit;
 		$this->autoRender = false;
         $cg1 = '$this->overall_cgpa($mark)';
@@ -124,7 +125,12 @@ class IndexesController extends AppController {
 
           if(isset($indexing_rules[$course_name]))
           {
-              $query = "select user_id from choices where FIND_IN_SET(".$course_id.", choices)";
+          	if($user_id) {
+          		$query = "select user_id from choices where FIND_IN_SET(".$course_id.", choices) and user_id=".$user_id;
+          	} else {
+          		$query = "select user_id from choices where FIND_IN_SET(".$course_id.", choices)";
+          	}
+              
 			  
               $choices = mysqli_query($db,$query);
 			  
@@ -176,8 +182,16 @@ class IndexesController extends AppController {
 								  if($university_id==1) {
 									  $index=$index+($index*0.05);
 								  }
-								  $inerst_sql="insert ignore into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
-				 		mysqli_query($db,$inerst_sql);
+								  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+								  	
 						 }
 							
 					 } else if($course_name=='M.A Arabic') {
@@ -237,8 +251,15 @@ class IndexesController extends AppController {
 							  if($university_id==1) {
 								  $index=$index+($index*0.05);
 							  }
-							  $inerst_sql="insert ignore into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
-				 		mysqli_query($db,$inerst_sql);
+							  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+			  					$get_result=mysqli_query($db,$get_sql);
+			  					if(mysqli_num_rows($get_result)>0) {
+			  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+			  						mysqli_query($db,$update_sql);
+			  					} else {
+			  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+			 						mysqli_query($db,$inerst_sql);
+			  					}
 						 }
 							
 					 } else if($course_name=='M.A Economics') {
@@ -277,8 +298,15 @@ class IndexesController extends AppController {
 							  if($university_id==1) {
 								  $index=$index+($index*0.05);
 							  }
-							  $inerst_sql="insert ignore into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
-				 		mysqli_query($db,$inerst_sql);
+							  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+			  					$get_result=mysqli_query($db,$get_sql);
+			  					if(mysqli_num_rows($get_result)>0) {
+			  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+			  						mysqli_query($db,$update_sql);
+			  					} else {
+			  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+			 						mysqli_query($db,$inerst_sql);
+			  					}
 						 }
 							
 					 } else if($course_name=='M.A History') {
@@ -314,8 +342,15 @@ class IndexesController extends AppController {
 						  if($university_id==1) {
 							  $index=$index+($index*0.05);
 						  }
-						  $inerst_sql="insert ignore into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
-				 		mysqli_query($db,$inerst_sql);
+						  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+		  					$get_result=mysqli_query($db,$get_sql);
+		  					if(mysqli_num_rows($get_result)>0) {
+		  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+		  						mysqli_query($db,$update_sql);
+		  					} else {
+		  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+		 						mysqli_query($db,$inerst_sql);
+		  					}
 						 
 					 } else if($course_name=='M.Sc Mathematics') {
 						if(in_array($mark['main1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main2_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main3_sub'],$indexing_rules[$course_name]['E'])) {
@@ -330,8 +365,15 @@ class IndexesController extends AppController {
 							  if($university_id==1) {
 								  $index=$index+($index*0.05);
 							  }
-							  $inerst_sql="insert ignore into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
-				 		mysqli_query($db,$inerst_sql);
+							  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
 						}
 					 } else if($course_name=='M.Sc Statistics') {
 						 if(in_array($mark['main1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main2_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main3_sub'],$indexing_rules[$course_name]['E'])) {
@@ -369,8 +411,15 @@ class IndexesController extends AppController {
 							  if($university_id==1) {
 								  $index=$index+($index*0.05);
 							  }
-							  $inerst_sql="insert ignore into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
-				 		mysqli_query($db,$inerst_sql);
+							  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
 							
 						 }
 					 } else if($course_name=='M.Sc Physics') {
@@ -395,8 +444,15 @@ class IndexesController extends AppController {
 							  if($university_id==1) {
 								  $index=$index+($index*0.05);
 							  }
-							  $inerst_sql="insert ignore into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
-				 		mysqli_query($db,$inerst_sql);
+							  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
 						 }
 					 } else if($course_name=='M.Sc Chemistry' || $course_name=='M.Sc Zoology') {
 						 if(in_array($mark['main1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main2_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main3_sub'],$indexing_rules[$course_name]['E'])) {
@@ -412,8 +468,15 @@ class IndexesController extends AppController {
 							  if($university_id==1) {
 								  $index=$index+($index*0.05);
 							  }
-							  $inerst_sql="insert ignore into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
-				 		mysqli_query($db,$inerst_sql);
+							  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
 						 }
 					 } else if($course_name=='M.Com') {
 						 if($mark['degree_id']==2 || $mark['degree_id']==4) {
@@ -429,8 +492,15 @@ class IndexesController extends AppController {
 							  if($university_id==1) {
 								  $index=$index+($index*0.05);
 							  }
-							 $inerst_sql="insert ignore into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
-				 			mysqli_query($db,$inerst_sql);
+							 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
 						 }
 					 } else if($course_name=='MLISc' || $course_name=='BLISc') {
 						eval($indexing_rules[$course_name]['G']['N']);
@@ -445,8 +515,15 @@ class IndexesController extends AppController {
 						  if($university_id==1) {
 							  $index=$index+($index*0.05);
 						  }
-						$inerst_sql="insert ignore into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
-				 		mysqli_query($db,$inerst_sql);
+						$get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+		  					$get_result=mysqli_query($db,$get_sql);
+		  					if(mysqli_num_rows($get_result)>0) {
+		  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+		  						mysqli_query($db,$update_sql);
+		  					} else {
+		  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+		 						mysqli_query($db,$inerst_sql);
+		  					}
 					 }
 					 
 						/*$index=$index+$weightage+$sub_weightage;
