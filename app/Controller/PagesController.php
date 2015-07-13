@@ -2216,10 +2216,10 @@ class PagesController extends AppController {
                 
                 if(isset($_GET['edit_marks']) || empty($marks)) {
                     if($usersaved && $applicantsaved && $marksaved) {
-                        if($Indexes->indexing($this->Session->read('User.userid'))){
+                        $Indexes->indexing($this->Session->read('User.userid'));
                             $this->Session->setFlash(__('Data have been saved successfully, Now you can enter your Additional Information'));
                             return $this->redirect(array('action' => 'reservations'));
-                        }
+                        
                         } else {
                             $this->Session->setFlash(__('Could not Save entered Details'));
                             return $this->redirect(array('action' => 'primary_registration'));
@@ -2227,10 +2227,10 @@ class PagesController extends AppController {
                     }
                 } else {
                     if($usersaved && $applicantsaved) {
-                        if($Indexes->indexing($this->Session->read('User.userid'))){
+                        $Indexes->indexing($this->Session->read('User.userid'));
                             $this->Session->setFlash(__('Data have been saved successfully, Now you can enter your Additional Information'));
                             return $this->redirect(array('action' => 'reservations'));
-                        }
+                        
                         } else {
                             $this->Session->setFlash(__('Could not Save entered Details'));
                             return $this->redirect(array('action' => 'primary_registration'));
@@ -4504,10 +4504,10 @@ class PagesController extends AppController {
                         $this->Session->setFlash(__('Could not Save Application Data'));
                         return $this->redirect(array('action' => 'reservations'));
                     } else {
-                        if($Indexes->indexing($this->Session->read('User.userid'))){
+                        $Indexes->indexing($this->Session->read('User.userid'));
                             $this->Session->setFlash(__('Additional Information have been saved'));
                             return $this->redirect(array('action' => 'choice_select'));
-                        }
+                       
                     }
                 } else{
 
@@ -4548,10 +4548,10 @@ class PagesController extends AppController {
                 $Indexes = new IndexesController;
                 $this->Reservation->create();
                 if ($this->Reservation->save($reservations1)) { 
-                    if($Indexes->indexing($this->Session->read('User.userid'))){                 
+                    $Indexes->indexing($this->Session->read('User.userid'));                 
                         $this->Session->setFlash(__('Your Application has been successfully saved!'));
                         return $this->redirect(array('action' => 'choice_select'));
-                    }
+                    
                 } else {
                     $this->Session->setFlash(__('Your Additional Information could not be saved. Please, try again.'));
                      return $this->redirect(array('action' => 'reservations'));
@@ -6215,6 +6215,142 @@ public function choice_edit() {
    $this->set('Program',$courses);
 
 // pr($hallticket); exit;
+
+   }
+   public function generatepdfapplication()
+    {
+        $this->layout = 'generatepdfapplication';
+    // $this->autoRender= false;
+        $userid = $this->Session->read('User.userid');
+        $choice=$this->Choice->find('all',array('conditions'=>array('user_id'=>$userid)));
+      
+        if(!empty($choice)) {
+
+            $choice_result=$this->Choice->find('all',array(
+            'conditions'=>array('Choice.user_id'=>$userid),
+            'joins'=>array(array(
+                'table'=>'users',
+                'alias'=>'User',
+                'type'=>'INNER',
+                'conditions'=>array('User.frkUserID=Choice.user_id')
+                ),
+
+                array(
+                    'table'=>'final_communities',
+                    'alias'=>'Community',
+                    'type'=>'INNER',
+                    'conditions'=>array('Community.id=User.frkUserCommunity')
+                    ),
+               array(
+                    'table'=>'religions',
+                    'alias'=>'Religion',
+                    'type'=>'INNER',
+                    'conditions'=>array('Religion.id=User.frkUserReligion')
+                    ),
+               array(
+                    'table'=>'countries',
+                    'alias'=>'Countrie',
+                    'type'=>'INNER',
+                    'conditions'=>array('Countrie.id=User.frkUserNationality_ID')
+                    ),
+                array(
+                    'table'=>'states',
+                    'alias'=>'State',
+                    'type'=>'INNER',
+                    'conditions'=>array('State.id=User.frkUserState')
+                    ),
+                 array(
+                    'table'=>'districts',
+                    'alias'=>'District',
+                    'type'=>'INNER',
+                    'conditions'=>array('District.id=User.frkUserDistrict')
+                    ),
+                 array(
+                    'table'=>'districts',
+                    'alias'=>'DistrictComm',
+                    'type'=>'INNER',
+                    'conditions'=>array('DistrictComm.id=User.frkUserCommDistrict')
+                    ),
+                 array(
+                    'table'=>'final_communities',
+                    'alias'=>'Final_communitie',
+                    'type'=>'INNER',
+                    'conditions'=>array('Final_communitie.id=User.frkUserCommunity')
+                    ),
+                   array(
+                    'table'=>'castes',
+                    'alias'=>'Caste',
+                    'type'=>'INNER',
+                    'conditions'=>array('Caste.id=User.frkUserCasteID')
+                    ),
+                   array(
+                    'table'=>'occupations',
+                    'alias'=>'Occupation',
+                    'type'=>'INNER',
+                    'conditions'=>array('Occupation.id=User.frkParentOccupation')
+                    ),
+                   array(
+                    'table'=>'reservations',
+                    'alias'=>'Reservation',
+                    'type'=>'INNER',
+                    'conditions'=>array('Reservation.frkUserID=User.frkUserID')
+                    ),
+                   array(
+                    'table'=>'academicdetails',
+                    'alias'=>'Academicdetail',
+                    'type'=>'INNER',
+                    'conditions'=>array('Academicdetail.frkUserID=User.frkUserID')
+                    ),
+                   array(
+                    'table'=>'boards',
+                    'alias'=>'Board',
+                    'type'=>'INNER',
+                    'conditions'=>array('Board.id=Academicdetail.boardID')
+                    ),
+                   array(
+                    'table'=>'applicants',
+                    'alias'=>'Applicant',
+                    'type'=>'INNER',
+                    'conditions'=>array('Applicant.frkApplicantID=User.frkUserID')
+                    ),
+                   array(
+                    'table'=>'streams',
+                    'alias'=>'Stream',
+                    'type'=>'INNER',
+                    'conditions'=>array('Stream.board_id=Applicant.plusTwoBoard')
+                    ),
+                   array(
+                    'table'=>'marks',
+                    'alias'=>'Mark',
+                    'type'=>'INNER',
+                    'conditions'=>array('Mark.user_id=User.frkUserID')
+                    ),
+                   array(
+                    'table'=>'universities',
+                    'alias'=>'Universitie',
+                    'type'=>'INNER',
+                    'conditions'=>array('Universitie.id=Mark.university_id')
+                    ),
+                   array(
+                    'table'=>'degrees',
+                    'alias'=>'Degree',
+                    'type'=>'INNER',
+                    'conditions'=>array('Degree.id=Mark.degree_id')
+                    )
+
+            ),
+            'fields'=>array('Choice.*','Academicdetail.*','Universitie.*','Degree.*','Mark.*','Stream.*','Applicant.*','Board.*','Community.*','Religion.*','User.*','Countrie.*','State.*','District.*','DistrictComm.*','Final_communitie.*','Caste.*','Occupation.*','Reservation.*')
+            ));
+  $from = new DateTime($choice_result[0]['User']['frkUserDOB']);
+        $to   = new DateTime('today');
+        $age  = $from->diff($to)->y;
+       
+
+$choice_result['age']=$age;
+        }
+        
+        pr($choice_result[0]); exit;
+            $this->set('All_result',$choice_result);
 
    }
 
