@@ -47,8 +47,8 @@
                             if($this->Session->read('User.admin')==1){
                                 
                             ?>
-                                <li><?php echo $this->Html->link(__('View Payment Details'), "/admins/viewpaymentdetails", array('escape' => false)) ?></li>
-                                <li><?php echo $this->Html->link(__('Upload Excel'), "/admins/uploadexcel", array('escape' => false)) ?></li>
+                                <li><?php echo $this->Html->link(__('View Index Details'), "/admins/indexdetails", array('escape' => false)) ?></li>
+                                <li><?php //echo $this->Html->link(__('Upload Excel'), "/admins/uploadexcel", array('escape' => false)) ?></li>
                                     <?php } ?>
                                 
                             </ul>

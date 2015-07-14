@@ -38,6 +38,7 @@ class AdminsController extends AppController {
     public $uses = array(
         'Country',
         'Religion',
+        'Index',
         'Choice',
         'Qualification',
         'Occupation',
@@ -58,6 +59,8 @@ class AdminsController extends AppController {
         'Guardian',
         'Otherdetail',
         'Grade',
+        'Undetectedpayment',
+        'Completedpayment',
         'Temp',
         'Stream',
         'Payment',
@@ -96,10 +99,10 @@ class AdminsController extends AppController {
     public function dashboard() {
         if ($this->Session->read('User.admin') == 1) {
             $no_of_applications = $this->User->find('count');
-            $no_of_pending = $this->Payment->find('count', array('conditions' => array('status' => 'P')));
-            $no_of_confirmed = $this->Payment->find('count', array('conditions' => array('status' => 'C')));
-            $no_of_rejected = $this->Payment->find('count', array('conditions' => array('status' => 'R')));
-            $this->set('no_of_rejected', $no_of_rejected);
+            $no_of_pending = $this->Undetectedpayment->find('count');
+            $no_of_confirmed = $this->Completedpayment->find('count');
+           
+           
             $this->set('no_of_confirmed', $no_of_confirmed);
             $this->set('no_of_pending', $no_of_pending);
             $this->set('no_of_applications', $no_of_applications);
@@ -108,47 +111,40 @@ class AdminsController extends AppController {
             return $this->redirect(array('action' => 'adminlogin', 'controller' => 'admins'));
         }
     }
+public function viewpaymentdetails(){
+    
+}
 
-    public function viewpaymentdetails() {
+
+    public function indexdetails() {
 
         if ($this->Session->read('User.admin') == 1) {
 
-            $Choices = $this->User->find('all', array(
-                //'limit' => 10,
-                'fields' => array('Choices.*, User.frkName,Communities.name,Religions.name,Payments.id ,Payments.transaction_id,Payments.date,Payments.status'),
-                'joins' => array(
-                    array(
-                        'alias' => 'Communities',
-                        'table' => 'communities',
-                        'conditions' => 'Communities.`id` = `User`.`frkUserCommunity`'
-                    ),
-                    array(
-                        'alias' => 'Choices',
-                        'table' => 'choices',
-                        'conditions' => 'Choices.`user_id` = `User`.`frkUserID`'
-                    ), array(
-                        'alias' => 'Religions',
-                        'table' => 'religions',
-                        'conditions' => 'Religions.`id` = `User`.`frkUserReligion`'
-                    ),
-                    array(
-                        'alias' => 'Payments',
-                        'table' => 'payments',
-                        'type' => 'left',
-                        'conditions' => 'Payments.`u_id` = `User`.`frkUserID`'
-                    )
-                )
-                    ));
-
-
-            $this->set('Choices', $Choices);
-
+            $sql = 'select indexes.id,choices.application_no,courses.frkCourseID,users.frkUserID,users.frkUserName,users.frkUserMobile,users.frkUserEmail,courses.frkCourseName as coursename,indexes.* from indexes LEFT JOIN users ON(users.frkUserID=indexes.user_id) LEFT JOIN courses ON(courses.frkCourseID=indexes.course_id) LEFT JOIN choices ON(choices.user_id=indexes.user_id)';
+            $indexes = $this->User->query($sql);  
+            $this->set('indexes', $indexes);
+            $options = $this->Course->find('list', array('fields' => array('frkCourseID', 'frkCourseName')));
+            $this->set('options', $options);
             $this->render('viewpaymentdetails', 'admin');
         } else {
             return $this->redirect(array('action' => 'adminlogin', 'controller' => 'admins'));
         }
+        
+        
     }
-
+     public function ajax_view() {
+        $id = $this->request->data["id"];
+        $this->layout = "ajax";
+        $sql = "select indexes.id,choices.application_no,courses.frkCourseID,users.frkUserID,users.frkUserName,users.frkUserMobile,users.frkUserEmail,courses.frkCourseName as coursename,indexes.* from indexes LEFT JOIN users ON(users.frkUserID=indexes.user_id) LEFT JOIN courses ON(courses.frkCourseID=indexes.course_id) LEFT JOIN choices ON(choices.user_id=indexes.user_id)where indexes.course_id='".$id."' ";
+        $indexes = $this->User->query($sql);  
+        $this->set('indexes', $indexes);
+        
+        $options = $this->Course->find('list', array('fields' => array('frkCourseID', 'frkCourseName')));
+        $this->set('options', $options);
+        
+        echo $this->render('ajax_view', 'ajax');
+        exit;
+    }
      public function uploadexcel() {
         $this->render('uploadexcel', 'admin');
 
@@ -286,6 +282,7 @@ if (!empty($_FILES['file'])) {
                     'User.frkUserName' => $this->request->data['UserLogin']['username'],
                     'User.frkUserPassword' => $encryptpassword,
                     'User.frkUserStatus' => 1,
+                    'User.frkUserRole' => 'A',
                 )
                     ));
             if (count($usersDetails) == 0) {
@@ -1459,19 +1456,7 @@ if (!empty($_FILES['file'])) {
         exit;
     }
 
-    public function ajax_view() {
-        $id = $this->request->data["id"];
-        $this->layout = "ajax";
-        $grades = $this->Grade->find('list', array('fields' => array('frkGradeID', 'frkGrade')));
-
-
-        $structure = $this->Board->find('first', array('fields' => array('subject_structure'), 'conditions' => array('id' => $id)));
-
-        $setarray = array('grades' => $grades, 'subject_structure' => $structure['Board']['subject_structure']);
-        $this->set('setarray', $setarray);
-        echo $this->render('ajax_view', 'ajax');
-        exit;
-    }
+    
 
     public function befor_payment() {
         $userid = $this->Session->read('User.userid');
