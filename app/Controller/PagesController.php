@@ -1277,7 +1277,8 @@ class PagesController extends AppController {
     
     public function primary_registration() {
        // if ($this->request->is('post')) {pr($this->request->data);}
-        
+        $this->Session->setFlash(__('You cannot access this page further'));
+        return $this->redirect(array('action' => 'choice_select'));
         $userid = $this->Session->read('User.userid');
         if (!isset($userid)) {
             $this->Session->setFlash(__('Please Login!.'));
