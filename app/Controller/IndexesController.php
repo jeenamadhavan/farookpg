@@ -1193,6 +1193,95 @@ class IndexesController extends AppController {
 			return $mark['comp2_credit'];
 		
 	}
+	function part1_marks($mark) {
+		
+			return $mark['part1_mark'];
+		
+	}
+	function part1_max($mark) {
+		
+			return $mark['part1_max'];
+		
+	}
+	function part3_marks($mark) {
+		
+		$part3_marks=0;
+		if($mark['main']==1) {
+			$part3_marks+=$mark['main1_mark'];
+			$part3_marks+=$mark['comp1_mark'];
+			$part3_marks+=$mark['comp2_mark'];
+			
+		} else if($mark['main']==2) {
+			$part3_marks+=$mark['main1_mark'];
+			$part3_marks+=$mark['main2_mark'];
+			$part3_marks+=$mark['comp1_mark'];
+			
+		} else if($mark['main']==3) {
+			$part3_marks+=$mark['main1_mark'];
+			$part3_marks+=$mark['main2_mark'];
+			$part3_marks+=$mark['main3_mark'];
+		}
+			return $part3_marks;
+		
+	}
+	function part3_max($mark) {
+		
+		$part3_max=0;
+		if($mark['main']==1) {
+			$part3_max+=$mark['main1_max'];
+			$part3_max+=$mark['comp1_max'];
+			$part3_max+=$mark['comp2_max'];
+			
+		} else if($mark['main']==2) {
+			$part3_max+=$mark['main1_max'];
+			$part3_max+=$mark['main2_max'];
+			$part3_max+=$mark['comp1_max'];
+			
+		} else if($mark['main']==3) {
+			$part3_max+=$mark['main1_max'];
+			$part3_max+=$mark['main2_max'];
+			$part3_max+=$mark['main3_max'];
+		}
+			return $part3_max;
+		
+	}
+	function main_marks($mark) {
+		
+		$main_marks=0;
+		if($mark['main']==1) {
+			$main_marks+=$mark['main1_mark'];
+			
+		} else if($mark['main']==2) {
+			$main_marks+=$mark['main1_mark'];
+			$main_marks+=$mark['main2_mark'];
+			
+		} else if($mark['main']==3) {
+			$main_marks+=$mark['main1_mark'];
+			$main_marks+=$mark['main2_mark'];
+			$main_marks+=$mark['main3_mark'];
+		}
+			return $main_marks;
+		
+	}
+	
+	function main_max($mark) {
+		
+		$main_max=0;
+		if($mark['main']==1) {
+			$main_max+=$mark['main1_max'];
+			
+		} else if($mark['main']==2) {
+			$main_max+=$mark['main1_max'];
+			$main_max+=$mark['main2_max'];
+			
+		} else if($mark['main']==3) {
+			$main_max+=$mark['main1_max'];
+			$main_max+=$mark['main2_max'];
+			$main_max+=$mark['main3_max'];
+		}
+			return $main_max;
+		
+	}
 	
 
     
