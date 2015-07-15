@@ -48,7 +48,7 @@
                 	}
                 	if(isset($choiceSelect))
                 	{
-                		echo $this->Html->link('HallTicket',array('controller'=>'pages','action'=>'generatehallticket'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;'));
+                		echo $this->Html->link('HallTicket',array('controller'=>'pages','action'=>'generatehallticket'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;','disabled'=>'disabled'));
                 	}
 
 
