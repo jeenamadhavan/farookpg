@@ -48,7 +48,7 @@
                                 
                             ?>
                                 <li><?php echo $this->Html->link(__('View Index Details'), "/admins/indexdetails", array('escape' => false)) ?></li>
-                                <li><?php echo $this->Html->link(__('Generate PDF'), "/pages/generatepdfapplication", array('escape' => false)) ?></li>
+                                <li><?php //echo $this->Html->link(__('Generate PDF'), "/pages/generatepdfapplication", array('escape' => false)) ?></li>
                                     <?php } ?>
                                 
                             </ul>
