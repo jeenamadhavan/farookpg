@@ -114,7 +114,177 @@ class AdminsController extends AppController {
 public function viewpaymentdetails(){
     
 }
+public function generatepdf()  {
+    
+    $segments = explode('/', trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/'));
+$numSegments = count($segments); 
+$currentSegment = $segments[$numSegments - 1];
 
+
+    
+  
+        $this->layout = 'generatepdf';
+    // $this->autoRender= false;
+        //$userid = $this->Session->read('User.userid');
+        $userid = $currentSegment;
+        $choice=$this->Choice->find('all',array('conditions'=>array('user_id'=>$userid)));
+      
+        if(!empty($choice)) {
+            $choice_result=$this->Choice->find('all',array(
+            'conditions'=>array('Choice.user_id'=>$userid),
+            'joins'=>array(array(
+                'table'=>'users',
+                'alias'=>'User',
+                'type'=>'INNER',
+                'conditions'=>array('User.frkUserID=Choice.user_id')
+                ),
+
+                array(
+                    'table'=>'final_communities',
+                    'alias'=>'Community',
+                    'type'=>'INNER',
+                    'conditions'=>array('Community.id=User.frkUserCommunity')
+                    ),
+               array(
+                    'table'=>'religions',
+                    'alias'=>'Religion',
+                    'type'=>'INNER',
+                    'conditions'=>array('Religion.id=User.frkUserReligion')
+                    ),
+               array(
+                    'table'=>'countries',
+                    'alias'=>'Countrie',
+                    'type'=>'INNER',
+                    'conditions'=>array('Countrie.id=User.frkUserNationality_ID')
+                    ),
+                array(
+                    'table'=>'states',
+                    'alias'=>'State',
+                    'type'=>'INNER',
+                    'conditions'=>array('State.id=User.frkUserState')
+                    ),
+                 array(
+                    'table'=>'districts',
+                    'alias'=>'District',
+                    'type'=>'INNER',
+                    'conditions'=>array('District.id=User.frkUserDistrict')
+                    ),
+                 array(
+                    'table'=>'districts',
+                    'alias'=>'DistrictComm',
+                    'type'=>'INNER',
+                    'conditions'=>array('DistrictComm.id=User.frkUserCommDistrict')
+                    ),
+                 array(
+                    'table'=>'final_communities',
+                    'alias'=>'Final_communitie',
+                    'type'=>'INNER',
+                    'conditions'=>array('Final_communitie.id=User.frkUserCommunity')
+                    ),
+                   array(
+                    'table'=>'castes',
+                    'alias'=>'Caste',
+                    'type'=>'INNER',
+                    'conditions'=>array('Caste.id=User.frkUserCasteID')
+                    ),
+                   array(
+                    'table'=>'occupations',
+                    'alias'=>'Occupation',
+                    'type'=>'INNER',
+                    'conditions'=>array('Occupation.id=User.frkParentOccupation')
+                    ),
+                   array(
+                    'table'=>'reservations',
+                    'alias'=>'Reservation',
+                    'type'=>'INNER',
+                    'conditions'=>array('Reservation.frkUserID=User.frkUserID')
+                    ),
+                   array(
+                    'table'=>'applicants',
+                    'alias'=>'Applicant',
+                    'type'=>'INNER',
+                    'conditions'=>array('Applicant.frkApplicantID=User.frkUserID')
+                    ),
+                   array(
+                    'table'=>'boards',
+                    'alias'=>'Board',
+                    'type'=>'INNER',
+                    'conditions'=>array('Board.id=Applicant.plusTwoBoard')
+                    ),
+                   array(
+                    'table'=>'streams',
+                    'alias'=>'Stream',
+                    'type'=>'INNER',
+                    'conditions'=>array('Stream.id=Applicant.plusTwoStream')
+                    ),
+                   array(
+                    'table'=>'marks',
+                    'alias'=>'Mark',
+                    'type'=>'INNER',
+                    'conditions'=>array('Mark.user_id=User.frkUserID')
+                    ),
+                   array(
+                    'table'=>'universities',
+                    'alias'=>'Universitie',
+                    'type'=>'INNER',
+                    'conditions'=>array('Universitie.id=Mark.university_id')
+                    ),
+                   array(
+                    'table'=>'degrees',
+                    'alias'=>'Degree',
+                    'type'=>'INNER',
+                    'conditions'=>array('Degree.id=Mark.degree_id')
+                    ),
+                    array(
+                    'table'=>'courses',
+                    'alias'=>'Cours',
+                    'type'=>'INNER',
+                    'conditions'=>array('Cours.frkCourseID=Choice.choices')
+                    ),
+                   array(
+                    'table'=>'indexes',
+                    'alias'=>'Index',
+                    'type'=>'INNER',
+                    'conditions'=>array('Index.user_id=User.frkUserID'),
+                    'conditions'=>array('Index.course_id=Choice.choices')
+                    )
+
+            ),
+            'fields'=>array('Choice.*',
+                            // 'Academicdetail.*',
+                            'Universitie.*',
+                            'Degree.*',
+                            'Mark.*',
+                            'Stream.*',
+                            'Applicant.*',
+                            'Board.*',
+                            'Community.*',
+                            'Religion.*',
+                            'User.*',
+                            'Countrie.*',
+                            'State.*',
+                            'District.*',
+                            'DistrictComm.*',
+                            'Final_communitie.*',
+                            'Caste.*',
+                            'Occupation.*',
+                            'Reservation.*',
+                            'Index.*',
+                            'Cours.*'
+                            )
+            ));
+  $from = new DateTime($choice_result[0]['User']['frkUserDOB']);
+        $to   = new DateTime('today');
+        $age  = $from->diff($to)->y;
+       
+
+$choice_result['age']=$age;
+        }
+//        echo $choice_result[0]['Index']['index']; exit;
+//         pr($choice_result[0]); exit;
+            $this->set('All_result',$choice_result);
+
+   }
 
     public function indexdetails() {
 
