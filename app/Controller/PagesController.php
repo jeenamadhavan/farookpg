@@ -5086,39 +5086,39 @@ class PagesController extends AppController {
     }
     public function downloadproranklistmahistory() {
         //$this->response->file(WWW_ROOT . 'files/MA_History.pdf', array('download' => true, 'name' => 'Provisional Rank List Ma.History.pdf'));
-        $this->response->file(WWW_ROOT . 'files/M.A_History.pdf', array('download' => true, 'name' => 'Rank List Ma.History.pdf'));
+        $this->response->file(WWW_ROOT . 'rank_lists/M.A_History.pdf', array('download' => true, 'name' => 'Rank List Ma.History.pdf'));
     }
     public function downloadproranklistmscphysics() {
         //$this->response->file(WWW_ROOT . 'files/M_Sc_Pysics.pdf', array('download' => true, 'name' => 'Provisional Rank List M.Sc.Pysics.pdf'));
-        $this->response->file(WWW_ROOT . 'files/M.Sc_Physics.pdf', array('download' => true, 'name' => 'Rank List M.Sc.Pysics.pdf'));
+        $this->response->file(WWW_ROOT . 'rank_lists/M.Sc_Physics.pdf', array('download' => true, 'name' => 'Rank List M.Sc.Pysics.pdf'));
     }
     public function downloadproranklistmsczoology() {
-        $this->response->file(WWW_ROOT . 'files/M.Sc_Zoology.pdf', array('download' => true, 'name' => 'Rank List M.Sc.Zoology.pdf'));
+        $this->response->file(WWW_ROOT . 'rank_lists/M.Sc_Zoology.pdf', array('download' => true, 'name' => 'Rank List M.Sc.Zoology.pdf'));
     }
     public function downloadproranklistmscchemistry() {
-        $this->response->file(WWW_ROOT . 'files/M.Sc_Chemistry.pdf', array('download' => true, 'name' => 'Rank List M.Sc.Chemistry.pdf'));
+        $this->response->file(WWW_ROOT . 'rank_lists/M.Sc_Chemistry.pdf', array('download' => true, 'name' => 'Rank List M.Sc.Chemistry.pdf'));
     }
     public function downloadproranklistmlisc() {
-        $this->response->file(WWW_ROOT . 'files/MLISc.pdf', array('download' => true, 'name' => 'Rank List MLISc.pdf'));
+        $this->response->file(WWW_ROOT . 'rank_lists/MLISc.pdf', array('download' => true, 'name' => 'Rank List MLISc.pdf'));
     }
     
     public function downloadproranklistmaths() {
-        $this->response->file(WWW_ROOT . 'files/M.Sc_Mathematics.pdf', array('download' => true, 'name' => 'Rank List Maths.pdf'));
+        $this->response->file(WWW_ROOT . 'rank_lists/M.Sc_Mathematics.pdf', array('download' => true, 'name' => 'Rank List Maths.pdf'));
     }
     public function downloadproranklistarabic() {
-        $this->response->file(WWW_ROOT . 'files/M.A_Arabic.pdf', array('download' => true, 'name' => 'Rank List Arbic.pdf'));
+        $this->response->file(WWW_ROOT . 'rank_lists/M.A_Arabic.pdf', array('download' => true, 'name' => 'Rank List Arbic.pdf'));
     }
     public function downloadproranklistmcom() {
-        $this->response->file(WWW_ROOT . 'files/M.Com.pdf', array('download' => true, 'name' => 'Rank List Mcom.pdf'));
+        $this->response->file(WWW_ROOT . 'rank_lists/M.Com.pdf', array('download' => true, 'name' => 'Rank List Mcom.pdf'));
     }
     public function downloadproranklistblisc() {
-        $this->response->file(WWW_ROOT . 'files/BLISc.pdf', array('download' => true, 'name' => 'Rank List BLiSC.pdf'));
+        $this->response->file(WWW_ROOT . 'rank_lists/BLISc.pdf', array('download' => true, 'name' => 'Rank List BLiSC.pdf'));
     }
     public function downloadstatranklist() {
-        $this->response->file(WWW_ROOT . 'files/M.Sc_Statistics.pdf', array('download' => true, 'name' => 'Rank List Statistics.pdf'));
+        $this->response->file(WWW_ROOT . 'rank_lists/M.Sc_Statistics.pdf', array('download' => true, 'name' => 'Rank List Statistics.pdf'));
     }
     public function downloadenglishranklist() {
-        $this->response->file(WWW_ROOT . 'files/M.A_English.pdf', array('download' => true, 'name' => 'Rank List M.A English.pdf'));
+        $this->response->file(WWW_ROOT . 'rank_lists/M.A_English.pdf', array('download' => true, 'name' => 'Rank List M.A English.pdf'));
     }
     public function downloadcandidatelist() {
         $this->response->file(WWW_ROOT . 'files/candidate_list.pdf', array('download' => true, 'name' => 'ListOfCandidates_AdmissionTest.pdf'));
