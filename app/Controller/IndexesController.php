@@ -823,8 +823,8 @@ class IndexesController extends AppController {
 						  } // E
 					  } else if($course_name=='M.Sc Statistics') {
 						  if(in_array($mark['main1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main2_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main3_sub'],$indexing_rules[$course_name]['E'])) {
-							  $m1=$this->part1_marks($mark)+$mark['part2_mark']+part3_marks($mark);
-							  $mx1=$this->part1_max($mark)+$mark['part2_max']+part3_max($mark);
+							  $m1=$this->part1_marks($mark)+$mark['part2_mark']+$this->part3_marks($mark);
+							  $mx1=$this->part1_max($mark)+$mark['part2_max']+$this->part3_max($mark);
 							  $m2=$this->part3_marks($mark);
 							  $mx2=$this->part3_max($mark);
 							  
