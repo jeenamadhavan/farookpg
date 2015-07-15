@@ -10,7 +10,7 @@ class IndexesController extends AppController {
 		//echo 'hii'; exit;
 		$this->autoRender = false;
         $cg1 = '$this->overall_cgpa($mark)';
-        $cg2 = '$this->core_cgpa($mark)';
+        $cg2 = '$this->core_cgpa_credit($mark)';
         $c1 = '$this->overall_credits($mark, $total_credits, $credit_tracking)';
         $c2 = '$this->core_credits($mark, $total_credits, $credit_tracking)';
         $cg3 = '$this->comp1_cgpa($mark)';
@@ -20,15 +20,19 @@ class IndexesController extends AppController {
 
         $indexing_rules = array();
         $indexing_rules['M.A English'] = array(
-            'M' => '',
-            'G' => "\$index = ((($cg1 * $c1) + (2 * $cg2 * $c2) + ($cg3 * $c3) + ($cg4 * $c4))/($c1 + (2 * $c2) + $c3 + $c4))*250;",
+            'M' => array(
+						'part1_english'=>"\$index1 =($m1/$mx1)*1000;",
+						'part3_english'=>"\$index2 =($m2/$mx2)*1000;",
+						'others'=>"\$index3 =($m1/$mx1)*1000;",
+						),
+            'G' => "\$index = ((($cg1 * $c1) + (2 * $cg2) + ($cg3 * $c3) + ($cg4 * $c4))/($c1 + (2 * $c2) + $c3 + $c4))*250;",
 			'E' => array('English','Functional English','English Language and Literature'),
 			'sub_wt'=>array('English','English Language and Literature')
         );
 		$indexing_rules['M.A Arabic'] = array(
             'M' => '',
             'G' => array(
-						'N'=>"\$NRindex =($cg1 * $c1) + ($cg2 * $c2) + ($cg3 * $c3) + ($cg4 * $c4);",
+						'N'=>"\$NRindex =($cg1 * $c1) + ($cg2) + ($cg3 * $c3) + ($cg4 * $c4);",
 						'D'=>"\$DRindex =($c1 + $c2 + $c3 + $c4);"
 						),
 			'E' => array('Arabic','Afsal Ul-Ulama'),
@@ -53,7 +57,7 @@ class IndexesController extends AppController {
 		$indexing_rules['M.Sc Mathematics'] = array(
             'M' => '',
             'G' => array(
-						'N'=>"\$NRindex =2*($cg2 * $c2)+(1.5*$cg3*$c3)+(1.5*$cg4*$c4);",
+						'N'=>"\$NRindex =2*($cg2)+(1.5*$cg3*$c3)+(1.5*$cg4*$c4);",
 						'D'=>"\$DRindex =(2*$c2)+(1.5*$c3)+(1.5*$c4);"
 						),
 			'E' => array('Mathematics'),
@@ -62,7 +66,7 @@ class IndexesController extends AppController {
 		$indexing_rules['M.Sc Statistics'] = array(
             'M' => '',
             'G' => array(
-						'N'=>"\$NRindex =($cg1 * $c1) + ($cg2 * $c2) + ($cg3 * $c3) + ($cg4 * $c4);",
+						'N'=>"\$NRindex =($cg1 * $c1) + ($cg2) + ($cg3 * $c3) + ($cg4 * $c4);",
 						'D'=>"\$DRindex =($c1 + $c2 + $c3 + $c4);"
 						),
 			'E' => array('Mathematics','Statistics'),
@@ -71,7 +75,7 @@ class IndexesController extends AppController {
 		$indexing_rules['M.Sc Physics'] = array(
             'M' => '',
             'G' => array(
-						'N'=>"\$NRindex =(2* $cg2 * $c2)+($cg3 * $c3)+($cg4 * $c4);",
+						'N'=>"\$NRindex =(2* $cg2)+($cg3 * $c3)+($cg4 * $c4);",
 						'D'=>"\$DRindex =(2*$c2)+($c3)+($c4);"
 						),
 			'E' => array('Physics','Applied Physics')
@@ -79,7 +83,7 @@ class IndexesController extends AppController {
 		$indexing_rules['M.Sc Chemistry'] = array(
             'M' => '',
             'G' => array(
-						'N'=>"\$NRindex =($cg1 * $c1)+(2 * $cg2 * $c2)+($cg3*$c3)+($cg4*$c4);",
+						'N'=>"\$NRindex =($cg1 * $c1)+(2 * $cg2)+($cg3*$c3)+($cg4*$c4);",
 						'D'=>"\$DRindex =$c1+(2*$c2)+($c3)+($c4);"
 						),
 			'E' => array('Chemistry','Polymer Chemistry')
@@ -87,7 +91,7 @@ class IndexesController extends AppController {
 		$indexing_rules['M.Sc Zoology'] = array(
             'M' => '',
             'G' => array(
-						'N'=>"\$NRindex =($cg1 * $c1)+(2 * $cg2 * $c2)+($cg3*$c3)+($cg4*$c4);",
+						'N'=>"\$NRindex =($cg1 * $c1)+(2 * $cg2)+($cg3*$c3)+($cg4*$c4);",
 						'D'=>"\$DRindex =$c1+(2*$c2)+($c3)+($c4);"
 						),
 			'E' => array('Zoology')
@@ -95,7 +99,7 @@ class IndexesController extends AppController {
 		$indexing_rules['M.Com'] = array(
             'M' => '',
             'G' => array(
-						'N'=>"\$NRindex =($cg1 * $c1)+($cg2 * $c2)+($cg3*$c3)+($cg4*$c4);",
+						'N'=>"\$NRindex =($cg1 * $c1)+($cg2)+($cg3*$c3)+($cg4*$c4);",
 						'D'=>"\$DRindex =$c1+($c2)+($c3)+($c4);"
 						)
         );
@@ -192,6 +196,27 @@ class IndexesController extends AppController {
 				 						mysqli_query($db,$inerst_sql);
 				  					}
 								  	
+						 } else {
+							 $entrance_get="select * from entrances where user_id=".$row2['user_id'];
+							 
+							 $entrance_result=mysqli_query($db,$entrance_get);
+							
+							 if(mysqli_num_rows($entrance_result)>0) {
+								 while($entrance_row=mysqli_fetch_array($entrance_result)) {
+									 $index_temp=$entrance_row['mark']; 
+									 $index=$index_temp*10;
+									 
+									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+								 }
+							 }
 						 }
 							
 					 } else if($course_name=='M.A Arabic') {
@@ -524,22 +549,563 @@ class IndexesController extends AppController {
 		  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
 		 						mysqli_query($db,$inerst_sql);
 		  					}
+					 } else if($course_name=='M.Sc Computer Science' || $course_name=='MCJ(Self Financing)' || $course_name=='MSc. Psychology(Self Financing)') {
+						 $entrance_get="select * from entrances where user_id=".$row2['user_id'];
+							 
+							 $entrance_result=mysqli_query($db,$entrance_get);
+							
+							 if(mysqli_num_rows($entrance_result)>0) {
+								 while($entrance_row=mysqli_fetch_array($entrance_result)) {
+									 $index_temp=$entrance_row['mark']; 
+									 $index=$index_temp*10;
+									 
+									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+								 }
+							 }
 					 }
 					 
-						/*$index=$index+$weightage+$sub_weightage;
-						$university_id = $mark['university_id'];
-						  if($university_id==1) {
-							  $index=$index+($index*0.05);
-						  }*/
-					  //echo $row2['user_id']." - Index - " . $index." - ".$course_name;
 					  
-					  //echo "<br><br>";
-					  
-					 
-					  
-				  } else if($mark['mark_grade']=='M') {
-					  
-				  }
+				  } // if grade
+				  else if($mark['mark_grade']=='M') {
+					  if($course_name=='M.A English') {
+						  if(in_array($mark['main1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main2_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main3_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['comp1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['comp2_sub'],$indexing_rules[$course_name]['E'])) {
+							  eval($indexing_rules[$course_name]['M']['part1_english']);
+							  eval($indexing_rules[$course_name]['M']['part3_english']);
+							  if($index1>$index2) {
+								  $index=$index1;
+							  } else if($index2>$index1) {
+								  $index=$index2;
+							  } else {
+								  $index=$index1;
+							  }
+							  // sub weightage
+						  $tempEnglish=0;
+							if($mark['main1_sub']=='English' || $mark['main1_sub']=='English Language and Literature'){
+								if($mark['main1_max']==600) {
+									$tempEnglish=$tempEnglish+($mark['main1_mark']*0.05);
+								} else {
+									$marks=($mark['main1_mark']/$mark['main1_max'])*600;
+									$tempEnglish=$tempEnglish+($marks*0.05);
+								}
+							}
+							if($mark['main2_sub']=='English' || $mark['main2_sub']=='English Language and Literature'){
+								if($mark['main2_max']==600) {
+									$tempEnglish=$tempEnglish+($mark['main2_mark']*0.05);
+								} else {
+									$marks=($mark['main2_mark']/$mark['main2_max'])*600;
+									$tempEnglish=$tempEnglish+($marks*0.05);
+								}
+							}
+							if($mark['main3_sub']=='English' || $mark['main3_sub']=='English Language and Literature'){
+								if($mark['main3_max']==600) {
+									$tempEnglish=$tempEnglish+($mark['main3_mark']*0.05);
+								} else {
+									$marks=($mark['main3_mark']/$mark['main3_max'])*600;
+									$tempEnglish=$tempEnglish+($marks*0.05);
+								}
+							}
+							
+						  $sub_weightage=$tempEnglish;
+						  
+						  $index=$index+$weightage+$sub_weightage;
+							$university_id = $mark['university_id'];
+							  if($university_id==1) {
+								  $index=$index+($index*0.05);
+							  }
+						  
+							$get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+						  } else {
+							 $entrance_get="select * from entrances where user_id=".$row2['user_id'];
+							 
+							 $entrance_result=mysqli_query($db,$entrance_get);
+							
+							 if(mysqli_num_rows($entrance_result)>0) {
+								 while($entrance_row=mysqli_fetch_array($entrance_result)) {
+									 $index_temp=$entrance_row['mark']; 
+									 $index=$index_temp*10;
+									 
+									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+								 }
+							 }
+						 }
+						  
+						  
+					  } else if($course_name=='M.A Arabic') {
+							if(in_array($mark['main1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main2_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main3_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['com_other_sub'],$indexing_rules[$course_name]['E'])) {
+								if(in_array($mark['comp1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['comp2_sub'],$indexing_rules[$course_name]['E'])) {
+									$part2_sub=$mark['part2_sub'];
+									if($part2_sub=='Arabic') {
+										$m1=$mark['part2_mark'];
+										$mx1=$mark['part2_max'];
+									} else {
+										$m1=0;
+										$mx1=10; // anything gives zero (/)
+									}
+									$m2=part3_marks($mark);
+									$mx2=part3_max($mark);
+									
+									$index1=($m1/$mx1)*1000;
+									$index2=($m2/$mx2)*1000;
+									
+									if($index1>$index2) {
+										$index=$index1;
+									} else if($index2>$index1) {
+										$index=$index2;
+									} else {
+										$index=$index1;
+									}
+								} else {
+									$part2_sub=$mark['part2_sub'];
+									if($part2_sub=='Arabic') {
+										$m1=$mark['part2_mark'];
+										$mx1=$mark['part2_max'];
+									} else {
+										$m1=0;
+										$mx1=10; // anything gives zero (/)
+									}
+									$index=($m1/$mx1)*1000;
+								}
+								
+								$tempArabic=0;
+									if($mark['main1_sub']=='Arabic' || $mark['main1_sub']=='Afsal Ul-Ulama'){
+										if($mark['main1_max']==600) {
+											$tempArabic=$tempArabic+($mark['main1_mark']*0.05);
+										} else {
+											$marks=($mark['main1_mark']/$mark['main1_max'])*600;
+											$tempArabic=$tempArabic+($marks*0.05);
+										}
+									}
+									if($mark['main2_sub']=='Arabic' || $mark['main2_sub']=='Afsal Ul-Ulama'){
+										if($mark['main2_max']==600) {
+											$tempArabic=$tempArabic+($mark['main2_mark']*0.05);
+										} else {
+											$marks=($mark['main2_mark']/$mark['main2_max'])*600;
+											$tempArabic=$tempArabic+($marks*0.05);
+										}
+									}
+									if($mark['main3_sub']=='Arabic' || $mark['main3_sub']=='Afsal Ul-Ulama'){
+										if($mark['main3_max']==600) {
+											$tempArabic=$tempArabic+($mark['main3_mark']*0.05);
+										} else {
+											$marks=($mark['main3_mark']/$mark['main3_max'])*600;
+											$tempArabic=$tempArabic+($marks*0.05);
+										}
+									}
+									$sub_weightage=$tempArabic;
+									
+									$index=$index+$weightage+$sub_weightage;
+									$university_id = $mark['university_id'];
+									  if($university_id==1) {
+										  $index=$index+($index*0.05);
+									  }
+								  
+									$get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+							} // E
+					  } else if($course_name=='M.A Economics') {
+						  if(in_array($mark['main1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main2_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main3_sub'],$indexing_rules[$course_name]['E'])) {
+							  $m1=part3_marks($mark);
+							  $mx1=part3_max($mark);
+							  $m2=main_marks($mark);
+							  $mx2=main_max($mark);
+							  
+							  $index=(($m1+$m2)/($mx1+$mx2))*1000;
+							  						  
+							  // sub weightage
+							  $tempEconomics=0;
+								if($mark['main1_sub'] == "Economics" || $mark['main1_sub'] == "Developmental Economics") {
+									 if($mark['main1_max']==600) {
+											$tempEconomics=$tempEconomics+($mark['main1_mark']*0.05);
+										} else {
+											$marks=($mark['main1_mark']/$mark['main1_max'])*600;
+											$tempEconomics=$tempEconomics+($marks*0.05);
+										}
+								}
+								if($mark['main2_sub'] == "Economics" || $mark['main2_sub'] == "Developmental Economics") {
+									 if($mark['main2_max']==600) {
+											$tempEconomics=$tempEconomics+($mark['main2_mark']*0.05);
+										} else {
+											$marks=($mark['main2_mark']/$mark['main2_max'])*600;
+											$tempEconomics=$tempEconomics+($marks*0.05);
+										}
+								}
+								if($mark['main3_sub'] == "Economics" || $mark['main3_sub'] == "Developmental Economics") {
+									 if($mark['main3_max']==600) {
+											$tempEconomics=$tempEconomics+($mark['main3_mark']*0.05);
+										} else {
+											$marks=($mark['main3_mark']/$mark['main3_max'])*600;
+											$tempEconomics=$tempEconomics+($marks*0.05);
+										}
+								}
+								
+							  $sub_weightage=$tempEconomics;
+								echo $sub_weightage."<br>";
+								$index=$index+$weightage+$sub_weightage;
+								$university_id = $mark['university_id'];
+								  if($university_id==1) {
+									  $index=$index+($index*0.05);
+								  }
+							  
+								$get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+						  } // E
+					  } else if($course_name=='M.Sc Mathematics') {
+						  if(in_array($mark['main1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main2_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main3_sub'],$indexing_rules[$course_name]['E'])) {
+							  $m1=part3_marks($mark);
+							  $mx1=part3_max($mark);
+							  $m2=main_marks($mark);
+							  $mx2=main_max($mark);
+							  
+							  $index=(($m1+$m2)/($mx1+$mx2))*1000;
+							  
+							  //no sub weightage
+							  $sub_weightage=0;
+								
+								$index=$index+$weightage+$sub_weightage;
+								$university_id = $mark['university_id'];
+								  if($university_id==1) {
+									  $index=$index+($index*0.05);
+								  }
+							 
+								  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+							  
+						  } // E
+					  } else if($course_name=='M.Sc Statistics') {
+						  if(in_array($mark['main1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main2_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main3_sub'],$indexing_rules[$course_name]['E'])) {
+							  $m1=part1_marks($mark)+$mark['part2_mark']+part3_marks($mark);
+							  $mx1=part1_max($mark)+$mark['part2_max']+part3_max($mark);
+							  $m2=part3_marks($mark);
+							  $mx2=part3_max($mark);
+							  
+							  $NRindex=$m1+$m2;
+							  $DRindex=$mx1+$mx2;
+							  
+							  // feeder
+							  if($mark['main1_sub'] == "Statistics") {
+								 $NRindex=$NRindex+$mark['main1_mark'];
+								 $DRindex=$DRindex+$mark['main1_max'];
+							  }
+							  if($mark['main2_sub'] == "Statistics") {
+								 $NRindex=$NRindex+$mark['main2_mark'];
+								 $DRindex=$DRindex+$mark['main2_max'];
+							  }
+							  if($mark['main3_sub'] == "Statistics") {
+								 $NRindex=$NRindex+$mark['main3_mark'];
+								 $DRindex=$DRindex+$mark['main3_max'];
+							  }
+							  if($mark['comp1_sub'] == "Statistics") {
+								 $NRindex=$NRindex+$mark['comp1_mark'];
+								 $DRindex=$DRindex+$mark['comp1_max'];
+							  }
+							  if($mark['comp2_sub'] == "Statistics") {
+								 $NRindex=$NRindex+$mark['comp2_mark'];
+								 $DRindex=$DRindex+$mark['comp2_max'];
+							  }
+							  
+							  $index=($NRindex/$DRindex)*1000;
+							  
+							  //no sub weightage
+							  $sub_weightage=0;
+								$index=$index+$weightage+$sub_weightage;
+								$university_id = $mark['university_id'];
+								  if($university_id==1) {
+									  $index=$index+($index*0.05);
+								  }
+							 
+								  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+						  } // E
+					  } else if($course_name=='M.Sc Physics') {
+						  if(in_array($mark['main1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main2_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main3_sub'],$indexing_rules[$course_name]['E'])) {
+							  
+							  $m3=0;
+							  $mx3=0;
+							  
+							  // part3 maths
+							  if($mark['comp1_sub'] != "Mathematics") {
+								  $m3+=$mark['comp1_mark'];
+								  $mx3+=$mark['comp1_max'];
+							  } else if($mark['comp2_sub'] != "Mathematics") {
+								  $m3+=$mark['comp2_mark'];
+								  $mx3+=$mark['comp2_max'];
+							  } else {
+								 $m3=0;
+								$mx3=0; 
+							  }
+							$NRindex=$m3;
+							$DRindex=$mx3;
+							// feeder m1
+							if($mark['main1_sub'] == "Physics" || $mark['main1_sub'] == "Applied Physics") {
+								  $NRindex+=2*$mark['main1_mark'];
+								  $DRindex+=2*$mark['main1_max'];
+							  }
+							  if($mark['main2_sub'] == "Physics" || $mark['main2_sub'] == "Applied Physics") {
+								  $NRindex+=2*$mark['main2_mark'];
+								  $DRindex+=2*$mark['main2_max'];
+							  }
+							  if($mark['main3_sub'] == "Physics" || $mark['main3_sub'] == "Applied Physics") {
+								  $NRindex+=2*$mark['main3_mark'];
+								  $DRindex+=2*$mark['main3_max'];
+							  }
+							  // feeder m2
+							  if($mark['comp1_sub'] == "Mathematics") {
+								  $NRindex+=2*$mark['comp1_mark'];
+								  $DRindex+=2*$mark['comp1_max'];
+							  } else if($mark['comp2_sub'] == "Mathematics") {
+								  $NRindex+=2*$mark['comp2_mark'];
+								  $DRindex+=2*$mark['comp2_max'];
+							  } else {
+								$NRindex=$NRindex;
+								$DRindex=$DRindex;
+							  }
+							  
+							  $index=($NRindex/$DRindex)*1000;
+							  //no sub weightage
+							  $sub_weightage=0;
+								$index=$index+$weightage+$sub_weightage;
+								$university_id = $mark['university_id'];
+								  if($university_id==1) {
+									  $index=$index+($index*0.05);
+								  }
+							 
+								  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+						  }
+					  } else if($course_name=='M.Sc Chemistry') {
+						  if(in_array($mark['main1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main2_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main3_sub'],$indexing_rules[$course_name]['E'])) {
+							  $m2=0;
+							  $mx2=0;
+							  $m3=0;
+							  $mx3=0;
+							  
+							  // part3 maths
+							  
+							  if($mark['comp1_sub'] == "Mathematics") {
+								  $m2+=$mark['comp1_mark'];
+								  $mx2+=$mark['comp1_max'];
+							  } else if($mark['comp2_sub'] == "Mathematics") {
+								  $m2+=$mark['comp2_mark'];
+								  $mx2+=$mark['comp2_max'];
+							  } else {
+								$m2=0;
+								$mx2=0;
+							  }
+							  if($mark['comp1_sub'] != "Mathematics") {
+								  $m3+=$mark['comp1_mark'];
+								  $mx3+=$mark['comp1_max'];
+							  } else if($mark['comp2_sub'] != "Mathematics") {
+								  $m3+=$mark['comp2_mark'];
+								  $mx3+=$mark['comp2_max'];
+							  } else {
+								 $m3=0;
+								$mx3=0; 
+							  }
+							$NRindex=$m2+$m3;
+							$DRindex=$mx2+$mx3;
+							// feeder
+							if($mark['main1_sub'] == "Chemistry" || $mark['main1_sub'] == "Polymer Chemistry") {
+								  $NRindex+=2*$mark['main1_mark'];
+								  $DRindex+=2*$mark['main1_max'];
+							  }
+							  if($mark['main2_sub'] == "Chemistry" || $mark['main2_sub'] == "Polymer Chemistry") {
+								  $NRindex+=2*$mark['main2_mark'];
+								  $DRindex+=2*$mark['main2_max'];
+							  }
+							  if($mark['main3_sub'] == "Chemistry" || $mark['main3_sub'] == "Polymer Chemistry") {
+								  $NRindex+=2*$mark['main3_mark'];
+								  $DRindex+=2*$mark['main3_max'];
+							  }
+							  $index=($NRindex/$DRindex)*1000;
+							  //no sub weightage
+							  $sub_weightage=0;
+								$index=$index+$weightage+$sub_weightage;
+								$university_id = $mark['university_id'];
+								  if($university_id==1) {
+									  $index=$index+($index*0.05);
+								  }
+							 
+								  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+						  }
+					  } else if($course_name=='M.Sc Zoology') {
+						  if(in_array($mark['main1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main2_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main3_sub'],$indexing_rules[$course_name]['E'])) {
+							$m1=part3_marks($mark);
+							$mx1=part3_max($mark);
+							
+							$NRindex=$m1;
+							$DRindex=$mx1;
+							// feeder
+							if($mark['main1_sub'] == "Zoology") {
+								$NRindex=$NRindex+$mark['main1_mark'];
+								$DRindex=$DRindex+$mark['main1_max'];
+							}
+							if($mark['main2_sub'] == "Zoology") {
+								$NRindex=$NRindex+$mark['main2_mark'];
+								$DRindex=$DRindex+$mark['main2_max'];
+							}
+							if($mark['main3_sub'] == "Zoology") {
+								$NRindex=$NRindex+$mark['main3_mark'];
+								$DRindex=$DRindex+$mark['main3_max'];
+							}
+							
+							$index=($NRindex/$DRindex)*1000;
+							//no sub weightage
+							  $sub_weightage=0;
+								$index=$index+$weightage+$sub_weightage;
+								$university_id = $mark['university_id'];
+								  if($university_id==1) {
+									  $index=$index+($index*0.05);
+								  }
+							 
+								  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+						  }
+					  } else if($course_name=='M.Com') {
+						  if($mark['degree_id']==2 || $mark['degree_id']==4) {
+							$m1=part1_marks($mark)+$mark['part2_mark']+part3_marks($mark);
+							$mx1=part1_max($mark)+$mark['part2_max']+part3_max($mark);
+							$m2=main_marks($mark);
+							$mx2=main_max($mark);
+
+							$index=(($m1+$m2)/($mx1+$mx2))*1000;
+							// no sub weightage and feeder
+							$sub_weightage=0;
+
+							$index=$index+$weightage+$sub_weightage;
+							$university_id = $mark['university_id'];
+							  if($university_id==1) {
+								  $index=$index+($index*0.05);
+							  }
+							 
+							$get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+						  }
+					  } else if($course_name=='MLISc' || $course_name=='BLISc') {
+						  $m1=part1_marks($mark)+$mark['part2_mark']+part3_marks($mark);
+						  $mx1=part1_max($mark)+$mark['part2_max']+part3_max($mark);
+						  
+						  $index=($m1/$mx1)*1000;
+						  // no feeder and sub weightage
+						  $sub_weightage=0;
+							$index=$index+$weightage+$sub_weightage;
+							$university_id = $mark['university_id'];
+							  if($university_id==1) {
+								  $index=$index+($index*0.05);
+							  }
+						 
+							  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+					  } else if($course_name=='M.Sc Computer Science' || $course_name=='MCJ(Self Financing)' || $course_name=='MSc. Psychology(Self Financing)') {
+						  $entrance_get="select * from entrances where user_id=".$row2['user_id'];
+							 
+							 $entrance_result=mysqli_query($db,$entrance_get);
+							
+							 if(mysqli_num_rows($entrance_result)>0) {
+								 while($entrance_row=mysqli_fetch_array($entrance_result)) {
+									 $index_temp=$entrance_row['mark']; 
+									 $index=$index_temp*10;
+									 
+									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+								 }
+							 }
+					  }
+				  } // if mark
 				  
 				  }
 				  
@@ -569,19 +1135,19 @@ class IndexesController extends AppController {
         return $mark['overall_credit'];
     }
     
-    function core_cgpa($mark) //cg2
+    function core_cgpa_credit($mark) //cg2
     {
-        $total_cgpa=0;
+        $total_cgpa_credit=0;
 
-        $total_cgpa+=$mark['main1_cgpa'];
+        $total_cgpa_credit+=$mark['main1_cgpa']*$mark['main1_credit'];
 
         if($mark['main']==2)
-          $total_cgpa+=$mark['main2_cgpa'];
+          $total_cgpa_credit+=$mark['main2_cgpa']*$mark['main2_credit'];
 
         if($mark['main']==3)
-          $total_cgpa+=$mark['main3_cgpa'];
+          $total_cgpa_credit+=$mark['main3_cgpa']*$mark['main3_credit'];
 
-        return $total_cgpa;
+        return $total_cgpa_credit;
     }
 
     function core_credits($mark, &$total_credits, &$credit_tracking) //c2
