@@ -17,6 +17,11 @@ class IndexesController extends AppController {
         $c3 = '$this->comp1_credit($mark)';
 		$cg4 = '$this->comp2_cgpa($mark)';
         $c4 = '$this->comp2_credit($mark)';
+		
+		$m1 = 'part1_marks($mark)';
+		$mx1 = 'part1_max($mark)';
+		$m2 = 'part3_marks($mark)';
+		$mx2 = 'part3_max($mark)';
 
         $indexing_rules = array();
         $indexing_rules['M.A English'] = array(
