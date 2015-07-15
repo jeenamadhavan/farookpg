@@ -15,13 +15,13 @@ class IndexesController extends AppController {
         $c2 = '$this->core_credits($mark, $total_credits, $credit_tracking)';
         $cg3 = '$this->comp1_cgpa($mark)';
         $c3 = '$this->comp1_credit($mark)';
-		$cg4 = '$this->comp2_cgpa($mark)';
+	$cg4 = '$this->comp2_cgpa($mark)';
         $c4 = '$this->comp2_credit($mark)';
 		
-		$m1 = 'part1_marks($mark)';
-		$mx1 = 'part1_max($mark)';
-		$m2 = 'part3_marks($mark)';
-		$mx2 = 'part3_max($mark)';
+        $m1 = '$this->part1_marks($mark)';
+        $mx1 = '$this->part1_max($mark)';
+        $m2 = '$this->part3_marks($mark)';
+        $mx2 = '$this->part3_max($mark)';
 
         $indexing_rules = array();
         $indexing_rules['M.A English'] = array(
@@ -670,8 +670,8 @@ class IndexesController extends AppController {
 										$m1=0;
 										$mx1=10; // anything gives zero (/)
 									}
-									$m2=part3_marks($mark);
-									$mx2=part3_max($mark);
+									$m2=$this->part3_marks($mark);
+									$mx2=$this->part3_max($mark);
 									
 									$index1=($m1/$mx1)*1000;
 									$index2=($m2/$mx2)*1000;
@@ -740,10 +740,10 @@ class IndexesController extends AppController {
 							} // E
 					  } else if($course_name=='M.A Economics') {
 						  if(in_array($mark['main1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main2_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main3_sub'],$indexing_rules[$course_name]['E'])) {
-							  $m1=part3_marks($mark);
-							  $mx1=part3_max($mark);
-							  $m2=main_marks($mark);
-							  $mx2=main_max($mark);
+							  $m1=$this->part3_marks($mark);
+							  $mx1=$this->part3_max($mark);
+							  $m2=$this->main_marks($mark);
+							  $mx2=$this->main_max($mark);
 							  
 							  $index=(($m1+$m2)/($mx1+$mx2))*1000;
 							  						  
@@ -794,10 +794,10 @@ class IndexesController extends AppController {
 						  } // E
 					  } else if($course_name=='M.Sc Mathematics') {
 						  if(in_array($mark['main1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main2_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main3_sub'],$indexing_rules[$course_name]['E'])) {
-							  $m1=part3_marks($mark);
-							  $mx1=part3_max($mark);
-							  $m2=main_marks($mark);
-							  $mx2=main_max($mark);
+							  $m1=$this->part3_marks($mark);
+							  $mx1=$this->part3_max($mark);
+							  $m2=$this->main_marks($mark);
+							  $mx2=$this->main_max($mark);
 							  
 							  $index=(($m1+$m2)/($mx1+$mx2))*1000;
 							  
@@ -823,10 +823,10 @@ class IndexesController extends AppController {
 						  } // E
 					  } else if($course_name=='M.Sc Statistics') {
 						  if(in_array($mark['main1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main2_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main3_sub'],$indexing_rules[$course_name]['E'])) {
-							  $m1=part1_marks($mark)+$mark['part2_mark']+part3_marks($mark);
-							  $mx1=part1_max($mark)+$mark['part2_max']+part3_max($mark);
-							  $m2=part3_marks($mark);
-							  $mx2=part3_max($mark);
+							  $m1=$this->part1_marks($mark)+$mark['part2_mark']+part3_marks($mark);
+							  $mx1=$this->part1_max($mark)+$mark['part2_max']+part3_max($mark);
+							  $m2=$this->part3_marks($mark);
+							  $mx2=$this->part3_max($mark);
 							  
 							  $NRindex=$m1+$m2;
 							  $DRindex=$mx1+$mx2;
@@ -1001,8 +1001,8 @@ class IndexesController extends AppController {
 						  }
 					  } else if($course_name=='M.Sc Zoology') {
 						  if(in_array($mark['main1_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main2_sub'],$indexing_rules[$course_name]['E']) || in_array($mark['main3_sub'],$indexing_rules[$course_name]['E'])) {
-							$m1=part3_marks($mark);
-							$mx1=part3_max($mark);
+							$m1=$this->part3_marks($mark);
+							$mx1=$this->part3_max($mark);
 							
 							$NRindex=$m1;
 							$DRindex=$mx1;
@@ -1041,10 +1041,10 @@ class IndexesController extends AppController {
 						  }
 					  } else if($course_name=='M.Com') {
 						  if($mark['degree_id']==2 || $mark['degree_id']==4) {
-							$m1=part1_marks($mark)+$mark['part2_mark']+part3_marks($mark);
-							$mx1=part1_max($mark)+$mark['part2_max']+part3_max($mark);
-							$m2=main_marks($mark);
-							$mx2=main_max($mark);
+							$m1=$this->part1_marks($mark)+$mark['part2_mark']+$this->part3_marks($mark);
+							$mx1=$this->part1_max($mark)+$mark['part2_max']+$this->part3_max($mark);
+							$m2=$this->main_marks($mark);
+							$mx2=$this->main_max($mark);
 
 							$index=(($m1+$m2)/($mx1+$mx2))*1000;
 							// no sub weightage and feeder
@@ -1067,8 +1067,8 @@ class IndexesController extends AppController {
 				  					}
 						  }
 					  } else if($course_name=='MLISc' || $course_name=='BLISc') {
-						  $m1=part1_marks($mark)+$mark['part2_mark']+part3_marks($mark);
-						  $mx1=part1_max($mark)+$mark['part2_max']+part3_max($mark);
+						  $m1=$this->part1_marks($mark)+$mark['part2_mark']+$this->part3_marks($mark);
+						  $mx1=$this->part1_max($mark)+$mark['part2_max']+$this->part3_max($mark);
 						  
 						  $index=($m1/$mx1)*1000;
 						  // no feeder and sub weightage
