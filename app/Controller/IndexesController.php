@@ -122,6 +122,9 @@ class IndexesController extends AppController {
 						'D'=>"\$DRindex =4;"
 						)
         );
+		$indexing_rules['M.Sc Computer Science'] = array();
+		$indexing_rules['MCJ(Self Financing)'] = array();
+		$indexing_rules['MSc. Psychology(Self Financing)'] = array();
 
         $credit_tracking = array();
 
@@ -194,7 +197,7 @@ class IndexesController extends AppController {
 								  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -202,6 +205,7 @@ class IndexesController extends AppController {
 				  					}
 								  	
 						 } else {
+							 
 							 $entrance_get="select * from entrances where user_id=".$row2['user_id']." and course_id=".$course_id;
 							 
 							 $entrance_result=mysqli_query($db,$entrance_get);
@@ -214,7 +218,7 @@ class IndexesController extends AppController {
 									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -284,7 +288,7 @@ class IndexesController extends AppController {
 							  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 			  					$get_result=mysqli_query($db,$get_sql);
 			  					if(mysqli_num_rows($get_result)>0) {
-			  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+			  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 			  						mysqli_query($db,$update_sql);
 			  					} else {
 			  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -331,7 +335,7 @@ class IndexesController extends AppController {
 							  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 			  					$get_result=mysqli_query($db,$get_sql);
 			  					if(mysqli_num_rows($get_result)>0) {
-			  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+			  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 			  						mysqli_query($db,$update_sql);
 			  					} else {
 			  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -375,7 +379,7 @@ class IndexesController extends AppController {
 						  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 		  					$get_result=mysqli_query($db,$get_sql);
 		  					if(mysqli_num_rows($get_result)>0) {
-		  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+		  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 		  						mysqli_query($db,$update_sql);
 		  					} else {
 		  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -398,7 +402,7 @@ class IndexesController extends AppController {
 							  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -444,7 +448,7 @@ class IndexesController extends AppController {
 							  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -477,7 +481,7 @@ class IndexesController extends AppController {
 							  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -501,7 +505,7 @@ class IndexesController extends AppController {
 							  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -525,7 +529,7 @@ class IndexesController extends AppController {
 							 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -548,7 +552,7 @@ class IndexesController extends AppController {
 						$get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 		  					$get_result=mysqli_query($db,$get_sql);
 		  					if(mysqli_num_rows($get_result)>0) {
-		  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+		  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 		  						mysqli_query($db,$update_sql);
 		  					} else {
 		  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -567,7 +571,7 @@ class IndexesController extends AppController {
 									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -588,7 +592,7 @@ class IndexesController extends AppController {
 									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -609,7 +613,7 @@ class IndexesController extends AppController {
 									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -671,7 +675,7 @@ class IndexesController extends AppController {
 							$get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -690,7 +694,7 @@ class IndexesController extends AppController {
 									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -773,7 +777,7 @@ class IndexesController extends AppController {
 									$get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -827,7 +831,7 @@ class IndexesController extends AppController {
 								$get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -855,7 +859,7 @@ class IndexesController extends AppController {
 								  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -908,7 +912,7 @@ class IndexesController extends AppController {
 								  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -971,7 +975,7 @@ class IndexesController extends AppController {
 								  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -1034,7 +1038,7 @@ class IndexesController extends AppController {
 								  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -1074,7 +1078,7 @@ class IndexesController extends AppController {
 								  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -1101,7 +1105,7 @@ class IndexesController extends AppController {
 							$get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -1124,7 +1128,7 @@ class IndexesController extends AppController {
 							  $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -1143,7 +1147,7 @@ class IndexesController extends AppController {
 									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -1164,7 +1168,7 @@ class IndexesController extends AppController {
 									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
@@ -1185,7 +1189,7 @@ class IndexesController extends AppController {
 									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
 				  					if(mysqli_num_rows($get_result)>0) {
-				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						$update_sql="update indexes set `index`='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  						mysqli_query($db,$update_sql);
 				  					} else {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
