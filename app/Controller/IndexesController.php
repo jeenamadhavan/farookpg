@@ -202,7 +202,7 @@ class IndexesController extends AppController {
 				  					}
 								  	
 						 } else {
-							 $entrance_get="select * from entrances where user_id=".$row2['user_id'];
+							 $entrance_get="select * from entrances where user_id=".$row2['user_id']." and course_id=".$course_id;
 							 
 							 $entrance_result=mysqli_query($db,$entrance_get);
 							
@@ -555,7 +555,7 @@ class IndexesController extends AppController {
 		 						mysqli_query($db,$inerst_sql);
 		  					}
 					 } else if($course_name=='M.Sc Computer Science' || $course_name=='MCJ(Self Financing)' || $course_name=='MSc. Psychology(Self Financing)') {
-						 $entrance_get="select * from entrances where user_id=".$row2['user_id'];
+						 $entrance_get="select * from entrances where user_id=".$row2['user_id']." and course_id=".$course_id;
 							 
 							 $entrance_result=mysqli_query($db,$entrance_get);
 							
@@ -636,7 +636,7 @@ class IndexesController extends AppController {
 				 						mysqli_query($db,$inerst_sql);
 				  					}
 						  } else {
-							 $entrance_get="select * from entrances where user_id=".$row2['user_id'];
+							 $entrance_get="select * from entrances where user_id=".$row2['user_id']." and course_id=".$course_id;
 							 
 							 $entrance_result=mysqli_query($db,$entrance_get);
 							
@@ -1089,7 +1089,7 @@ class IndexesController extends AppController {
 				 						mysqli_query($db,$inerst_sql);
 				  					}
 					  } else if($course_name=='M.Sc Computer Science' || $course_name=='MCJ(Self Financing)' || $course_name=='MSc. Psychology(Self Financing)') {
-						  $entrance_get="select * from entrances where user_id=".$row2['user_id'];
+						  $entrance_get="select * from entrances where user_id=".$row2['user_id']." and course_id=".$course_id;
 							 
 							 $entrance_result=mysqli_query($db,$entrance_get);
 							
