@@ -5136,7 +5136,85 @@ class PagesController extends AppController {
     public function downloadcandidatemscphsy() {
         $this->response->file(WWW_ROOT . 'files/MSc.Psychology-SelfFinancing.pdf', array('download' => true, 'name' => 'Rank list MSc.Psychology(Self Financing).pdf'));
     }
+public function generatemarks()
+{
+   $this->layout = 'generatemarks';
+    // $this->autoRender= false;
+        // $userid = $this->Session->read('User.userid');
+        $choice=$this->Choice->find('all');
+        if(!empty($choice)) {
+            $choice_result=$this->Choice->find('all',array(
+            'joins'=>array(
+                   array(
+                    'table'=>'users',
+                    'alias'=>'User',
+                    'type'=>'INNER',
+                    'conditions'=>array('User.frkUserID=Choice.user_id')
+                    ),
+                   array(
+                    'table'=>'final_communities',
+                    'alias'=>'Community',
+                    'type'=>'INNER',
+                    'conditions'=>array('Community.id=User.frkUserCommunity')
+                    ),
+                   array(
+                    'table'=>'reservations',
+                    'alias'=>'Reservation',
+                    'type'=>'INNER',
+                    'conditions'=>array('Reservation.frkUserID=User.frkUserID')
+                    ),
+                   array(
+                    'table'=>'applicants',
+                    'alias'=>'Applicant',
+                    'type'=>'INNER',
+                    'conditions'=>array('Applicant.frkApplicantID=User.frkUserID')
+                    ),
+                   array(
+                    'table'=>'marks',
+                    'alias'=>'Mark',
+                    'type'=>'INNER',
+                    'conditions'=>array('Mark.user_id=User.frkUserID')
+                    ),
+                   array(
+                    'table'=>'universities',
+                    'alias'=>'Universitie',
+                    'type'=>'INNER',
+                    'conditions'=>array('Universitie.id=Mark.university_id')
+                    ),
+                   array(
+                    'table'=>'degrees',
+                    'alias'=>'Degree',
+                    'type'=>'INNER',
+                    'conditions'=>array('Degree.id = Mark.degree_id')
+                    ),
+                   array(
+                    'table'=>'courses',
+                    'alias'=>'Course',
+                    'type'=>'INNER',
+                    'conditions'=>array('Course.frkCourseID=Choice.choices' )
+                    ),
+                   array(
+                    'table'=>'indexes',
+                    'alias'=>'Index',
+                    'type'=>'INNER',
+                    'conditions'=>array('Index.user_id=User.frkUserID','Index.course_id=Course.frkCourseID')
+                    )
+            ),
+            
+            
+            'fields'=> array('Choice.*','Index.*','Course.*','Universitie.*','Degree.*','Mark.*','Applicant.*','Community.*','User.*','Reservation.*'),
+            // 'group_by' => 'Course.frkCourseName'
+            //'order_by' =>  'Course.frkCourseID DESC'
+            // 'order' => array('Course.frkCourseID DESC' )
+            // 'order' => array('Course.frkCourseID DESC')
+            )
+            );
+        }
+        // pr($choice_result); exit;
+        // pr($choice_result[9]);pr($choice_result[10]);exit;
+            $this->set('All_result',$choice_result);
 
+   }
     public function encriptpassword() {
         $users = $this->User->find('all', array(
             'fields' => array(
