@@ -5080,6 +5080,9 @@ class PagesController extends AppController {
     public function downloadprospectus() {
         $this->response->file(WWW_ROOT . 'files/Prospectus2015-16.pdf', array('download' => true, 'name' => 'Farook College Prospectus 2015-16.pdf'));
     }
+    public function downloadphranklist(){
+        $this->response->file(WWW_ROOT . 'rank_lists/PH_List_PG.pdf', array('download' => true, 'name' => 'Rank List PH Candidates.pdf'));
+    }
     public function downloadproranklistmaeconomics() {
         //$this->response->file(WWW_ROOT . 'files/MA-Economics.pdf', array('download' => true, 'name' => 'Provisional Rank List Ma.Economics.pdf'));
         $this->response->file(WWW_ROOT . 'rank_lists/M.A_Economics.pdf', array('download' => true, 'name' => 'Rank List Ma.Economics.pdf'));
