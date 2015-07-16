@@ -5467,12 +5467,14 @@ public function generatemarks()
         $choice_subjects=array();
         $choice_str=$choice_result[0]['Choice']['choices'];
         $choice_arr=explode(',',$choice_str);
+        
+        $this->Session->write('choice_array',$choice_arr);
         $choice_count=count($choice_arr);
-
+        
         $choices_name=array();
         for($i=0;$i<$choice_count;$i++) {
             $result=$this->Course->find('first',array('conditions'=>array('frkCourseID'=>$choice_arr[$i])));
-            $choices_name[$i+1]=$result['Course']['frkCourseName'];
+            $choices_name[$i]=$result['Course']['frkCourseName'];
         }
         $payment=$this->Payment->find('first',array('conditions'=>array('u_id'=>$this->Session->read('User.userid'))));
         if(count($payment)>0) {
@@ -6317,14 +6319,17 @@ public function choice_edit() {
 // pr($hallticket); exit;
 
    }
-   public function generatepdfapplication()
+  public function generatepdfapplication($choice_select)
     {
+//        echo $choice_select; exit;
         $this->layout = 'generatepdfapplication';
     // $this->autoRender= false;
         $userid = $this->Session->read('User.userid');
+
         $choice=$this->Choice->find('all',array('conditions'=>array('user_id'=>$userid)));
       
         if(!empty($choice)) {
+
             $choice_result=$this->Choice->find('all',array(
             'conditions'=>array('Choice.user_id'=>$userid),
             'joins'=>array(array(
@@ -6394,6 +6399,13 @@ public function choice_edit() {
                     'type'=>'INNER',
                     'conditions'=>array('Reservation.frkUserID=User.frkUserID')
                     ),
+                   // array(
+                   //  'table'=>'academicdetails',
+                   //  'alias'=>'Academicdetail',
+                   //  'type'=>'INNER',
+                   //  'conditions'=>array('Academicdetail.frkUserID=User.frkUserID')
+                   //  ),
+                   
                    array(
                     'table'=>'applicants',
                     'alias'=>'Applicant',
@@ -6410,7 +6422,7 @@ public function choice_edit() {
                     'table'=>'streams',
                     'alias'=>'Stream',
                     'type'=>'INNER',
-                    'conditions'=>array('Stream.id=Applicant.plusTwoStream')
+                    'conditions'=>array('Stream.board_id=Applicant.plusTwoStream')
                     ),
                    array(
                     'table'=>'marks',
@@ -6430,44 +6442,23 @@ public function choice_edit() {
                     'type'=>'INNER',
                     'conditions'=>array('Degree.id=Mark.degree_id')
                     ),
-                    array(
+                   array(
                     'table'=>'courses',
-                    'alias'=>'Cours',
+                    'alias'=>'Course',
                     'type'=>'INNER',
-                    'conditions'=>array('Cours.frkCourseID=Choice.choices')
+                    'conditions'=>array('Course.frkCourseID'=>$choice_select)
                     ),
                    array(
                     'table'=>'indexes',
                     'alias'=>'Index',
                     'type'=>'INNER',
-                    'conditions'=>array('Index.user_id=User.frkUserID'),
-                    'conditions'=>array('Index.course_id=Choice.choices')
+                    'conditions'=>array('Index.user_id=User.frkUserID','Index.course_id'=>$choice_select)
                     )
 
             ),
-            'fields'=>array('Choice.*',
-                            // 'Academicdetail.*',
-                            'Universitie.*',
-                            'Degree.*',
-                            'Mark.*',
-                            'Stream.*',
-                            'Applicant.*',
-                            'Board.*',
-                            'Community.*',
-                            'Religion.*',
-                            'User.*',
-                            'Countrie.*',
-                            'State.*',
-                            'District.*',
-                            'DistrictComm.*',
-                            'Final_communitie.*',
-                            'Caste.*',
-                            'Occupation.*',
-                            'Reservation.*',
-                            'Index.*',
-                            'Cours.*'
-                            )
+            'fields'=>array('Index.*','Course.*','Choice.*','Universitie.*','Degree.*','Mark.*','Stream.*','Applicant.*','Board.*','Community.*','Religion.*','User.*','Countrie.*','State.*','District.*','DistrictComm.*','Final_communitie.*','Caste.*','Occupation.*','Reservation.*')
             ));
+// pr($choice_result); exit;
   $from = new DateTime($choice_result[0]['User']['frkUserDOB']);
         $to   = new DateTime('today');
         $age  = $from->diff($to)->y;
@@ -6476,7 +6467,7 @@ public function choice_edit() {
 $choice_result['age']=$age;
         }
         
-        // pr($choice_result[0]); exit;
+//         pr($choice_result[0]); exit;
             $this->set('All_result',$choice_result);
 
    }

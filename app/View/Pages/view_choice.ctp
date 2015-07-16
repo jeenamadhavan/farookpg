@@ -14,56 +14,55 @@
 				<th>Gender :</th>
 				<td><?php echo $choices[0]['User']['frkUserGender']; ?></td>
 			</tr>
-                        <tr>
-				<th>Date of Birth:</th>
-				<td><?php echo $choices[0]['User']['frkUserDOB']; ?></td>
-			</tr>
-			<!--<tr>
+			<tr>
 				<th>Community :</th>
 				<td><?php echo $choices[0]['Community']['name']; ?></td>
 			</tr>
 			<tr>
 				<th>Religion :</th>
 				<td><?php echo $choices[0]['Religion']['name']; ?></td>
-			</tr>-->
+			</tr>
 			<tr>
 				<th>Choices :</th>
 				<td>
 					<?php $count=1; ?>
-					<?php foreach($choices_name as $choice) { ?>
-						<?php echo $count; ?>. <?php echo $choice; ?><br>
+					<?php  foreach($choices_name as $choice) { ?>
+						<?php echo $count; ?>. <?php echo $choice;?><br>
 					<?php $count++; } ?>
+					<?php count($choices_name); ?>
 				</td>
+
 			</tr>
+			<!--<tr></tr>-->
 			<tr>
 				<th>Total Amount :</th>
 				<td><?php echo $choices[0]['Choice']['amount']; ?></td>
 			</tr>
 		</table>
-                <?php if(!isset($cannot_fill)) { // if payment verified
-                	if(isset($edit_form) && $edit_form==1) {
-                		echo $this->Html->link('Edit Application',array('controller'=>'pages','action'=>'primary_registration'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;','disabled'=>'disabled'));
-                	} else {
-                		echo $this->Html->link('Fill Application',array('controller'=>'pages','action'=>'primary_registration'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;','disabled'=>'disabled'));
-                	}
-                	if(isset($choiceSelect))
-                	{
-                		echo $this->Html->link('HallTicket',array('controller'=>'pages','action'=>'generatehallticket'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;','disabled'=>'disabled'));
-                	}
-
-
+		<?php
+			// pr($choices_name);exit();
+			foreach($choices_name as $choice_no=>$choice){
+				$n=$this->Session->read('choice_array');
+			echo $this->Html->link('Download '.$choice.' Pdf',array('controller'=>'pages','action'=>'generatepdfapplication/'.$n[$choice_no]),array('class'=>'btn btn-success pull-left','style'=>'margin-right: 5px;'));
 			
+			
+			}
+	
+
+		 ?>
+		<?php if(!isset($cannot_fill)) { // if payment verified
+			echo $this->Html->link('Fill Application',array('controller'=>'pages','action'=>'primary_registration'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;'));
 		} else { ?>
+		<?php echo $this->Html->link('Confirm Payment',array('controller'=>'pages','action'=>'after_payment'),array('class'=>'btn btn-danger pull-right')); ?>
+		<?php echo $this->Html->link('Proceed to Payment',array('controller'=>'pages','action'=>'befor_payment'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;')); ?>
 		<?php if(isset($cannot_edit)&&$cannot_edit==1) {
-			echo $this->Html->link('Confirm Payment',array('controller'=>'pages','action'=>'after_payment'),array('class'=>'btn btn-danger pull-right','disabled'=>'disabled')); ?>
-		<?php echo $this->Html->link('Proceed to Payment',array('controller'=>'pages','action'=>'befor_payment'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;','disabled'=>'disabled')); ?>
-		<?php 
-		echo $this->Html->link('Edit',array('controller'=>'pages','action'=>'choice_edit'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;','disabled'=>'disabled')); 
-		} else {
-		   echo $this->Html->link('Confirm Payment',array('controller'=>'pages','action'=>'after_payment'),array('class'=>'btn btn-danger pull-right'));
-		  echo  $this->Html->link('Proceed to Payment',array('controller'=>'pages','action'=>'befor_payment'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;'));
-		echo $this->Html->link('Edit',array('controller'=>'pages','action'=>'choice_edit'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;')); 
-		} } ?>
+			 echo $this->Html->link('Edit',array('controller'=>'pages','action'=>'choice_edit'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;','disabled'=>'disabled')); 
+			} else { 
+		echo $this->Html->link('Edit',array('controller'=>'pages','action'=>'choice_edit'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;'));
+		} 
+		} // ?>
+		
+
 
 	</div>
 </div>
