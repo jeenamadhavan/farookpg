@@ -554,7 +554,7 @@ class IndexesController extends AppController {
 		  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
 		 						mysqli_query($db,$inerst_sql);
 		  					}
-					 } else if($course_name=='M.Sc Computer Science' || $course_name=='MCJ(Self Financing)' || $course_name=='MSc. Psychology(Self Financing)') {
+					 } else if($course_name=='M.Sc Computer Science') {
 						 $entrance_get="select * from entrances where user_id=".$row2['user_id']." and course_id=".$course_id;
 							 
 							 $entrance_result=mysqli_query($db,$entrance_get);
@@ -562,7 +562,49 @@ class IndexesController extends AppController {
 							 if(mysqli_num_rows($entrance_result)>0) {
 								 while($entrance_row=mysqli_fetch_array($entrance_result)) {
 									 $index_temp=$entrance_row['mark']; 
-									 $index=$index_temp*10;
+									 $index=$index_temp*5;
+									 
+									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+								 }
+							 }
+					 } else if($course_name=='MCJ(Self Financing)') {
+						 $entrance_get="select * from entrances where user_id=".$row2['user_id']." and course_id=".$course_id;
+							 
+							 $entrance_result=mysqli_query($db,$entrance_get);
+							
+							 if(mysqli_num_rows($entrance_result)>0) {
+								 while($entrance_row=mysqli_fetch_array($entrance_result)) {
+									 $index_temp=$entrance_row['mark']; 
+									 $index=$index_temp*20;
+									 
+									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+								 }
+							 }
+					 } else if($course_name=='MSc. Psychology(Self Financing)') {
+						 $entrance_get="select * from entrances where user_id=".$row2['user_id']." and course_id=".$course_id;
+							 
+							 $entrance_result=mysqli_query($db,$entrance_get);
+							
+							 if(mysqli_num_rows($entrance_result)>0) {
+								 while($entrance_row=mysqli_fetch_array($entrance_result)) {
+									 $index_temp=$entrance_row['mark']; 
+									 $index=$index_temp*5;
 									 
 									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
@@ -1088,7 +1130,7 @@ class IndexesController extends AppController {
 				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
 				 						mysqli_query($db,$inerst_sql);
 				  					}
-					  } else if($course_name=='M.Sc Computer Science' || $course_name=='MCJ(Self Financing)' || $course_name=='MSc. Psychology(Self Financing)') {
+					  } else if($course_name=='M.Sc Computer Science') {
 						  $entrance_get="select * from entrances where user_id=".$row2['user_id']." and course_id=".$course_id;
 							 
 							 $entrance_result=mysqli_query($db,$entrance_get);
@@ -1096,7 +1138,49 @@ class IndexesController extends AppController {
 							 if(mysqli_num_rows($entrance_result)>0) {
 								 while($entrance_row=mysqli_fetch_array($entrance_result)) {
 									 $index_temp=$entrance_row['mark']; 
-									 $index=$index_temp*10;
+									 $index=$index_temp*5;
+									 
+									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+								 }
+							 }
+					  } else if($course_name=='MCJ(Self Financing)') {
+						  $entrance_get="select * from entrances where user_id=".$row2['user_id']." and course_id=".$course_id;
+							 
+							 $entrance_result=mysqli_query($db,$entrance_get);
+							
+							 if(mysqli_num_rows($entrance_result)>0) {
+								 while($entrance_row=mysqli_fetch_array($entrance_result)) {
+									 $index_temp=$entrance_row['mark']; 
+									 $index=$index_temp*20;
+									 
+									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  					$get_result=mysqli_query($db,$get_sql);
+				  					if(mysqli_num_rows($get_result)>0) {
+				  						$update_sql="update indexes set index='".$index."' where user_id=".$row2['user_id']." and course_id=".$course_id;
+				  						mysqli_query($db,$update_sql);
+				  					} else {
+				  						$inerst_sql="insert into indexes values ('','".$row2['user_id']."','".$course_id."','".$index."')";
+				 						mysqli_query($db,$inerst_sql);
+				  					}
+								 }
+							 }
+					  } else if($course_name=='MSc. Psychology(Self Financing)') {
+						  $entrance_get="select * from entrances where user_id=".$row2['user_id']." and course_id=".$course_id;
+							 
+							 $entrance_result=mysqli_query($db,$entrance_get);
+							
+							 if(mysqli_num_rows($entrance_result)>0) {
+								 while($entrance_row=mysqli_fetch_array($entrance_result)) {
+									 $index_temp=$entrance_row['mark']; 
+									 $index=$index_temp*5;
 									 
 									 $get_sql="select * from indexes where user_id=".$row2['user_id']." and course_id=".$course_id;
 				  					$get_result=mysqli_query($db,$get_sql);
