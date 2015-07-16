@@ -5127,6 +5127,16 @@ class PagesController extends AppController {
         $this->response->file(WWW_ROOT . 'files/candidate_list.pdf', array('download' => true, 'name' => 'ListOfCandidates_AdmissionTest.pdf'));
     }
 
+    public function downloadproranklistmsccomputer() {
+        $this->response->file(WWW_ROOT . 'files/M.ScComputerScience.pdf', array('download' => true, 'name' => 'Rank list M.ScComputerScience.pdf'));
+    }
+    public function downloadcandidatemcj() {
+        $this->response->file(WWW_ROOT . 'files/MCJ-SelfFinancing.pdf', array('download' => true, 'name' => ' Rank list MCJ(SelfFinancing).pdf'));
+    }
+    public function downloadcandidatemscphsy() {
+        $this->response->file(WWW_ROOT . 'files/MSc.Psychology-SelfFinancing.pdf', array('download' => true, 'name' => 'Rank list MSc.Psychology(Self Financing).pdf'));
+    }
+
     public function encriptpassword() {
         $users = $this->User->find('all', array(
             'fields' => array(

@@ -126,6 +126,28 @@ $randnum=rand ( 1 ,5 );
                   </p>
                 </td>
               </tr>
+
+              <tr>
+                <td colspan="2">
+                   <p><?php echo $this->Html->link(__('Rank List for M.Sc ComputerScience'), "/pages/downloadproranklistmsccomputer", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+                  </p>
+                </td>
+                </tr>
+                <tr>
+                <td colspan="2">
+                  <p><?php echo $this->Html->link(__('Rank List for MCJ(Self Financing)'), "/pages/downloadcandidatemcj", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                   <p><?php echo $this->Html->link(__('Rank List MSc.Psychology(Self Financing).pdf '), "/pages/downloadcandidatemscphsy", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
+                  </p>
+                </td>
+                
+              </tr>
+
+
               <tr>
                 <td colspan="2">
                    <p><?php echo $this->Html->link(__('Rank List for PH Candidates '), "/pages/downloadphranklist", array('escape' => false,'class'=>'btn btn-success btn-lg')) ?>
