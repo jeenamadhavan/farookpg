@@ -118,8 +118,8 @@ public function generatepdf()  {
     
     $segments = explode('/', trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/'));
 $numSegments = count($segments); 
-$currentSegment = $segments[$numSegments - 1];
-
+ $currentSegment = $segments[$numSegments - 2];
+ $currentSegment1=$segments[$numSegments - 1];
 
     
   
@@ -127,6 +127,7 @@ $currentSegment = $segments[$numSegments - 1];
     // $this->autoRender= false;
         //$userid = $this->Session->read('User.userid');
         $userid = $currentSegment;
+        $choiceid=$currentSegment1;
         $choice=$this->Choice->find('all',array('conditions'=>array('user_id'=>$userid)));
       
         if(!empty($choice)) {
@@ -245,8 +246,8 @@ $currentSegment = $segments[$numSegments - 1];
                     'table'=>'indexes',
                     'alias'=>'Index',
                     'type'=>'LEFT',
-                    'conditions'=>array('Index.user_id=User.frkUserID'),
-                    'conditions'=>array('Index.course_id=Choice.choices')
+                    'conditions'=>array('Index.user_id=User.frkUserID','Index.course_id'=>$choiceid),
+//                    'conditions'=>array()
                     )
 
             ),
@@ -290,7 +291,7 @@ $choice_result['age']=$age;
 
         if ($this->Session->read('User.admin') == 1) {
 
-            $sql = 'select indexes.id,choices.application_no,courses.frkCourseID,users.frkUserID,users.frkUserName,users.frkUserMobile,users.frkUserEmail,courses.frkCourseName as coursename,indexes.* from indexes   LEFT JOIN users ON(users.frkUserID=indexes.user_id) LEFT JOIN courses ON(courses.frkCourseID=indexes.course_id) LEFT JOIN choices ON(choices.user_id=indexes.user_id)  ';
+            $sql = 'select indexes.id,indexes.course_id,choices.application_no,courses.frkCourseID,users.frkUserID,users.frkUserName,users.frkUserMobile,users.frkUserEmail,courses.frkCourseName as coursename,indexes.* from indexes   LEFT JOIN users ON(users.frkUserID=indexes.user_id) LEFT JOIN courses ON(courses.frkCourseID=indexes.course_id) LEFT JOIN choices ON(choices.user_id=indexes.user_id) ';
             $indexes = $this->User->query($sql);  
             $this->set('indexes', $indexes);
             $options = $this->Course->find('list', array('fields' => array('frkCourseID', 'frkCourseName')));
