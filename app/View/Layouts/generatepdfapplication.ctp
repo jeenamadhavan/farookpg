@@ -105,12 +105,12 @@ doc.text(70, 77, '<?php echo $All_result[0]['User']['frkUserGender'];  ?>');
 
 doc.text(13, 84, '3');
 doc.text(20, 84, 'Nationality : <?php echo $All_result[0]['Countrie']['country_name'];  ?>');
-doc.text(20, 90, 'Taluk :  <?php echo $All_result[0]['User']['frkUserTaluk'];  ?>');
+doc.text(20, 90, 'Taluk : ');
 
 doc.text(70, 84, 'State :  <?php echo $All_result[0]['State']['name']; ?>');
 doc.text(70, 90, 'District : <?php echo $All_result[0]['District']['name']; ?>');
 
-doc.text(130, 84, 'Village : <?php echo $All_result[0]['District']['name']; ?>');
+doc.text(130, 84, 'Village : ');
 doc.text(130, 90, 'Blood Group : <?php echo $All_result[0]['User']['frkUserBloodGroup']; ?>');
 
 doc.line(10, 92, 200, 92); // horizontal line
@@ -126,7 +126,7 @@ doc.text(112, 96, 'Address for Communicatin');
 doc.line(10, 98, 200, 98); // horizontal line
 doc.text(112, 102, '<?php echo $All_result[0]['User']['frkUserCommAddressline1']; ?>');
 doc.text(112, 107, '<?php echo $All_result[0]['User']['frkUserCommAddressline2']; ?>');
-doc.text(112, 112, 'P.O : <?php echo $All_result[0]['User']['frkUserCommPincode']; ?>');
+doc.text(112, 112, 'P.O : <?php echo $All_result[0]['User']['frkUserTaluk']; ?>');
 doc.text(112, 117, 'Dist : <?php echo $All_result[0]['DistrictComm']['name']; ?>');
 doc.text(157, 117, 'Pin Code : <?php echo $All_result[0]['User']['frkUserCommPincode']; ?>');
 doc.line(10, 120, 200,120); // horizontal line
@@ -167,7 +167,7 @@ doc.text(110, 145, '<?php echo $All_result[0]['Final_communitie']['name']; ?> /<
 doc.line(10, 147, 200,147); // horizontal line
 
 doc.text(13, 151, '8');
-doc.text(20, 151, 'Name and address of Parent/Guardian guardian, if any ');
+doc.text(20, 151, 'Name and address of Parent/Guardian guardian, if any  :   <?php echo $All_result[0]['User']['frkParentName']; ?>');
 doc.text(20, 156, '<?php echo $All_result[0]['User']['frkUserAddressline1']; ?> ,<?php echo $All_result[0]['User']['frkUserAddressline2']; ?> ,<?php echo $All_result[0]['User']['frkUserTaluk']; ?> ');
 doc.text(20, 161, 'Phone : STD Code : ');
 doc.text(50, 161, '<?php echo $All_result[0]['User']['frkPhoneStd']; ?> ');
@@ -387,7 +387,9 @@ if(MorG=="G")
                 //subject name
                 doc.text(20, 92, 'common_sub :- <?php echo $All_result[0]['Mark']['common_sub']; ?>');
                 doc.text(20, 100, 'com_other_sub :- <?php echo $All_result[0]['Mark']['com_other_sub']; ?>');
-                doc.text(20, 108, 'Open Course: :- <?php echo $All_result[0]['Mark']['open_sub']; ?>');
+                var opencourse="<?php echo $All_result[0]['Mark']['open_sub']; ?>";
+                opencourse=opencourse.substring(0,37);
+                doc.text(20, 108, 'Open Course: :-'+opencourse);
                 doc.text(20, 116, 'main1_sub :-<?php echo $All_result[0]['Mark']['main1_sub']; ?>');
                 doc.text(20, 124, 'Complementary Course-I :- <?php echo $All_result[0]['Mark']['comp1_sub']; ?>');
                 doc.text(20, 132, 'comp2_sub :- <?php echo $All_result[0]['Mark']['comp2_sub']; ?>');    
@@ -413,7 +415,9 @@ if(MorG=="G")
                 //subject name
                 doc.text(20, 92, 'common_sub :- <?php echo $All_result[0]['Mark']['common_sub']; ?>');
                 doc.text(20, 100, 'com_other_sub :- <?php echo $All_result[0]['Mark']['com_other_sub']; ?>');
-                doc.text(20, 108, 'Open Course: :-<?php echo $All_result[0]['Mark']['open_sub']; ?>');
+                var opencourse="<?php echo $All_result[0]['Mark']['open_sub']; ?>";
+                opencourse=opencourse.substring(0,37);
+                doc.text(20, 108, 'Open Course: :-'+opencourse);
                 doc.text(20, 116, 'main1_sub:-<?php echo $All_result[0]['Mark']['main1_sub']; ?>');
                 doc.text(20, 124, 'main2_sub :-<?php echo $All_result[0]['Mark']['main2_sub']; ?>');
                 doc.text(20, 132, 'Complementary Course-I :-<?php echo $All_result[0]['Mark']['comp1_sub']; ?>');     
@@ -437,7 +441,9 @@ if(MorG=="G")
                 //subject nameabduravoof@gmail.com
                 doc.text(20, 92, 'common_sub :- <?php echo $All_result[0]['Mark']['common_sub']; ?>');
                 doc.text(20, 100, 'com_other_sub :-<?php echo $All_result[0]['Mark']['com_other_sub']; ?>');
-                doc.text(20, 108, 'Open Course: :-<?php echo $All_result[0]['Mark']['open_sub']; ?>');
+                 var opencourse="<?php echo $All_result[0]['Mark']['open_sub']; ?>";
+                opencourse=opencourse.substring(0,37);
+                doc.text(20, 108, 'Open Course: :-'+opencourse);
                 doc.text(20, 116, 'main1_sub :-<?php echo $All_result[0]['Mark']['main1_sub']; ?>');
                 doc.text(20, 124, 'main2_sub :-<?php echo $All_result[0]['Mark']['main2_sub']; ?>');
                 doc.text(20, 132, 'main3_sub :-<?php echo $All_result[0]['Mark']['main3_sub']; ?>');     
@@ -457,7 +463,10 @@ if(MorG=="G")
                 doc.text(170, 132, '<?php echo $All_result[0]['Mark']['main3_cgpa']; ?>'); 
             }
         doc.text(20, 140, 'Overall Credit & CGPA of the Programme'); 
+        doc.text(130, 140, '120'); 
+        doc.text(170, 140, '<?php echo $All_result[0]['Mark']['overall_cgpa']; ?>'); 
         doc.text(20, 148, 'Maximum CGPA'); 
+        doc.text(170, 148, '4'); 
     }
 if(MorG=="M")
     {   doc.text(20, 78, 'Marks'); 
@@ -621,7 +630,7 @@ doc.setFontSize(9);
 doc.text(20, 288, 'Receipt No:_______________dated_________________Ad.No___________');
 doc.setFontSize(8);
 doc.text(140, 288, 'Office Assistant');
-doc.save('application.pdf');
+doc.save('<?php echo $All_result[0]['User']['frkUserName'];  ?>.pdf');
 
 
 </script>
