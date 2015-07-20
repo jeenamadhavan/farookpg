@@ -6348,7 +6348,7 @@ public function choice_edit() {
                array(
                     'table'=>'religions',
                     'alias'=>'Religion',
-                    'type'=>'LFET',
+                    'type'=>'LEFT',
                     'conditions'=>array('Religion.id=User.frkUserReligion')
                     ),
                array(
@@ -6463,9 +6463,14 @@ public function choice_edit() {
         $to   = new DateTime('today');
         $age  = $from->diff($to)->y;
        
-
+//asdasd
 $choice_result['age']=$age;
         }
+        
+//         pr($choice_result[0]); exit;
+            $this->set('All_result',$choice_result);
+
+   }
         
 //         pr($choice_result[0]); exit;
             $this->set('All_result',$choice_result);
