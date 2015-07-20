@@ -57,7 +57,7 @@
                                             echo $this->Form->input('application_no', array('label' => false, 'class' => 'form-control',  'type' => 'hidden')); 
                                             ?>
                                             <?php //echo $row['choices']['application_no'] ?>
-                                            <?php echo $this->Html->link($row['choices']['application_no'], "/admins/generatepdf/".$row['indexes']['user_id'], array('escape' => false)) ?>
+                                              <?php echo $this->Html->link($row['choices']['application_no'], "/admins/generatepdf/".$row['indexes']['user_id']."/".$row['courses']['frkCourseID'], array('escape' => false)) ?>
                                         </td>
                                         
                                         <td>
