@@ -6410,7 +6410,7 @@ public function choice_edit() {
                     'table'=>'applicants',
                     'alias'=>'Applicant',
                     'type'=>'LEFT',
-                    'conditions'=>array('Applicant.frkApplicantID=User.frkUserID')
+                    'conditions'=>array('Applicant.frkUserID=User.frkUserID')
                     ),
                    array(
                     'table'=>'boards',
