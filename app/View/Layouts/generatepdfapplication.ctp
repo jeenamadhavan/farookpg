@@ -621,7 +621,7 @@ doc.setFontSize(9);
 doc.text(20, 288, 'Receipt No:_______________dated_________________Ad.No___________');
 doc.setFontSize(8);
 doc.text(140, 288, 'Office Assistant');
-doc.save('Test.pdf');
+doc.save('application.pdf');
 
 
 </script>
