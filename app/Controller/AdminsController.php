@@ -142,109 +142,109 @@ $currentSegment = $segments[$numSegments - 1];
                 array(
                     'table'=>'final_communities',
                     'alias'=>'Community',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('Community.id=User.frkUserCommunity')
                     ),
                array(
                     'table'=>'religions',
                     'alias'=>'Religion',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('Religion.id=User.frkUserReligion')
                     ),
                array(
                     'table'=>'countries',
                     'alias'=>'Countrie',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('Countrie.id=User.frkUserNationality_ID')
                     ),
                 array(
                     'table'=>'states',
                     'alias'=>'State',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('State.id=User.frkUserState')
                     ),
                  array(
                     'table'=>'districts',
                     'alias'=>'District',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('District.id=User.frkUserDistrict')
                     ),
                  array(
                     'table'=>'districts',
                     'alias'=>'DistrictComm',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('DistrictComm.id=User.frkUserCommDistrict')
                     ),
                  array(
                     'table'=>'final_communities',
                     'alias'=>'Final_communitie',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('Final_communitie.id=User.frkUserCommunity')
                     ),
                    array(
                     'table'=>'castes',
                     'alias'=>'Caste',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('Caste.id=User.frkUserCasteID')
                     ),
                    array(
                     'table'=>'occupations',
                     'alias'=>'Occupation',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('Occupation.id=User.frkParentOccupation')
                     ),
                    array(
                     'table'=>'reservations',
                     'alias'=>'Reservation',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('Reservation.frkUserID=User.frkUserID')
                     ),
                    array(
                     'table'=>'applicants',
                     'alias'=>'Applicant',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('Applicant.frkApplicantID=User.frkUserID')
                     ),
                    array(
                     'table'=>'boards',
                     'alias'=>'Board',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('Board.id=Applicant.plusTwoBoard')
                     ),
                    array(
                     'table'=>'streams',
                     'alias'=>'Stream',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('Stream.id=Applicant.plusTwoStream')
                     ),
                    array(
                     'table'=>'marks',
                     'alias'=>'Mark',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('Mark.user_id=User.frkUserID')
                     ),
                    array(
                     'table'=>'universities',
                     'alias'=>'Universitie',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('Universitie.id=Mark.university_id')
                     ),
                    array(
                     'table'=>'degrees',
                     'alias'=>'Degree',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('Degree.id=Mark.degree_id')
                     ),
                     array(
                     'table'=>'courses',
                     'alias'=>'Cours',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('Cours.frkCourseID=Choice.choices')
                     ),
                    array(
                     'table'=>'indexes',
                     'alias'=>'Index',
-                    'type'=>'INNER',
+                    'type'=>'LEFT',
                     'conditions'=>array('Index.user_id=User.frkUserID'),
                     'conditions'=>array('Index.course_id=Choice.choices')
                     )
