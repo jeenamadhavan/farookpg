@@ -290,7 +290,7 @@ $choice_result['age']=$age;
 
         if ($this->Session->read('User.admin') == 1) {
 
-            $sql = 'select indexes.id,choices.application_no,courses.frkCourseID,users.frkUserID,users.frkUserName,users.frkUserMobile,users.frkUserEmail,courses.frkCourseName as coursename,indexes.* from indexes   LEFT JOIN users ON(users.frkUserID=indexes.user_id) LEFT JOIN courses ON(courses.frkCourseID=indexes.course_id) LEFT JOIN choices ON(choices.user_id=indexes.user_id) group by indexes.user_id ';
+            $sql = 'select indexes.id,choices.application_no,courses.frkCourseID,users.frkUserID,users.frkUserName,users.frkUserMobile,users.frkUserEmail,courses.frkCourseName as coursename,indexes.* from indexes   LEFT JOIN users ON(users.frkUserID=indexes.user_id) LEFT JOIN courses ON(courses.frkCourseID=indexes.course_id) LEFT JOIN choices ON(choices.user_id=indexes.user_id)  ';
             $indexes = $this->User->query($sql);  
             $this->set('indexes', $indexes);
             $options = $this->Course->find('list', array('fields' => array('frkCourseID', 'frkCourseName')));
