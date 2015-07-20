@@ -559,7 +559,7 @@ doc.setFontType("normal");
 doc.text(13, 164, 'Documents in original to be produced at the time of admission:'); 
 doc.setFontSize(8);
 // doc.rect(24,168,5,4);
-doc.text(30, 170, '1. Mark sheet of +2 course'); 
+doc.text(30, 170, '1. Degree Mark/Grade sheet'); 
 // doc.rect(24,175,5,4);
 doc.text(30, 174, '2. T.C & Conduct Certificate'); 
 // doc.rect(24,181,5,4);
