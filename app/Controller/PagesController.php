@@ -6471,10 +6471,5 @@ $choice_result['age']=$age;
             $this->set('All_result',$choice_result);
 
    }
-        
-//         pr($choice_result[0]); exit;
-            $this->set('All_result',$choice_result);
-
-   }
 
 }
