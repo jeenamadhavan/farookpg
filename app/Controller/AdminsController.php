@@ -96,7 +96,22 @@ class AdminsController extends AppController {
     public function index() {
         
     }
-   
+   public function get_castes() {
+      $community_id=$this->data['cummunity_id'];
+       $userid=$this->data['userid'];
+        $castes=$this->Caste->find('list',array('conditions'=>array('reservation_category_id'=>$community_id),'fields'=>array('id','name')));
+        
+        $result=$this->User->find('first',array(
+            'conditions'=>array('frkUserID'=>$userid),
+            'fields'=>array('User.frkUserCasteID')));
+       
+        if($result['User']['frkUserCasteID']>0) {
+            $this->set('caste',$result['User']['frkUserCasteID']);
+            
+        }
+        $this->set('castes',$castes);
+        $this->render('get_castes','ajax');
+      }
     public function checkpasswords() {
 
         if (strcmp($this->request->data['User']['frkUserPassword'], $this->request->data['User']['frkRepeatUserPassword']) == 0) {
@@ -1088,6 +1103,7 @@ class AdminsController extends AppController {
             'boards' => $boards,
         );
         $this->set('universities',$universities);
+        $this->set('userid',$userid);
         $this->set('degrees',$degrees);
         $this->set($setarry);
     }
