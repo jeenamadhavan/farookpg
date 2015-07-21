@@ -119,7 +119,7 @@ class AdminsController extends AppController {
         }
         return false;
     }
-     public function edit_applicant($userid=null) {
+      public function edit_applicant($userid=null) {
        if ($this->Session->read('User.admin') != 1) 
         {
             $this->Session->setFlash(__('Please Login!.'));
@@ -149,7 +149,7 @@ class AdminsController extends AppController {
         
             if(count($markTest)>0) {
                 $markDetails=$this->Mark->find('first',array(
-                    'conditions'=>array('user_id'=>$this->Session->read('User.userid')),
+                    'conditions'=>array('user_id'=>$userid),
                     'joins'=>array(array(
                         'table'=>'universities',
                         'alias'=>'University',
@@ -411,7 +411,7 @@ class AdminsController extends AppController {
                         return $this->redirect(array('action' => 'primary_registration'));
                     }*/
                 } else {
-                    $result=$this->Choice->find('first',array('conditions'=>array('user_id'=>$this->Session->read('User.userid')),
+                    $result=$this->Choice->find('first',array('conditions'=>array('user_id'=>$userid),
                         'fields'=>array('application_no')
                         ));
                     $ApplicationNumber=$result['Choice']['application_no'];
@@ -441,14 +441,14 @@ class AdminsController extends AppController {
                      
                 }
 
-                $marks=$this->Mark->find('first',array('conditions'=>array('user_id'=>$this->Session->read('User.userid'))));
+                $marks=$this->Mark->find('first',array('conditions'=>array('user_id'=>$userid)));
                 
                 if(empty($marks)) {
                     if($this->request->data['mark_grade']=='M') {
                         if($this->request->data['main_system']==1) {
                             if($this->request->data['PrimaryRegister']['degree']==2 || $this->request->data['PrimaryRegister']['degree']==4 || $this->request->data['PrimaryRegister']['degree']==5) { // B com or bba or bmmc
                             $markSaveData=array(
-                                'user_id'=>$this->Session->read('User.userid'),
+                                'user_id'=>$userid,
                                 'university_id'=>$this->request->data['PrimaryRegister']['University'],
                                 'degree_id'=>$this->request->data['PrimaryRegister']['degree'],
                                 'mark_grade'=>$this->request->data['mark_grade'],
@@ -471,7 +471,7 @@ class AdminsController extends AppController {
                         
                     } else {
                         $markSaveData=array(
-                                'user_id'=>$this->Session->read('User.userid'),
+                                'user_id'=>$userid,
                                 'university_id'=>$this->request->data['PrimaryRegister']['University'],
                                 'degree_id'=>$this->request->data['PrimaryRegister']['degree'],
                                 'mark_grade'=>$this->request->data['mark_grade'],
@@ -499,7 +499,7 @@ class AdminsController extends AppController {
 
                         } else if($this->request->data['main_system']==2) {
                             $markSaveData=array(
-                                'user_id'=>$this->Session->read('User.userid'),
+                                'user_id'=>$userid,
                                 'university_id'=>$this->request->data['PrimaryRegister']['University'],
                                 'degree_id'=>$this->request->data['PrimaryRegister']['degree'],
                                 'mark_grade'=>$this->request->data['mark_grade'],
@@ -526,7 +526,7 @@ class AdminsController extends AppController {
                             
                         } else if($this->request->data['main_system']==3) {
                             $markSaveData=array(
-                                'user_id'=>$this->Session->read('User.userid'),
+                                'user_id'=>$userid,
                                 'university_id'=>$this->request->data['PrimaryRegister']['University'],
                                 'degree_id'=>$this->request->data['PrimaryRegister']['degree'],
                                 'mark_grade'=>$this->request->data['mark_grade'],
@@ -556,7 +556,7 @@ class AdminsController extends AppController {
                         if($this->request->data['main_system']==1) {
                             //if($this->request->data['PrimaryRegister']['degree']!=2 && $this->request->data['PrimaryRegister']['degree']!=4 && $this->request->data['PrimaryRegister']['degree']!=5) { // Not B com, bba and bmmc
                             $markSaveData=array();
-                                $markSaveData['user_id']=$this->Session->read('User.userid');
+                                $markSaveData['user_id']=$userid;
                                 $markSaveData['university_id']=$this->request->data['PrimaryRegister']['University'];
                                 $markSaveData['degree_id']=$this->request->data['PrimaryRegister']['degree'];
                                 $markSaveData['mark_grade']=$this->request->data['mark_grade'];
@@ -676,7 +676,7 @@ class AdminsController extends AppController {
                         } else if($this->request->data['main_system']==2) {
                             $markSaveData=array();
 
-                                $markSaveData['user_id']=$this->Session->read('User.userid');
+                                $markSaveData['user_id']=$userid;
                                 $markSaveData['university_id']=$this->request->data['PrimaryRegister']['University'];
                                 $markSaveData['degree_id']=$this->request->data['PrimaryRegister']['degree'];
                                 $markSaveData['mark_grade']=$this->request->data['mark_grade'];
@@ -712,7 +712,7 @@ class AdminsController extends AppController {
 
                         } else if($this->request->data['main_system']==3) {
                             $markSaveData=array();
-                                $markSaveData['user_id']=$this->Session->read('User.userid');
+                                $markSaveData['user_id']=$userid;
                                 $markSaveData['university_id']=$this->request->data['PrimaryRegister']['University'];
                                 $markSaveData['degree_id']=$this->request->data['PrimaryRegister']['degree'];
                                 $markSaveData['mark_grade']=$this->request->data['mark_grade'];
@@ -752,13 +752,13 @@ class AdminsController extends AppController {
                     
                 } else if(!empty($marks) && isset($_GET['edit_marks'])) { //if marks exists
 
-                    $cond_marks=array('user_id'=>$this->Session->read('User.userid'));
+                    $cond_marks=array('user_id'=>$userid);
 
                     if($this->request->data['mark_grade']=='M') {
                         if($this->request->data['main_system']==1) {
                             if($this->request->data['PrimaryRegister']['degree']!=2 && $this->request->data['PrimaryRegister']['degree']!=4 && $this->request->data['PrimaryRegister']['degree']!=5) { // Not B com, bba and bmmc
                             $markSaveData=array(
-                                'user_id'=>"'".$this->Session->read('User.userid')."'",
+                                'user_id'=>"'".$userid."'",
                                 'university_id'=>"'".$this->request->data['PrimaryRegister']['University']."'",
                                 'degree_id'=>"'".$this->request->data['PrimaryRegister']['degree']."'",
                                 'mark_grade'=>"'".$this->request->data['mark_grade']."'",
@@ -785,7 +785,7 @@ class AdminsController extends AppController {
                         $core='Core';
                         $comp='Complementary';
                         $markSaveData=array(
-                                'user_id'=>"'".$this->Session->read('User.userid')."'",
+                                'user_id'=>"'".$userid."'",
                                 'university_id'=>"'".$this->request->data['PrimaryRegister']['University']."'",
                                 'degree_id'=>"'".$this->request->data['PrimaryRegister']['degree']."'",
                                 'mark_grade'=>"'".$this->request->data['mark_grade']."'",
@@ -809,7 +809,7 @@ class AdminsController extends AppController {
 
                         } else if($this->request->data['main_system']==2) {
                             $markSaveData=array(
-                                'user_id'=>"'".$this->Session->read('User.userid')."'",
+                                'user_id'=>"'".$userid."'",
                                 'university_id'=>"'".$this->request->data['PrimaryRegister']['University']."'",
                                 'degree_id'=>"'".$this->request->data['PrimaryRegister']['degree']."'",
                                 'mark_grade'=>"'".$this->request->data['mark_grade']."'",
@@ -835,7 +835,7 @@ class AdminsController extends AppController {
                             
                         } else if($this->request->data['main_system']==3) {
                             $markSaveData=array(
-                                'user_id'=>"'".$this->Session->read('User.userid')."'",
+                                'user_id'=>"'".$userid."'",
                                 'university_id'=>"'".$this->request->data['PrimaryRegister']['University']."'",
                                 'degree_id'=>"'".$this->request->data['PrimaryRegister']['degree']."'",
                                 'mark_grade'=>"'".$this->request->data['mark_grade']."'",
@@ -865,7 +865,7 @@ class AdminsController extends AppController {
                             $core='Core';
                             $comp='Complementary';
                             $markSaveData=array();
-                                $markSaveData['user_id']="'".$this->Session->read('User.userid')."'";
+                                $markSaveData['user_id']="'".$userid."'";
                                 $markSaveData['university_id']="'".$this->request->data['PrimaryRegister']['University']."'";
                                 $markSaveData['degree_id']="'".$this->request->data['PrimaryRegister']['degree']."'";
                                 $markSaveData['mark_grade']="'".$this->request->data['mark_grade']."'";
@@ -982,7 +982,7 @@ class AdminsController extends AppController {
                         } else if($this->request->data['main_system']==2) {
                             $markSaveData=array();
 
-                                $markSaveData['user_id']="'".$this->Session->read('User.userid')."'";
+                                $markSaveData['user_id']="'".$userid."'";
                                 $markSaveData['university_id']="'".$this->request->data['PrimaryRegister']['University']."'";
                                 $markSaveData['degree_id']="'".$this->request->data['PrimaryRegister']['degree']."'";
                                 $markSaveData['mark_grade']="'".$this->request->data['mark_grade']."'";
@@ -1017,7 +1017,7 @@ class AdminsController extends AppController {
 
                         } else if($this->request->data['main_system']==3) {
                             $markSaveData=array();
-                                $markSaveData['user_id']="'".$this->Session->read('User.userid')."'";
+                                $markSaveData['user_id']="'".$userid."'";
                                 $markSaveData['university_id']="'".$this->request->data['PrimaryRegister']['University']."'";
                                 $markSaveData['degree_id']="'".$this->request->data['PrimaryRegister']['degree']."'";
                                 $markSaveData['mark_grade']="'".$this->request->data['mark_grade']."'";
@@ -1057,7 +1057,7 @@ class AdminsController extends AppController {
                 
                 if(isset($_GET['edit_marks']) || empty($marks)) {
                     if($usersaved && $applicantsaved && $marksaved) {
-                        if($Indexes->indexing($this->Session->read('User.userid'))){
+                        if($Indexes->indexing($userid)){
                             $this->Session->setFlash(__('Data have been saved successfully, Now you can enter your Additional Information'));
                             return $this->redirect(array('action' => 'reservations'));
                         }
@@ -1068,7 +1068,7 @@ class AdminsController extends AppController {
                     }
                 } else {
                     if($usersaved && $applicantsaved) {
-                        if($Indexes->indexing($this->Session->read('User.userid'))){
+                        if($Indexes->indexing($userid)){
                             $this->Session->setFlash(__('Data have been saved successfully, Now you can enter your Additional Information'));
                             return $this->redirect(array('action' => 'reservations'));
                         }
@@ -1103,8 +1103,9 @@ class AdminsController extends AppController {
             'boards' => $boards,
         );
         $this->set('universities',$universities);
-        $this->set('userid',$userid);
         $this->set('degrees',$degrees);
+        $this->set('userid',$userid);
+        
         $this->set($setarry);
     }
     public function dashboard() {
