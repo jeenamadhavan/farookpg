@@ -2146,11 +2146,12 @@ $(document).ready(function () {
     $(document).ready(function(){
         $('#Community').change(function(){
             var BASEURL='<?php echo Router::url('/', true); ?>';
+            var userid='<?php echo $userid;?>';
             var cummunity_id = $(this).val();
             $.ajax({
-            url:BASEURL+"pages/get_castes",
+            url:BASEURL+"admins/get_castes",
             type:'POST',
-            data:'cummunity_id='+cummunity_id ,
+             data:'cummunity_id='+cummunity_id+'&userid='+userid,
             dataType: "html",
             async: false,
             success: function(result){
@@ -2164,10 +2165,11 @@ $(document).ready(function () {
        var BASEURL='<?php echo Router::url('/', true); ?>';
         if($('#Caste2').val()=='') {
             var cummunity_id = $('#Community').val();
+            var userid='<?php echo $userid;?>';
             $.ajax({
-            url:BASEURL+"pages/get_castes",
+            url:BASEURL+"admins/get_castes",
             type:'POST',
-            data:'cummunity_id='+cummunity_id ,
+            data:'cummunity_id='+cummunity_id+'&userid='+userid,
             dataType: "html",
             async: false,
             success: function(result){
