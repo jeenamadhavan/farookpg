@@ -44,11 +44,13 @@
                                             <?php echo $this->Html->link($row['choices']['application_no'], "/admins/generatepdf/".$row['indexes']['user_id']."/".$row['courses']['frkCourseID'], array('escape' => false)) ?>
                                         </td>
                                         
-                                        <td>
+                                         <td>
                                             <?php 
                                             echo $this->Form->input('name', array('label' => false, 'class' => 'form-control', 'type' => 'hidden','id' => 'name')); 
                                             ?>
-                                            <?php echo $row['users']['frkUserName']; ?>
+                                                                      <?php echo $this->Html->link($row['users']['frkUserName'], "/admins/edit_applicant/".$row['indexes']['user_id'], array('escape' => false)) ?>
+
+                                            
                                             
                                         </td>
                                         <td>
