@@ -120,6 +120,7 @@ class AdminsController extends AppController {
         return false;
     }
       public function edit_applicant($userid=null) {
+            $this->layout = 'admin';
        if ($this->Session->read('User.admin') != 1) 
         {
             $this->Session->setFlash(__('Please Login!.'));
