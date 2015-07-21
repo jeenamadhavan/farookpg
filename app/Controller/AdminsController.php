@@ -210,6 +210,7 @@ $choicesID=$this->request->data['courses'];
    }
    public function generatecourse()
    {
+        $this->layout = 'admin';
     if ($this->Session->read('User.admin') == 1) {
 
             $sql = 'select indexes.id,indexes.course_id,choices.application_no,courses.frkCourseID,users.frkUserID,users.frkUserName,users.frkUserMobile,users.frkUserEmail,courses.frkCourseName as coursename,indexes.* from indexes   LEFT JOIN users ON(users.frkUserID=indexes.user_id) LEFT JOIN courses ON(courses.frkCourseID=indexes.course_id) LEFT JOIN choices ON(choices.user_id=indexes.user_id) ';
