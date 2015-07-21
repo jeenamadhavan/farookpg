@@ -119,6 +119,111 @@ class AdminsController extends AppController {
         }
         return false;
     }
+    public function generatemarks()
+{
+
+   
+   $this->layout = 'generatemarks';
+   // pr($this->request->data);
+$choicesID=$this->request->data['courses'];
+// exit;
+
+
+    // $this->autoRender= false;
+        // $userid = $this->Session->read('User.userid');
+// echo $choicesID;
+        $choice=$this->Choice->find('all');
+        if(!empty($choice)) {
+            $choice_result=$this->Choice->find('all',array(
+            'joins'=>array(
+                   array(
+                    'table'=>'users',
+                    'alias'=>'User',
+                    'type'=>'INNER',
+                    'conditions'=>array('User.frkUserID=Choice.user_id','Choice.choices'=>$choicesID)
+                    ),
+                   array(
+                    'table'=>'final_communities',
+                    'alias'=>'Community',
+                    'type'=>'INNER',
+                    'conditions'=>array('Community.id=User.frkUserCommunity')
+                    ),
+                   array(
+                    'table'=>'reservations',
+                    'alias'=>'Reservation',
+                    'type'=>'INNER',
+                    'conditions'=>array('Reservation.frkUserID=User.frkUserID')
+                    ),
+                   array(
+                    'table'=>'applicants',
+                    'alias'=>'Applicant',
+                    'type'=>'INNER',
+                    'conditions'=>array('Applicant.frkApplicantID=User.frkUserID')
+                    ),
+                   array(
+                    'table'=>'marks',
+                    'alias'=>'Mark',
+                    'type'=>'INNER',
+                    'conditions'=>array('Mark.user_id=User.frkUserID')
+                    ),
+                   array(
+                    'table'=>'universities',
+                    'alias'=>'Universitie',
+                    'type'=>'INNER',
+                    'conditions'=>array('Universitie.id=Mark.university_id')
+                    ),
+                   array(
+                    'table'=>'degrees',
+                    'alias'=>'Degree',
+                    'type'=>'INNER',
+                    'conditions'=>array('Degree.id = Mark.degree_id')
+                    ),
+                   array(
+                    'table'=>'courses',
+                    'alias'=>'Course',
+                    'type'=>'INNER',
+                    'conditions'=>array('Course.frkCourseID=Choice.choices' )
+                    ),
+                   array(
+                    'table'=>'indexes',
+                    'alias'=>'Index',
+                    'type'=>'INNER',
+                    'conditions'=>array('Index.user_id=User.frkUserID','Index.course_id=Course.frkCourseID'),
+                    
+                    )
+            ),
+            
+            
+            'fields'=> array('Choice.*','Index.*','Course.*','Universitie.*','Degree.*','Mark.*','Applicant.*','Community.*','User.*','Reservation.*'),
+            // 'group_by' => 'Course.frkCourseName'
+            //'order_by' =>  'Course.frkCourseID DESC'
+            // 'order' => array('Course.frkCourseID DESC' )
+            // 'order' => array('Course.frkCourseID DESC')
+            'order'=>array('Index.index DESC'),
+            )
+            );
+        }
+        // pr($choice_result); exit;
+        // pr($choice_result[9]);pr($choice_result[10]);exit;
+            $this->set('All_result',$choice_result);
+
+   }
+   public function generatecourse()
+   {
+    if ($this->Session->read('User.admin') == 1) {
+
+            $sql = 'select indexes.id,indexes.course_id,choices.application_no,courses.frkCourseID,users.frkUserID,users.frkUserName,users.frkUserMobile,users.frkUserEmail,courses.frkCourseName as coursename,indexes.* from indexes   LEFT JOIN users ON(users.frkUserID=indexes.user_id) LEFT JOIN courses ON(courses.frkCourseID=indexes.course_id) LEFT JOIN choices ON(choices.user_id=indexes.user_id) ';
+            $indexes = $this->User->query($sql);  
+            $this->set('indexes', $indexes);
+            $options = $this->Course->find('list', array('fields' => array('frkCourseID', 'frkCourseName')));
+            $this->set('options', $options);
+            $this->render('generatecompletecourse', 'admin');
+        } else {
+            return $this->redirect(array('action' => 'adminlogin', 'controller' => 'admins'));
+        }
+   }
+    
+    
       public function edit_applicant($userid=null) {
             $this->layout = 'admin';
        if ($this->Session->read('User.admin') != 1) 
