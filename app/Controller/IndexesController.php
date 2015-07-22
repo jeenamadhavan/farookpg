@@ -1377,8 +1377,8 @@ class IndexesController extends AppController {
 	}
 	
 public function ranking(){
-        
-        $db = mysqli_connect("farookpg.cbj29qizqyan.ap-southeast-1.rds.amazonaws.com", "mentor", "m3nt0r#DB", "fkpg_db") or die("No db connection");
+       $this->autorender=false; 
+        	$db = mysqli_connect("farookpg.cbj29qizqyan.ap-southeast-1.rds.amazonaws.com", "mentor", "m3nt0r#DB", "fkpg_db") or die("No db connection");
         //$db = mysql_connect("localhost", "root", "mad123") or die("No db connection");
   //mysql_select_db("fkpgdb") or die("No db selected");
 
@@ -1399,8 +1399,9 @@ public function ranking(){
     }
 
   }
+ 
     }
-    
+   
 
     //indexing();
 
