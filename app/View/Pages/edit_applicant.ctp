@@ -1412,7 +1412,7 @@ $randnum=rand ( 1 ,5 );
                             </div> 
                         </div><br><br><br>
                         <?php echo $this->Form->Submit('Save & Proceed', array('class'=>'btn btn-success pull-right')); ?>
-                        <?php echo $this->Html->link('Edit Marks',array('controller'=>'pages','action'=>'primary_registration?edit_marks=1')); ?>
+                        <?php echo $this->Html->link('Edit Marks',array('controller'=>'pages','action'=>'edit_applicant?edit_marks=1')); ?>
                         <!--<a href="" class="btn btn-success pull-right" style="margin-right: 5px;" data-toggle="modal" id="mark_edit_btn" data-target="#edit_modal">Edit Marks</a>-->
                         <div class="modal" id="edit_modal">
                             
