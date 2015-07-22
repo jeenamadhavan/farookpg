@@ -1377,12 +1377,12 @@ class IndexesController extends AppController {
 	}
 	
 public function ranking(){
-       $this->autorender=false; 
-        	$db = mysqli_connect("farookpg.cbj29qizqyan.ap-southeast-1.rds.amazonaws.com", "mentor", "m3nt0r#DB", "fkpg_db") or die("No db connection");
-        //$db = mysql_connect("localhost", "root", "mad123") or die("No db connection");
-  //mysql_select_db("fkpgdb") or die("No db selected");
+        
+      $db = mysql_connect("farookpg.cbj29qizqyan.ap-southeast-1.rds.amazonaws.com", "mentor", "m3nt0r#DB") or die("No db connection");
+       // $db = mysql_connect("localhost", "root","") or die("No db connection");
+ mysql_select_db("fkpg_db") or die("No db selected");
 
-  $query="select frkCourseID, frkCourseName from courses";
+ $query="select frkCourseID, frkCourseName from courses";
   $courses = mysql_query($query);
   while($row = mysql_fetch_array($courses)) {
     $course_id = $row['frkCourseID'];
@@ -1398,8 +1398,7 @@ public function ranking(){
       //Wmysql_query("update indexes set rank=$rank where id=$index['id']");
     }
 
-  }
- 
+  }die();
     }
    
 
