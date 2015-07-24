@@ -119,7 +119,7 @@ class AdminsController extends AppController {
         }
         return false;
     }
-    public function generatemarks()
+   public function generatemarks()
 {
 
    
@@ -140,7 +140,7 @@ $choicesID=$this->request->data['courses'];
                     'table'=>'users',
                     'alias'=>'User',
                     'type'=>'INNER',
-                    'conditions'=>array('User.frkUserID=Choice.user_id','Choice.choices'=>$choicesID)
+                    'conditions'=>array('User.frkUserID=Choice.user_id','FIND_IN_SET(\''. $choicesID .'\',Choice.choices)')
                     ),
                    array(
                     'table'=>'final_communities',
@@ -182,13 +182,13 @@ $choicesID=$this->request->data['courses'];
                     'table'=>'courses',
                     'alias'=>'Course',
                     'type'=>'INNER',
-                    'conditions'=>array('Course.frkCourseID=Choice.choices' )
+                    'conditions'=>array('Course.frkCourseID'=>$choicesID )
                     ),
                    array(
                     'table'=>'indexes',
                     'alias'=>'Index',
                     'type'=>'INNER',
-                    'conditions'=>array('Index.user_id=User.frkUserID','Index.course_id=Course.frkCourseID'),
+                    'conditions'=>array('Index.user_id=User.frkUserID','Index.course_id'=>$choicesID),
                     
                     )
             ),
