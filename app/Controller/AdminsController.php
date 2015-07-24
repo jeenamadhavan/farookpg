@@ -1314,22 +1314,22 @@ $choicesID=$this->request->data['courses'];
                     if($usersaved && $applicantsaved && $marksaved) {
                         if($Indexes->indexing($userid)){
                             $this->Session->setFlash(__('Data have been saved successfully, Now you can enter your Additional Information'));
-                            return $this->redirect(array('action' => 'reservations'));
+                            return $this->redirect(array('action' => 'reservations/'.$userid));
                         }
                         } else {
                             $this->Session->setFlash(__('Could not Save entered Details'));
-                            return $this->redirect(array('action' => 'primary_registration'));
+                            return $this->redirect(array('action' => 'edit_applicant/'.$userid));
                                 
                     }
                 } else {
                     if($usersaved && $applicantsaved) {
                         if($Indexes->indexing($userid)){
                             $this->Session->setFlash(__('Data have been saved successfully, Now you can enter your Additional Information'));
-                            return $this->redirect(array('action' => 'reservations'));
+                            return $this->redirect(array('action' => 'reservations/'.$userid));
                         }
                         } else {
                             $this->Session->setFlash(__('Could not Save entered Details'));
-                            return $this->redirect(array('action' => 'primary_registration'));
+                            return $this->redirect(array('action' => 'edit_applicant/'.$userid));
                                 
                     }
                 }
