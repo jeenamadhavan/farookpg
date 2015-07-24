@@ -97,21 +97,21 @@ class AdminsController extends AppController {
         
     }
     public function reservations($userid=null) {
-        
-        
-        if (!isset($userid)) {
-            $this->Session->setFlash(__('Please Login!.'));
-            return $this->redirect(array('action' => 'login'));
-        } else {
-            $reservations = $this->Reservation->find('first', array(
-                'conditions' => array(
-                    'frkUserID' => $userid
-                )
-                    ));
-        
-        if(!empty($reservations)){
-            $appenddata['SecondaryRegister']['HandiCapped'] = $reservations['Reservation']['frkHandiCapped'];
-            $appenddata['SecondaryRegister']['NCC/NSS'] = $reservations['Reservation']['frkNcc/Nss'];
+
+//$userid=$this->Session->read('User.userid');
+if (!isset($userid)) {
+$this->Session->setFlash(__('Please Login!.'));
+return $this->redirect(array('action' => 'login'));
+} else {
+$reservations = $this->Reservation->find('first', array(
+'conditions' => array(
+'frkUserID' => $userid
+)
+));
+
+if(!empty($reservations)){
+$appenddata['SecondaryRegister']['HandiCapped'] = $reservations['Reservation']['frkHandiCapped'];
+        $appenddata['SecondaryRegister']['NCC/NSS'] = $reservations['Reservation']['frkNcc/Nss'];
             $appenddata['SecondaryRegister']['Ex-ServiceMan'] = $reservations['Reservation']['frkEx-ServiceMan'];
             
             $appenddata['SecondaryRegister']['NCC_Certificate_A'] = $reservations['Reservation']['NCC_Certificate_A'];
@@ -183,16 +183,20 @@ class AdminsController extends AppController {
                     $cnd3 = array(
                         'Reservation.frkUserID' => $userid,
                     );
-                    $Indexes = new IndexesController;
+                    $IndexObject = new IndexesController;
+                    $choice=$this->Choice->find('all',array('conditions'=>array('user_id'=>$userid)));
+                    $choice_str=$choice[0]['Choice']['choices'];
+                    $choice_arr=explode(',',$choice_str);
 
                     if (!$this->Reservation->updateAll($ReservationTableData, $cnd3)) {
                         $this->Session->setFlash(__('Could not Save Application Data'));
-                        return $this->redirect(array('action' => 'reservations'));
+                        return $this->redirect(array('action' => 'reservations',$userid));
                     } else {
-                        if($Indexes->indexing($this->Session->read('User.userid'))){
+                        if($IndexObject->indexing($userid) && $IndexObject->ranking($choice_arr)) {
                             $this->Session->setFlash(__('Additional Information have been saved'));
-                            return $this->redirect(array('action' => 'choice_select'));
+                            return $this->redirect(array('action' => 'indexdetails'));
                         }
+                        
                     }
                 } else{
 
@@ -230,9 +234,22 @@ class AdminsController extends AppController {
                     'Arts3' => $Arts3,
                     'ArtsLevel3' => $this->request->data['SecondaryRegister']['ArtsLevel3']
                 ); 
-                $Indexes = new IndexesController;
-                $this->Reservation->create();
+                $IndexObject = new IndexesController;
+                $choice=$this->Choice->find('all',array('conditions'=>array('user_id'=>$userid)));
+                $choice_str=$choice[0]['Choice']['choices'];
+                $choice_arr=explode(',',$choice_str);
                 
+                $this->Reservation->create();
+                if ($this->Reservation->save($reservations1)) { 
+                     if($IndexObject->indexing($userid) && $IndexObject->ranking($choice_arr)) {            
+                        $this->Session->setFlash(__('Your Application has been successfully saved!'));
+                        return $this->redirect(array('action' => 'indexdetails','controller'=>'admins'));
+                    }
+                    
+                } else {
+                    $this->Session->setFlash(__('Your Additional Information could not be saved. Please, try again.'));
+                     return $this->redirect(array('action' => 'reservations',$userid));
+                }
                 }
                 }
         }
@@ -243,7 +260,7 @@ class AdminsController extends AppController {
         }
     }
         
-    } 
+    }  
    public function get_castes() {
       $community_id=$this->data['cummunity_id'];
        $userid=$this->data['userid'];
