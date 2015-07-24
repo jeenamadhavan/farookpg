@@ -5167,7 +5167,7 @@ public function generatemarks()
                     'table'=>'applicants',
                     'alias'=>'Applicant',
                     'type'=>'INNER',
-                    'conditions'=>array('Applicant.frkApplicantID=User.frkUserID')
+                    'conditions'=>array('Applicant.frkUserID=User.frkUserID')
                     ),
                    array(
                     'table'=>'marks',
