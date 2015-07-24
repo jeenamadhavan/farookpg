@@ -288,7 +288,7 @@ $choicesID=$this->request->data['courses'];
                     'table'=>'users',
                     'alias'=>'User',
                     'type'=>'INNER',
-                    'conditions'=>array('User.frkUserID=Choice.user_id','FIND_IN_SET(\''. $choicesID .'\',Choice.choices)')
+                    'conditions'=>array('FIND_IN_SET(\''. $choicesID .'\',Choice.choices)','Choice.user_id=User.frkUserID')
                     ),
                    array(
                     'table'=>'final_communities',
