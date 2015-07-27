@@ -1,3 +1,5 @@
+
+
 <div class="container">
 	<div class="col-md-12">
 		<h3>Your Basic Information<span class="pull-right"><small>Application No: <?php echo $choices[0]['Choice']['application_no']; ?></small></span></h3><br>
@@ -39,28 +41,45 @@
 				<td><?php echo $choices[0]['Choice']['amount']; ?></td>
 			</tr>
 		</table>
-		<?php
-			// pr($choices_name);exit();
+		<?php 
+			if(isset($edit_form)&& $edit_form==1) {
 			foreach($choices_name as $choice_no=>$choice){
 				$n=$this->Session->read('choice_array');
 			echo $this->Html->link('Download '.$choice.' Pdf',array('controller'=>'pages','action'=>'generatepdfapplication/'.$n[$choice_no]),array('class'=>'btn btn-success pull-left','style'=>'margin-right: 5px;'));
 			
-			
+                        }
 			}
 	
 
 		 ?>
-	<!--	<?php// if(!isset($cannot_fill)) { // if payment verified
-		//	echo $this->Html->link('Fill Application',array('controller'=>'pages','action'=>'primary_registration'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;'));
-	//	} else { ?>
-		<?php// echo $this->Html->link('Confirm Payment',array('controller'=>'pages','action'=>'after_payment'),array('class'=>'btn btn-danger pull-right')); ?>
+		<?php if($this->Session->read('User.userid')>2821){
+ if(isset($cannot_edit)&& $cannot_edit==1 && !isset($edit_form)) { // if payment verified
+              
+			echo $this->Html->link('Fill Application',array('controller'=>'pages','action'=>'primary_registration'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;'));
+		}if(!isset($cannot_edit)){echo $this->Html->link('Proceed to Payment',array('controller'=>'pages','action'=>'befor_payment'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;'));} }?>
+                 <?php 
+ if(isset($edit_form)&& $edit_form==1) { // if payment verified
+              
+			echo $this->Html->link('Edit Application',array('controller'=>'pages','action'=>'primary_registration'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;'));
+		} ?>
+                 
+                 
+                 
+                 <?php if(isset($cannot_edit)&&$cannot_edit==1) {
+			 echo $this->Html->link('Edit',array('controller'=>'pages','action'=>'choice_edit'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;','disabled'=>'disabled')); 
+			} else { 
+		echo $this->Html->link('Edit',array('controller'=>'pages','action'=>'choice_edit'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;'));
+		} 
+		 ?>
+                 
+		<!--<?php// echo $this->Html->link('Confirm Payment',array('controller'=>'pages','action'=>'after_payment'),array('class'=>'btn btn-danger pull-right')); ?>
 		<?php// echo $this->Html->link('Proceed to Payment',array('controller'=>'pages','action'=>'befor_payment'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;')); ?>
 		<?php// if(isset($cannot_edit)&&$cannot_edit==1) {
-		//	 echo $this->Html->link('Edit',array('controller'=>'pages','action'=>'choice_edit'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;','disabled'=>'disabled')); 
-		//	} else { 
-	//	echo $this->Html->link('Edit',array('controller'=>'pages','action'=>'choice_edit'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;'));
-	//	} 
-	//	} // ?> -->
+			// echo $this->Html->link('Edit',array('controller'=>'pages','action'=>'choice_edit'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;','disabled'=>'disabled')); 
+			//} else { 
+		//echo $this->Html->link('Edit',array('controller'=>'pages','action'=>'choice_edit'),array('class'=>'btn btn-success pull-right','style'=>'margin-right: 5px;'));
+		//} 
+		//} // ?> -->
 		
 
 
