@@ -93,7 +93,10 @@ class PagesController extends AppController {
     }
 
     public function register() {
-         //$this->render('register', 'register');
+        if($this->Session->read('User.userid')) {
+            $this->Session->setFlash('You are already logged in');
+            return $this->redirect(array('action'=>'choice_select'));
+        }
         if ($this->request->is('post')) {
             $validates = array();
             $msg = "";
@@ -237,6 +240,10 @@ class PagesController extends AppController {
     }
 
     public function login() {
+        if($this->Session->read('User.userid')) {
+            $this->Session->setFlash('You are already logged in');
+            return $this->redirect(array('action'=>'choice_select'));
+        }
         $this->render('login', 'login');
         if ($this->request->is('post')) {
 
