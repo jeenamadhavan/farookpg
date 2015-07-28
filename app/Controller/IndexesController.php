@@ -1525,10 +1525,10 @@ class IndexesController extends AppController {
                 }
             }
         }
-        if ($flag == 1) {
+        //if ($flag == 1) {
 
             return true;
-        }
+        //}
     }
 
     public function overall_cgpa($mark) { //cg1
@@ -1630,10 +1630,10 @@ class IndexesController extends AppController {
 
 
 
-        if ($flag == 1) {
+        //if ($flag == 1) {
 
             return true;
-        }
+        //}
     }
 
     function core_credits($mark, &$total_credits, &$credit_tracking) { //c2
